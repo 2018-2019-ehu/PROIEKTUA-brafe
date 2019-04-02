@@ -47,14 +47,14 @@ function resetFormularioa(){
 
 <body>
 
-	<form action="mailto:iban.ferro@gmail.com" onsubmit="return egiaztatuFormularioa()" onreset="return resetFormularioa()" method="post">
+
 
 	TELEFONO ZENBAKIA SARTU <input type= "text" id = "t" name = "Telefonoa" placeholder="+34XXXXXXXXX" pattern="+d{11}"><br>
-	<input type="reset" value="RESET">	
-	<input type="submit" value="SUBMIT">	
+	<input type="reset" onreset="return resetFormularioa()" value="RESET">	
+	<input type="submit" onsubmit="return egiaztatuFormularioa()" value="SUBMIT">	
 	<a class="phonelink" id = "p" href="tel:+34688689984"><img class="phoneicon" src="https://freeiconshop.com/wp-content/uploads/edd/phone-flat.png"></a>
 
-   </form>
+   
 </body>
 
 </html>
