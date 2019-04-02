@@ -16,7 +16,10 @@ function egiaztatuFormularioa() {
 		document.getElementById("t").style.backgroundColor="red";
 		e= false;
 	}else{
-		p.setAttribute("href",i);
+		document.getElementById("t").style.backgroundColor="green";
+		document.getElementById("p").setAttribute('href',"tel:"+document.getElementById("t").value);
+		
+		e = false;
 	}
 
 	return e;
@@ -51,7 +54,7 @@ function resetFormularioa(){
 
 	TELEFONO ZENBAKIA SARTU <input type= "text" id = "t" name = "Telefonoa" placeholder="+34XXXXXXXXX" pattern="+d{11}"><br>
 	<input type="reset" onclick="resetFormularioa()" value="RESET">	
-	<input type="submit" onclick="egiaztatuFormularioa()" value="SUBMIT">	
+	<input type="submit" onclick="egiaztatuFormularioa()" value="BUTTON">	
 	<a class="phonelink" id = "p" href="tel:+34688689984"><img class="phoneicon" src="https://freeiconshop.com/wp-content/uploads/edd/phone-flat.png"></a>
 
    
