@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!DOCTYPE html>
+<html>
+<head>
+<title>How to make a click-to-call button for your website</title>
+<script type="text/javascript">
+function egiaztatuFormularioa() {
+	var e = true;
+	var i = document.getElementById("t").value;
+	var p = document.getElementById("p");	
+	if(i==null || i==""){
+		document.getElementById("t").style.backgroundColor="red";
+		e= false;
+	}else{
+		p.setAttribute("href",i);
+	}
+
+	return e;
+}
+
+function resetFormularioa(){
+	document.getElementById("t").style.backgroundColor= "white";
+
+}
+
+
+
+</script>
+<style>
+.phonelink{
+    position: fixed; /* Lock location always on the scree */
+    top: 10; /* Set to the bottom */
+    left: 10; /* Set to the right */
+    margin: 30px; /* Add space around background */
+}
+.phoneicon{
+    width: 40px; /* Set width of icon */
+    height: 40px; /* Set height of icon */
+}
+
+</style>
+</head>
+
+<body>
+
+	<form action="mailto:iban.ferro@gmail.com" onsubmit="return egiaztatuFormularioa()" onreset="return resetFormularioa()" method="post">
+
+	TELEFONO ZENBAKIA SARTU <input type= "text" id = "t" name = "Telefonoa" placeholder="+34XXXXXXXXX" pattern="+d{11}"><br>
+	<input type="reset" value="RESET">	
+	<input type="submit" value="SUBMIT">	
+	<a class="phonelink" id = "p" href="tel:+34688689984"><img class="phoneicon" src="https://freeiconshop.com/wp-content/uploads/edd/phone-flat.png"></a>
+
+   </form>
+</body>
+
+</html>
