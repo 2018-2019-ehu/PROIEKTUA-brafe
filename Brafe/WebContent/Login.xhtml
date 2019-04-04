@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia.xhtml">
+		<ui:define name="title">Brafe: login</ui:define>
+		<ui:define name="bodyBurua">Login orrialdea</ui:define>
+		<ui:define name="Edukia">
+			<h:panelGroup>
+				<h:form>
+					IZENA:
+					<h:inputText id="izena" value="#{erabiltzaileaMB.izena}" required="true" requiredMessage="Ez duzu izenik sartu"/>
+					<h:message for="izena" style="color:red"/><br />
+					PASAHITZA:
+					<h:inputSecret id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" requiredMessage="Mesedez sartu pasahitz bat"/>
+					<h:commandButton  value="SARTU" />
+					<h:link value="Oraindik ez duzu kontu bat sortu? Erregistra zaitez" outcome="index"/>
+				</h:form>
+			</h:panelGroup>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia.xhtml">
+		<ui:define name="title">Brafe: erregistroa</ui:define>
+		<ui:define name="Edukia">
+			<div class="erregistroDIV">
+				<div class="logo">
+					<img src="./EDUKIAK/IRUDIAK/Logo2.png" alt="BrafeLogo"/>
+				</div>
+				<div class="testua1">
+					<p>Brafe kontu bat sortu</p>
+				</div>
+				<h:form>
+				<div>
+					<h:inputText a:placeholder="Izena" id="izena" value="#{erabiltzaileaMB.izena}" required="true" requiredMessage="Ez duzu izenik sartu" class="inputKutxak"/>
+					<h:message for="izena" style="color:red"/>
+				</div>
+				<div>
+					<h:inputText a:placeholder="Abizenak" id="abizena" value="#{erabiltzaileaMB.abizenak}" required="true" requiredMessage="Ez duzu abizenik sartu" class="inputKutxak"/>
+				</div>
+				<div>
+					<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" requiredMessage="Mesedez sartu pasahitz bat" class="inputKutxak"/>
+				</div>
+				<div>
+					<h:inputText a:placeholder="Jaiote data" id="jaioteData" value="#{erabiltzaileaMB.jaioteData}" class="inputKutxak">
+						<f:convertDateTime pattern="yyyy/MM/dd" timeZone="CET"/>
+					</h:inputText>
+				</div>
+				<div>
+					<h:inputText a:placeholder="Telefono zenbakia" id="zenbakia" value="#{erabiltzaileaMB.telefonoZenbakia}" required="true" requiredMessage="Mesedez sartu zure telefono zenbakia" class="inputKutxak"/>				
+					<h:message for="zenbakia" style="color:red"/>
+				</div>
+				<div>
+					<h:inputText a:placeholder="Bizilekua" id="zonaldea" value="#{erabiltzaileaMB.zonaldea}" required="true" requiredMessage="Sartu zure bizilekau" class="inputKutxak"/>
+				</div>
+				<div>
+					<h:commandButton actionListener="#{erabilpenaMB.erregistratu(erabiltzaileaMB)}" value="JARRAITU" class="botoiak"/>
+				</div>
+				</h:form>
+				<div class="linkLoginDiv">
+					<p>Dagoeneko kontu bat daukazu?<a href="Login.xhtml"> Logeatu zaitez</a></p>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
