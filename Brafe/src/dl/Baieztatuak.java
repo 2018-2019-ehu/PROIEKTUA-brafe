@@ -14,28 +14,28 @@ public class Baieztatuak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="BaieztatuakID")
-	private int baieztatuakID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idBaieztatuak;
 
 	//bi-directional many-to-one association to Erabiltzaileak
 	@ManyToOne
-	@JoinColumn(name="ErabiltzaileakID")
+	@JoinColumn(name="Erabiltzaileak_idErabiltzailea")
 	private Erabiltzaileak erabiltzaileak;
 
 	//bi-directional many-to-one association to Geldialdiak
 	@ManyToOne
-	@JoinColumn(name="Geldialdiak_GeldialdiID")
+	@JoinColumn(name="Geldialdiak_idGeldialdiak")
 	private Geldialdiak geldialdiak;
 
 	public Baieztatuak() {
 	}
 
-	public int getBaieztatuakID() {
-		return this.baieztatuakID;
+	public int getIdBaieztatuak() {
+		return this.idBaieztatuak;
 	}
 
-	public void setBaieztatuakID(int baieztatuakID) {
-		this.baieztatuakID = baieztatuakID;
+	public void setIdBaieztatuak(int idBaieztatuak) {
+		this.idBaieztatuak = idBaieztatuak;
 	}
 
 	public Erabiltzaileak getErabiltzaileak() {

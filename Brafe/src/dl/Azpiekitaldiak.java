@@ -15,18 +15,16 @@ public class Azpiekitaldiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="AzpiekitaldiID")
-	private int azpiekitaldiID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idAzpiekitaldiak;
 
-	@Column(name="AzpiekitaldiIzena")
-	private String azpiekitaldiIzena;
+	private int aPartaideKopurua;
 
-	@Column(name="AzpiekitaldiPartaide")
-	private int azpiekitaldiPartaide;
+	private String bueltatzekoLekua;
 
 	//bi-directional many-to-one association to Ekitaldiak
 	@ManyToOne
-	@JoinColumn(name="Ekitaldiak_EkitaldiID")
+	@JoinColumn(name="Ekitaldiak_idEkitaldiak")
 	private Ekitaldiak ekitaldiak;
 
 	//bi-directional many-to-one association to Geldialdiak
@@ -36,28 +34,28 @@ public class Azpiekitaldiak implements Serializable {
 	public Azpiekitaldiak() {
 	}
 
-	public int getAzpiekitaldiID() {
-		return this.azpiekitaldiID;
+	public int getIdAzpiekitaldiak() {
+		return this.idAzpiekitaldiak;
 	}
 
-	public void setAzpiekitaldiID(int azpiekitaldiID) {
-		this.azpiekitaldiID = azpiekitaldiID;
+	public void setIdAzpiekitaldiak(int idAzpiekitaldiak) {
+		this.idAzpiekitaldiak = idAzpiekitaldiak;
 	}
 
-	public String getAzpiekitaldiIzena() {
-		return this.azpiekitaldiIzena;
+	public int getAPartaideKopurua() {
+		return this.aPartaideKopurua;
 	}
 
-	public void setAzpiekitaldiIzena(String azpiekitaldiIzena) {
-		this.azpiekitaldiIzena = azpiekitaldiIzena;
+	public void setAPartaideKopurua(int aPartaideKopurua) {
+		this.aPartaideKopurua = aPartaideKopurua;
 	}
 
-	public int getAzpiekitaldiPartaide() {
-		return this.azpiekitaldiPartaide;
+	public String getBueltatzekoLekua() {
+		return this.bueltatzekoLekua;
 	}
 
-	public void setAzpiekitaldiPartaide(int azpiekitaldiPartaide) {
-		this.azpiekitaldiPartaide = azpiekitaldiPartaide;
+	public void setBueltatzekoLekua(String bueltatzekoLekua) {
+		this.bueltatzekoLekua = bueltatzekoLekua;
 	}
 
 	public Ekitaldiak getEkitaldiak() {

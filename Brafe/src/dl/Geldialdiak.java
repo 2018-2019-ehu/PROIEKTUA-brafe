@@ -16,21 +16,16 @@ public class Geldialdiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="GeldialdiID")
-	private int geldialdiID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idGeldialdiak;
 
-	@Column(name="BatazbestekoBalorazioa")
-	private int batazbestekoBalorazioa;
+	private float batazbestekoBalorazioa;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="GeldialdiIraungiteData")
-	private Date geldialdiIraungiteData;
-
-	@Column(name="GeldialdiIzena")
 	private String geldialdiIzena;
 
-	@Column(name="Geralekua")
-	private String geralekua;
+	@Temporal(TemporalType.DATE)
+	@Column(name="IraungiteData")
+	private Date iraungiteData;
 
 	//bi-directional many-to-one association to Baieztatuak
 	@OneToMany(mappedBy="geldialdiak")
@@ -38,34 +33,26 @@ public class Geldialdiak implements Serializable {
 
 	//bi-directional many-to-one association to Azpiekitaldiak
 	@ManyToOne
-	@JoinColumn(name="Azpiekitaldiak_AzpiekitaldiID")
+	@JoinColumn(name="Azpiekitaldiak_idAzpiekitaldiak")
 	private Azpiekitaldiak azpiekitaldiak;
 
 	public Geldialdiak() {
 	}
 
-	public int getGeldialdiID() {
-		return this.geldialdiID;
+	public int getIdGeldialdiak() {
+		return this.idGeldialdiak;
 	}
 
-	public void setGeldialdiID(int geldialdiID) {
-		this.geldialdiID = geldialdiID;
+	public void setIdGeldialdiak(int idGeldialdiak) {
+		this.idGeldialdiak = idGeldialdiak;
 	}
 
-	public int getBatazbestekoBalorazioa() {
+	public float getBatazbestekoBalorazioa() {
 		return this.batazbestekoBalorazioa;
 	}
 
-	public void setBatazbestekoBalorazioa(int batazbestekoBalorazioa) {
+	public void setBatazbestekoBalorazioa(float batazbestekoBalorazioa) {
 		this.batazbestekoBalorazioa = batazbestekoBalorazioa;
-	}
-
-	public Date getGeldialdiIraungiteData() {
-		return this.geldialdiIraungiteData;
-	}
-
-	public void setGeldialdiIraungiteData(Date geldialdiIraungiteData) {
-		this.geldialdiIraungiteData = geldialdiIraungiteData;
 	}
 
 	public String getGeldialdiIzena() {
@@ -76,12 +63,12 @@ public class Geldialdiak implements Serializable {
 		this.geldialdiIzena = geldialdiIzena;
 	}
 
-	public String getGeralekua() {
-		return this.geralekua;
+	public Date getIraungiteData() {
+		return this.iraungiteData;
 	}
 
-	public void setGeralekua(String geralekua) {
-		this.geralekua = geralekua;
+	public void setIraungiteData(Date iraungiteData) {
+		this.iraungiteData = iraungiteData;
 	}
 
 	public List<Baieztatuak> getBaieztatuaks() {

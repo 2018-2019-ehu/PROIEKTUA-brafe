@@ -3,7 +3,7 @@ package dl;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+//import java.util.List;
 
 
 /**
@@ -12,49 +12,38 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Erabiltzaileak.findAll", query="SELECT e FROM Erabiltzaileak e")
-@NamedQuery(name="Erabiltzaileak.findErabiltzaile",query="SELECT e FROM Erabiltzaileak e WHERE e.izena = :izena")
 public class Erabiltzaileak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="ErabiltzaileakID")
-	private int erabiltzaileakID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idErabiltzailea;
 
-	@Column(name="Abizenak")
 	private String abizenak;
 
-	@Column(name="Balorazioa")
 	private float balorazioa;
 
-	@Column(name="Izena")
+	private String helbidea;
+
 	private String izena;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="JaioteData")
 	private Date jaioteData;
 
-	@Column(name="Pasahitza")
 	private String pasahitza;
 
-	@Column(name="TelefonoZenbakia")
-	private String telefonoZenbakia;
+	private int telefonoZenbakia;
 
-	@Column(name="Zonaldea")
-	private String zonaldea;
-
-	//bi-directional many-to-one association to Baieztatuak
-	@OneToMany(mappedBy="erabiltzaileak")
-	private List<Baieztatuak> baieztatuaks;
 
 	public Erabiltzaileak() {
 	}
 
-	public int getErabiltzaileakID() {
-		return this.erabiltzaileakID;
+	public int getIdErabiltzailea() {
+		return this.idErabiltzailea;
 	}
 
-	public void setErabiltzaileakID(int erabiltzaileakID) {
-		this.erabiltzaileakID = erabiltzaileakID;
+	public void setIdErabiltzailea(int idErabiltzailea) {
+		this.idErabiltzailea = idErabiltzailea;
 	}
 
 	public String getAbizenak() {
@@ -71,6 +60,14 @@ public class Erabiltzaileak implements Serializable {
 
 	public void setBalorazioa(float balorazioa) {
 		this.balorazioa = balorazioa;
+	}
+
+	public String getHelbidea() {
+		return this.helbidea;
+	}
+
+	public void setHelbidea(String helbidea) {
+		this.helbidea = helbidea;
 	}
 
 	public String getIzena() {
@@ -97,42 +94,13 @@ public class Erabiltzaileak implements Serializable {
 		this.pasahitza = pasahitza;
 	}
 
-	public String getTelefonoZenbakia() {
+	public int getTelefonoZenbakia() {
 		return this.telefonoZenbakia;
 	}
 
-	public void setTelefonoZenbakia(String telefonoZenbakia) {
+	public void setTelefonoZenbakia(int telefonoZenbakia) {
 		this.telefonoZenbakia = telefonoZenbakia;
 	}
 
-	public String getZonaldea() {
-		return this.zonaldea;
-	}
-
-	public void setZonaldea(String zonaldea) {
-		this.zonaldea = zonaldea;
-	}
-
-	public List<Baieztatuak> getBaieztatuaks() {
-		return this.baieztatuaks;
-	}
-
-	public void setBaieztatuaks(List<Baieztatuak> baieztatuaks) {
-		this.baieztatuaks = baieztatuaks;
-	}
-
-	public Baieztatuak addBaieztatuak(Baieztatuak baieztatuak) {
-		getBaieztatuaks().add(baieztatuak);
-		baieztatuak.setErabiltzaileak(this);
-
-		return baieztatuak;
-	}
-
-	public Baieztatuak removeBaieztatuak(Baieztatuak baieztatuak) {
-		getBaieztatuaks().remove(baieztatuak);
-		baieztatuak.setErabiltzaileak(null);
-
-		return baieztatuak;
-	}
 
 }

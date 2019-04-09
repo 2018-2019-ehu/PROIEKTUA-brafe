@@ -3,8 +3,11 @@ package pl;
 import java.io.Serializable;
 import java.util.Date;
 
+//import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+//import javax.persistence.Temporal;
+//import javax.persistence.TemporalType;
 
 @Named
 @SessionScoped
@@ -12,26 +15,23 @@ public class ErabiltzaileaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	
-	private int erabiltzaileakID;
+	private int idErabiltzailea;
 	private String abizenak;
 	private float balorazioa;
-	private byte erabiltzaileEgoera;
+	private String helbidea;
 	private String izena;
 	private Date jaioteData;
 	private String pasahitza;
-	private String telefonoZenbakia;
-	private String zonaldea;
-	
+	private int telefonoZenbakia;
 	public ErabiltzaileaMB() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	public int getErabiltzaileakID() {
-		return erabiltzaileakID;
+	public int getIdErabiltzailea() {
+		return idErabiltzailea;
 	}
-	public void setErabiltzaileakID(int erabiltzaileakID) {
-		this.erabiltzaileakID = erabiltzaileakID;
+	public void setIdErabiltzailea(int idErabiltzailea) {
+		this.idErabiltzailea = idErabiltzailea;
 	}
 	public String getAbizenak() {
 		return abizenak;
@@ -45,11 +45,11 @@ public class ErabiltzaileaMB implements Serializable {
 	public void setBalorazioa(float balorazioa) {
 		this.balorazioa = balorazioa;
 	}
-	public byte getErabiltzaileEgoera() {
-		return erabiltzaileEgoera;
+	public String getHelbidea() {
+		return helbidea;
 	}
-	public void setErabiltzaileEgoera(byte erabiltzaileEgoera) {
-		this.erabiltzaileEgoera = erabiltzaileEgoera;
+	public void setHelbidea(String helbidea) {
+		this.helbidea = helbidea;
 	}
 	public String getIzena() {
 		return izena;
@@ -69,17 +69,14 @@ public class ErabiltzaileaMB implements Serializable {
 	public void setPasahitza(String pasahitza) {
 		this.pasahitza = pasahitza;
 	}
-	public String getTelefonoZenbakia() {
+	public int getTelefonoZenbakia() {
 		return telefonoZenbakia;
 	}
-	public void setTelefonoZenbakia(String telefonoZenbakia) {
+	public void setTelefonoZenbakia(int telefonoZenbakia) {
 		this.telefonoZenbakia = telefonoZenbakia;
 	}
-	public String getZonaldea() {
-		return zonaldea;
-	}
-	public void setZonaldea(String zonaldea) {
-		this.zonaldea = zonaldea;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

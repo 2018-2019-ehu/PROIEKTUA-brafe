@@ -16,24 +16,19 @@ public class Ekitaldiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="EkitaldiID")
-	private int ekitaldiID;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idEkitaldiak;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="EkitaldiData")
 	private Date ekitaldiData;
 
-	@Column(name="EkitaldiIzena")
 	private String ekitaldiIzena;
 
-	@Column(name="EkitaldiSortzailea")
-	private String ekitaldiSortzailea;
+	private String ekitaldiZonaldea;
 
-	@Column(name="Kokapena")
-	private String kokapena;
+	private int partaideKopurua;
 
-	@Column(name="Partaideak")
-	private int partaideak;
+	private String sortzailea;
 
 	//bi-directional many-to-one association to Azpiekitaldiak
 	@OneToMany(mappedBy="ekitaldiak")
@@ -42,12 +37,12 @@ public class Ekitaldiak implements Serializable {
 	public Ekitaldiak() {
 	}
 
-	public int getEkitaldiID() {
-		return this.ekitaldiID;
+	public int getIdEkitaldiak() {
+		return this.idEkitaldiak;
 	}
 
-	public void setEkitaldiID(int ekitaldiID) {
-		this.ekitaldiID = ekitaldiID;
+	public void setIdEkitaldiak(int idEkitaldiak) {
+		this.idEkitaldiak = idEkitaldiak;
 	}
 
 	public Date getEkitaldiData() {
@@ -66,28 +61,28 @@ public class Ekitaldiak implements Serializable {
 		this.ekitaldiIzena = ekitaldiIzena;
 	}
 
-	public String getEkitaldiSortzailea() {
-		return this.ekitaldiSortzailea;
+	public String getEkitaldiZonaldea() {
+		return this.ekitaldiZonaldea;
 	}
 
-	public void setEkitaldiSortzailea(String ekitaldiSortzailea) {
-		this.ekitaldiSortzailea = ekitaldiSortzailea;
+	public void setEkitaldiZonaldea(String ekitaldiZonaldea) {
+		this.ekitaldiZonaldea = ekitaldiZonaldea;
 	}
 
-	public String getKokapena() {
-		return this.kokapena;
+	public int getPartaideKopurua() {
+		return this.partaideKopurua;
 	}
 
-	public void setKokapena(String kokapena) {
-		this.kokapena = kokapena;
+	public void setPartaideKopurua(int partaideKopurua) {
+		this.partaideKopurua = partaideKopurua;
 	}
 
-	public int getPartaideak() {
-		return this.partaideak;
+	public String getSortzailea() {
+		return this.sortzailea;
 	}
 
-	public void setPartaideak(int partaideak) {
-		this.partaideak = partaideak;
+	public void setSortzailea(String sortzailea) {
+		this.sortzailea = sortzailea;
 	}
 
 	public List<Azpiekitaldiak> getAzpiekitaldiaks() {

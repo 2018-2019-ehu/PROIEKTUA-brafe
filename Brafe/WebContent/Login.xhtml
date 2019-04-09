@@ -2,23 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:composition template="./EDUKIAK/TXANT/txantiloia.xhtml">
 		<ui:define name="title">Brafe: login</ui:define>
-		<ui:define name="bodyBurua">Login orrialdea</ui:define>
 		<ui:define name="Edukia">
-			<h:panelGroup>
+			<div class="erregistroDIV">
+				<div class="logo">
+					<img src="./EDUKIAK/IRUDIAK/Logo2.png" alt="BrafeLogo"/>
+				</div>
+				<div class="testua1">
+					<p>Saioa hasi</p>
+				</div>
 				<h:form>
-					IZENA:
-					<h:inputText id="izena" value="#{erabiltzaileaMB.izena}" required="true" requiredMessage="Ez duzu izenik sartu"/>
-					<h:message for="izena" style="color:red"/><br />
-					PASAHITZA:
-					<h:inputSecret id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" requiredMessage="Mesedez sartu pasahitz bat"/>
-					<h:commandButton  value="SARTU" />
-					<h:link value="Oraindik ez duzu kontu bat sortu? Erregistra zaitez" outcome="index"/>
+					<div>
+						<h:inputText a:placeholder="Izena" id="izena" value="#{erabiltzaileaMB.izena}" required="true" requiredMessage="Ez duzu izenik sartu" class="inputKutxak"/>
+					</div>
+					<div>
+						<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" class="inputKutxak" requiredMessage="Mesedez sartu pasahitz bat"/>
+					</div>
+					<div>
+						<h:commandButton  value="SARTU" class="botoiak"/>
+					</div>
+					<div class="linkLoginDiv">
+						<p>Dagoeneko ez zara erregistratu?<a href="index.xhtml"> Erregistratu zaitez</a></p>
+					</div>
 				</h:form>
-			</h:panelGroup>
+			</div>
 		</ui:define>
 	</ui:composition>
 </html>

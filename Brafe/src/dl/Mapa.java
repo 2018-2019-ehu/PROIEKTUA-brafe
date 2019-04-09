@@ -14,34 +14,24 @@ public class Mapa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idMapa;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idBrafePuntua;
 
-	@Column(name="EstablezimenduIzena")
-	private String establezimenduIzena;
-
-	@Column(name="Latitudea")
 	private float latitudea;
 
-	@Column(name="Logitudea")
-	private float logitudea;
+	private float longitudea;
+
+	private String puntuarenIzena;
 
 	public Mapa() {
 	}
 
-	public int getIdMapa() {
-		return this.idMapa;
+	public int getIdBrafePuntua() {
+		return this.idBrafePuntua;
 	}
 
-	public void setIdMapa(int idMapa) {
-		this.idMapa = idMapa;
-	}
-
-	public String getEstablezimenduIzena() {
-		return this.establezimenduIzena;
-	}
-
-	public void setEstablezimenduIzena(String establezimenduIzena) {
-		this.establezimenduIzena = establezimenduIzena;
+	public void setIdBrafePuntua(int idBrafePuntua) {
+		this.idBrafePuntua = idBrafePuntua;
 	}
 
 	public float getLatitudea() {
@@ -52,12 +42,20 @@ public class Mapa implements Serializable {
 		this.latitudea = latitudea;
 	}
 
-	public float getLogitudea() {
-		return this.logitudea;
+	public float getLongitudea() {
+		return this.longitudea;
 	}
 
-	public void setLogitudea(float logitudea) {
-		this.logitudea = logitudea;
+	public void setLongitudea(float longitudea) {
+		this.longitudea = longitudea;
+	}
+
+	public String getPuntuarenIzena() {
+		return this.puntuarenIzena;
+	}
+
+	public void setPuntuarenIzena(String puntuarenIzena) {
+		this.puntuarenIzena = puntuarenIzena;
 	}
 
 }
