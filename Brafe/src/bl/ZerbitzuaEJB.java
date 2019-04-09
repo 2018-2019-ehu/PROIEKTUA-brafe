@@ -1,5 +1,7 @@
 package bl;
 
+import java.util.List;
+
 //import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -53,5 +55,10 @@ public class ZerbitzuaEJB {
 	
 	public Erabiltzaileak loginDatuakLortu(String izena) {
 		return (Erabiltzaileak)em.createNamedQuery("Erabiltzaileak.findErabiltzailea").setParameter("izena", izena).getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ekitaldiak> ekitaldiGuztiakLortu(){
+		return em.createNamedQuery("Ekitaldiak.findAll").getResultList();
 	}
 }

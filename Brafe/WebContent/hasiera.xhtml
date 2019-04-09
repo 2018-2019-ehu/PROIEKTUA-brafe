@@ -8,7 +8,18 @@
 	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">
 		<ui:define name="title">Brafe: hasiera</ui:define>
 		<ui:define name="Edukia">
-
+		<div class="edukiontzia">
+			<ui:repeat var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitadiakLortu()}">
+						<div class="ekitaldiaDIV">
+							<div class="idEkitaldiDIV">
+								<p># #{ekitaldia.idEkitaldiak}</p>
+							</div>
+							<div class="ekitaldiIzenaDIV">
+								<p>#{ekitaldia.ekitaldiIzena}</p>
+							</div>
+						</div>
+			</ui:repeat>
+		</div>
 		</ui:define>
 	</ui:composition>
 </html>
