@@ -110,3 +110,27 @@ th {
 	text-align: center;
 	font-size: 9px;
 }
+
+.oharrak{
+	display: block;
+	margin: auto;
+	width: 250px;
+}
+
+.oharrak p{
+	text-align: left;
+	font-size: 9px;
+	color: red;
+}
+
+.oharrak2{
+	display: block;
+	margin: auto;
+	width: 250px;
+}
+
+.oharrak2 p{
+	text-align: center;
+	font-size: 9px;
+	color: red;
+}

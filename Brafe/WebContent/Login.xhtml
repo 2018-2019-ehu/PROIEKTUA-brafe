@@ -17,16 +17,35 @@
 				</div>
 				<h:form>
 					<div>
+					<h:panelGroup rendered="#{erabilpenaMB.kodea==4}">
+						<div class="oharrak2">
+							<p>*Ezin zara logeatu: kontuz erabiltzaile edo pasahitzarekin*</p>
+						</div>
+					</h:panelGroup>
+					<div>
 						<h:inputText a:placeholder="Izena" id="izena" value="#{erabiltzaileaMB.izena}" required="true" requiredMessage="Ez duzu izenik sartu" class="inputKutxak"/>
 					</div>
-					<div>
-						<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" class="inputKutxak" requiredMessage="Mesedez sartu pasahitz bat"/>
+					<h:panelGroup rendered="#{erabilpenaMB.kodea==1}">
+						<div class="oharrak">
+							<p>*Erabiltzailea ez da existitzen</p>
+						</div>
+					</h:panelGroup>
 					</div>
 					<div>
-						<h:commandButton  value="SARTU" class="botoiak"/>
+						<div>
+							<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" class="inputKutxak" requiredMessage="Mesedez sartu pasahitz bat"/>
+						</div>
+						<h:panelGroup rendered="#{erabilpenaMB.kodea==2}">
+							<div class="oharrak">
+								<p>*Pasahitza txarto sartu da</p>
+							</div>
+					</h:panelGroup>
+					</div>
+					<div>
+						<h:commandButton  value="SARTU" class="botoiak" action="#{erabilpenaMB.logeatu(erabiltzaileaMB)}"/>
 					</div>
 					<div class="linkLoginDiv">
-						<p>Dagoeneko ez zara erregistratu?<a href="index.xhtml"> Erregistratu zaitez</a></p>
+						<p>Dagoeneko ez zara erregistratu?<a href="index.xhtml"> <h:outputText value="Erregistratu zaitez" action="#{erabilpenaMB.kodeaGarbitu()}"/></a></p>
 					</div>
 				</h:form>
 			</div>

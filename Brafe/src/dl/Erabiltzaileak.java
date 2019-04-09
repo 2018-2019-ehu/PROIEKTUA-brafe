@@ -11,7 +11,11 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Erabiltzaileak.findAll", query="SELECT e FROM Erabiltzaileak e")
+@NamedQueries({
+	@NamedQuery(name="Erabiltzaileak.findAll", query="SELECT e FROM Erabiltzaileak e"),
+	@NamedQuery(name="Erabiltzaileak.findErabiltzailea", query="SELECT e FROM Erabiltzaileak e WHERE e.izena = :izena")
+})
+
 public class Erabiltzaileak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
