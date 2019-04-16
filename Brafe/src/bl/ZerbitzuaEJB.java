@@ -1,5 +1,6 @@
 package bl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //import java.util.List;
@@ -60,5 +61,18 @@ public class ZerbitzuaEJB {
 	@SuppressWarnings("unchecked")
 	public List<Ekitaldiak> ekitaldiGuztiakLortu(){
 		return em.createNamedQuery("Ekitaldiak.findAll").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ekitaldiak> ekitaldiakIragaziDB(String izena){
+		List<Ekitaldiak> ekitaldiak=em.createNamedQuery("Ekitaldiak.findAll").getResultList();
+		List<Ekitaldiak> iragaziak=new ArrayList<Ekitaldiak>();
+		
+		for(int i=0;i<ekitaldiak.size();i++) {
+			if(ekitaldiak.get(i).getEkitaldiIzena().contains(izena)) {
+				iragaziak.add(ekitaldiak.get(i));
+			}
+		}
+		return iragaziak;
 	}
 }

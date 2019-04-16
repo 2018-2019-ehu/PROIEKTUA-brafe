@@ -5,20 +5,35 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
 		<ui:define name="title">Brafe: hasiera</ui:define>
 		<ui:define name="Edukia">
-		<div class="edukiontzia">
-			<ui:repeat var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitadiakLortu()}">
-						<div class="ekitaldiaDIV">
-							<div class="idEkitaldiDIV">
-								<p># #{ekitaldia.idEkitaldiak}</p>
-							</div>
-							<div class="ekitaldiIzenaDIV">
-								<p>#{ekitaldia.ekitaldiIzena}</p>
-							</div>
-						</div>
-			</ui:repeat>
+		<div class="zerrenda">
+			<h:form>
+				<h:inputText a:placeholder="Ekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="bilatuKutxa"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" value="Iragazi" />
+				<h:button value="Ekitaldia sorutu"/>
+			</h:form>
+			<br/>
+			<div class="taula">
+			<h:dataTable var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}">
+				<h:column>
+				<f:facet name="header">ID</f:facet>
+					#{ekitaldia.idEkitaldiak}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Ekitaldiaren izena</f:facet>
+					#{ekitaldia.ekitaldiIzena}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Sortzailea</f:facet>
+					#{ekitaldia.sortzailea}
+				</h:column>
+				<h:column>
+					<h:commandButton action="null" value="Sartu" />
+				</h:column>
+			</h:dataTable>
+			</div>
 		</div>
 		</ui:define>
 	</ui:composition>

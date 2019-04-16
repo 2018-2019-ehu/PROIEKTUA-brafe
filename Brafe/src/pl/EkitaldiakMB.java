@@ -18,10 +18,12 @@ public class EkitaldiakMB implements Serializable{
 	private String ekitaldiZonaldea;
 	private int partaideKopurua;
 	private String sortzailea;
+	private String iragazitakoa;
 	public EkitaldiakMB() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public int getIdEkitaldiak() {
 		return idEkitaldiak;
 	}
@@ -58,4 +60,11 @@ public class EkitaldiakMB implements Serializable{
 	public void setSortzailea(String sortzailea) {
 		this.sortzailea = sortzailea;
 	}
+	public String getIragazitakoa() {
+		return iragazitakoa;
+	}
+	public void setIragazitakoa(String iragazitakoa) {
+		this.iragazitakoa = iragazitakoa;
+	}
+	
 }

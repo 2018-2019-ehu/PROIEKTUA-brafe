@@ -15,24 +15,30 @@ import dl.Ekitaldiak;
 @SessionScoped
 public class ekitaldienErabilpenaMB implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private Ekitaldiak ekitaldia=new Ekitaldiak();
 	private List<Ekitaldiak> ekitaldiGuztiak=new ArrayList<Ekitaldiak>();
+	private String iragazitakoa=null;
 	
 	@EJB
 	private ZerbitzuaEJB zEJB;
 	
 	public ekitaldienErabilpenaMB() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public List<Ekitaldiak> ekitadiakLortu(){
-		return zEJB.ekitaldiGuztiakLortu();
+	
+	public List<Ekitaldiak> ekitaldiakIragazi(){
+		List<Ekitaldiak> ekitaldiak;
+		if(iragazitakoa==null) {
+			ekitaldiGuztiak=zEJB.ekitaldiGuztiakLortu();
+			ekitaldiak=ekitaldiGuztiak;
+		}
+		else{
+			ekitaldiGuztiak=zEJB.ekitaldiakIragaziDB(iragazitakoa);
+			ekitaldiak=ekitaldiGuztiak;
+		}
+		return(ekitaldiak);
 	}
 	
 	public Ekitaldiak getEkitaldia() {
@@ -49,6 +55,14 @@ public class ekitaldienErabilpenaMB implements Serializable {
 
 	public void setEkitaldiGuztiak(List<Ekitaldiak> ekitaldiGuztiak) {
 		this.ekitaldiGuztiak = ekitaldiGuztiak;
+	}
+
+	public String getIragazitakoa() {
+		return iragazitakoa;
+	}
+
+	public void setIragazitakoa(String iragazitakoa) {
+		this.iragazitakoa = iragazitakoa;
 	}
 	
 	
