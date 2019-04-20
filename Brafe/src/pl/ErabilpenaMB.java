@@ -43,6 +43,7 @@ public class ErabilpenaMB {
 		if(kodea==3) {
 			erabiltzaileDatuak=zEJB.loginDatuakLortu(eMB.getIzena());
 			orria="hasiera.xhtml";
+			System.out.println(erabiltzaileDatuak.getAbizenak());
 		}
 		return orria;
 	}

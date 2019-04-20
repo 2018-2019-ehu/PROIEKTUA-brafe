@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
+		<ui:define name="title">Brafe: profila</ui:define>
+		<ui:define name="Edukia">
+			<h:form>
+				Izena:
+				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.izena}" disabled="true"/>
+				<br/>
+				Abizena:
+				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.abizenak}" value="#{erabiltzaileaMB.abizenak}"/>
+				<br/>				
+				Pasahitza:
+				<h:inputSecret a:placeholder="*******************" value="#{erabiltzaileaMB.pasahitza}"/>
+				<br/>				
+				Helbidea:
+				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.helbidea}" value="#{erabiltzaileaMB.helbidea}"/>
+				<br/>				
+				Jaiote data:
+				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.jaioteData}" value="#{erabiltzaileaMB.jaioteData}"/>
+				<br/>				
+				Telefono zenbakia:
+				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.telefonoZenbakia}" value="#{erabiltzaileaMB.telefonoZenbakia}"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

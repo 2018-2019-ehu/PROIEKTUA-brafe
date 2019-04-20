@@ -218,17 +218,6 @@ body{
 	color: black;
 }
 
-.zerrenda{
-	display: block;
-	background-color: #D3D3D3;
-	height: 350px;
-	width: 95%;
-	margin: auto;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-}
 .ekitaldiaDIV{
 	background-color: white;
 	border-bottom:solid 2px;
@@ -261,7 +250,11 @@ body{
 	width: 700px;
 	height: 300px;
 	display: block;
-	background-color: rgba(0,0,0,0);
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
 }
 
 .taula{

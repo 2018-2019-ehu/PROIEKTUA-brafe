@@ -10,7 +10,11 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Azpiekitaldiak.findAll", query="SELECT a FROM Azpiekitaldiak a")
+@NamedQueries({
+	@NamedQuery(name="Azpiekitaldiak.findAll", query="SELECT a FROM Azpiekitaldiak a"),
+	@NamedQuery(name="Azpiekitaldiak.findMenpekoak", query="SELECT a FROM Azpiekitaldiak a WHERE a.ekitaldiak = :ekitaldiak")
+})
+
 public class Azpiekitaldiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 

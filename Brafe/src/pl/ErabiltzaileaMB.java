@@ -3,7 +3,8 @@ package pl;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
+//import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 //import javax.enterprise.context.ApplicationScoped;
 //import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -11,7 +12,7 @@ import javax.inject.Named;
 //import javax.persistence.TemporalType;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ErabiltzaileaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;

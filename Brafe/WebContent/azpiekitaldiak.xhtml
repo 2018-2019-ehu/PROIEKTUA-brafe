@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
+		<ui:define name="title">Brafe: hasiera</ui:define>
+		<ui:define name="Edukia">
+		<div class="zerrenda">
+			<h:form>
+				<h:inputText a:placeholder="Azpiekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="bilatuKutxa"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}" value="Iragazi" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Azpiekitaldi berria sortu" />
+			</h:form>
+			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
+			<br />
+				Azpiekitaldiaren izena:
+					<h:inputText value="#{azpiekitaldiakMB.bueltatzekoLekua}" />
+					<br />
+					<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiBerriaSortu(azpiekitaldiakMB)}" value="Gorde" />
+			</h:form>
+			<br/>
+			Ekitaldiak > Azpiekitaldiak
+			<div class="taula">
+			<h:dataTable var="azpiekitaldia" value="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}">
+				<h:column>
+				<f:facet name="header">ID</f:facet>
+					#{azpiekitaldia.idAzpiekitaldiak}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Ekitaldiaren izena</f:facet>
+					#{azpiekitaldia.bueltatzekoLekua}
+				</h:column>
+				<h:column>
+				<f:facet name="header">PartaideKopurua</f:facet>
+					#{azpiekitaldia.APartaideKopurua}
+				</h:column>
+				<h:column>
+				<h:form>
+					<h:commandButton action="null" value="Sartu" />
+				</h:form>
+				</h:column>
+			</h:dataTable>
+			</div>
+		</div>
+		</ui:define>
+	</ui:composition>
+</html>

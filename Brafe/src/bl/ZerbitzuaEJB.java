@@ -75,4 +75,63 @@ public class ZerbitzuaEJB {
 		}
 		return iragaziak;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Azpiekitaldiak> azpiekitaldiakIragaziDB(String izena){
+		List<Azpiekitaldiak> azpiekitaldiak=em.createNamedQuery("Azpiekitaldiak.findAll").getResultList();
+		List<Azpiekitaldiak> iragaziak=new ArrayList<Azpiekitaldiak>();
+		
+		for(int i=0;i<azpiekitaldiak.size();i++) {
+			if(azpiekitaldiak.get(i).getBueltatzekoLekua().contains(izena)) {
+				iragaziak.add(azpiekitaldiak.get(i));
+			}
+		}
+		return iragaziak;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Azpiekitaldiak> azpiekitaldiGuztiakLortu(Ekitaldiak ekitaldia){
+		return (List<Azpiekitaldiak>)em.createNamedQuery("Azpiekitaldiak.findMenpekoak").setParameter("ekitaldiak", ekitaldia).getResultList();
+	}
+	
+	public Ekitaldiak ekitaldiaLortu(int idEkitaldia) {
+		return em.find(Ekitaldiak.class, idEkitaldia);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void ekitaldiaSortu(Ekitaldiak ekitaldia) {
+		List<Ekitaldiak> ekitaldiGuztiak= em.createNamedQuery("Ekitaldiak.findAll").getResultList();
+		boolean egoera=false;
+		
+		for(int i=0;i<ekitaldiGuztiak.size();i++) {
+			if(ekitaldiGuztiak.get(i).getEkitaldiIzena().equals(ekitaldia.getEkitaldiIzena())) {
+				egoera=true;
+			}
+		}
+		if(egoera==false) {
+			em.persist(ekitaldia);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void azpiekitaldiaSortu(Azpiekitaldiak azpiekitaldia) {
+		List<Azpiekitaldiak> azpiekitaldiGuztiak= em.createNamedQuery("Azpiekitaldiak.findAll").getResultList();
+		boolean egoera=false;
+		
+		for(int i=0;i<azpiekitaldiGuztiak.size();i++) {
+			if(azpiekitaldiGuztiak.get(i).getBueltatzekoLekua().equals(azpiekitaldia.getBueltatzekoLekua())) {
+				egoera=true;
+			}
+		}
+		if(egoera==false) {
+			em.persist(azpiekitaldia);
+		}
+	}
+	
+	public void ekitaldiaEzabatuDB(int idEkitaldia) {
+		Ekitaldiak ekitaldia=em.find(Ekitaldiak.class, idEkitaldia);
+		if(ekitaldia!=null) {
+			em.remove(ekitaldia);
+		}
+	}
 }

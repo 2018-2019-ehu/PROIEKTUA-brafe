@@ -12,9 +12,21 @@
 			<h:form>
 				<h:inputText a:placeholder="Ekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="bilatuKutxa"/>
 				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" value="Iragazi" />
-				<h:button value="Ekitaldia sorutu"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Ekitaldi berria sortu" />
+				<br />
+			</h:form >
+			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
+			<br />
+					Ekitaldiaren izena:
+						<h:inputText value="#{ekitaldiakMB.ekitaldiIzena}" />
+						<br />
+					Ekitaldiaren zonaldea:
+						<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" />
+						<br />
+						<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB,erabiltzaileaMB.izena)}" value="Gorde" />
 			</h:form>
 			<br/>
+			Ekitaldiak
 			<div class="taula">
 			<h:dataTable var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}">
 				<h:column>
@@ -30,7 +42,12 @@
 					#{ekitaldia.sortzailea}
 				</h:column>
 				<h:column>
-					<h:commandButton action="null" value="Sartu" />
+				<h:form>
+					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldia.idEkitaldiak)}" action="azpiekitaldiak.xhtml" value="Sartu" />
+				</h:form>
+				<h:form rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}">
+					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" />
+				</h:form>
 				</h:column>
 			</h:dataTable>
 			</div>
