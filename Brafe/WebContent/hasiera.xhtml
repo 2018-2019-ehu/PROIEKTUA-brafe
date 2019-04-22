@@ -6,26 +6,37 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
-		<ui:define name="title">Brafe: hasiera</ui:define>
+		<ui:define name="title">Brafe: Ekitaldiak</ui:define>
 		<ui:define name="Edukia">
-		<div class="zerrenda">
-			<h:form>
-				<h:inputText a:placeholder="Ekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="bilatuKutxa"/>
-				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" value="Iragazi" />
-				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Ekitaldi berria sortu" />
-				<br />
+		<div class="bilaketa">
+		<div class="bilaketaWrapper">
+			<h:form class="formu">
+				<h:inputText a:placeholder="Ekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="iragazketaInput"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" value="Iragazi" class="iragazketaBotoiak"/>
 			</h:form >
-			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
-			<br />
-					Ekitaldiaren izena:
-						<h:inputText value="#{ekitaldiakMB.ekitaldiIzena}" />
-						<br />
-					Ekitaldiaren zonaldea:
-						<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" />
-						<br />
-						<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB,erabiltzaileaMB.izena)}" value="Gorde" />
+			<h:form class="formu">
+				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Ekitaldi berria sortu" class="iragazketaBotoiak" />
 			</h:form>
-			<br/>
+		</div>
+		</div>
+			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
+				<div class="ekitaldiBerria">
+					<div class="ekitaldiBerriaWrapper">
+						<h2>Ekitaldi berri bat sortu ezazu:</h2>
+						Ekitaldiaren izena:
+						<br />
+							<h:inputText value="#{ekitaldiakMB.ekitaldiIzena}" class="iragazketaInput" />
+							<br />
+						Ekitaldiaren zonaldea:
+						<br />
+							<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput"/>
+							<br />
+							<br />
+							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB,erabiltzaileaMB.izena)}" value="Gorde" class="sortuBotoia" />
+					</div>
+				</div>
+			</h:form>
+		<div class="zerrenda">
 			Ekitaldiak
 			<div class="taula">
 			<h:dataTable var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}">
@@ -43,10 +54,8 @@
 				</h:column>
 				<h:column>
 				<h:form>
-					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldia.idEkitaldiak)}" action="azpiekitaldiak.xhtml" value="Sartu" />
-				</h:form>
-				<h:form rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}">
-					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" />
+					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldia.idEkitaldiak)}" action="azpiekitaldiak.xhtml" value="Sartu" class="hasieraBotoiak"/>
+					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>

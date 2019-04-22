@@ -77,8 +77,8 @@ public class ZerbitzuaEJB {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Azpiekitaldiak> azpiekitaldiakIragaziDB(String izena){
-		List<Azpiekitaldiak> azpiekitaldiak=em.createNamedQuery("Azpiekitaldiak.findAll").getResultList();
+	public List<Azpiekitaldiak> azpiekitaldiakIragaziDB(String izena,Ekitaldiak ekitaldia){
+		List<Azpiekitaldiak> azpiekitaldiak=(List<Azpiekitaldiak>)em.createNamedQuery("Azpiekitaldiak.findMenpekoak").setParameter("ekitaldiak", ekitaldia).getResultList();
 		List<Azpiekitaldiak> iragaziak=new ArrayList<Azpiekitaldiak>();
 		
 		for(int i=0;i<azpiekitaldiak.size();i++) {
@@ -133,5 +133,21 @@ public class ZerbitzuaEJB {
 		if(ekitaldia!=null) {
 			em.remove(ekitaldia);
 		}
+	}
+	
+	public void pasahitzaAldatuDB(String pasahitza, int erabiltzaileID) {
+		Erabiltzaileak erab=em.find(Erabiltzaileak.class, erabiltzaileID);
+		erab.setPasahitza(pasahitza);
+		em.persist(erab);
+	}
+	public void helbideaAldatuDB(String helbidea, int erabiltzaileID) {
+		Erabiltzaileak erab=em.find(Erabiltzaileak.class, erabiltzaileID);
+		erab.setHelbidea(helbidea);
+		em.persist(erab);
+	}
+	public void zenbakiaAldatuDB(int zenbakia, int erabiltzaileID) {
+		Erabiltzaileak erab=em.find(Erabiltzaileak.class, erabiltzaileID);
+		erab.setTelefonoZenbakia(zenbakia);
+		em.persist(erab);
 	}
 }

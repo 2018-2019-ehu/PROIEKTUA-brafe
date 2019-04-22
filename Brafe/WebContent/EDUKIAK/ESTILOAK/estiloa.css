@@ -6,17 +6,21 @@ table{
 
 th{
 	text-align: left;
-	padding: 10px;
+	padding: 15px;
+	font-family: arial;
+	font-size: 15px;
+	color: white;
+	border-bottom: 2px solid #ddd;
+	background-color: black;
+	
 }
 td{
-	padding: 10px;
+	padding: 15px;
 	border-bottom: 1px solid #ddd;
 	background-color: white;
+	font-size: 15px;
 }
 
-th{
-	background-color: #ECF0F1;
-}
 
 body{
 	background-image: url("../IRUDIAK/MosaicoBlanco-03.png");
@@ -145,120 +149,161 @@ body{
 }
 
 /******************************************HASIERAKO ORRIALDEA****************************************************/
-.goikoaldea{
-	height: 130px;
-	width: 100%;
-	position: fixed;
-	z-index: 2;
-	top:0;
-	left: 0;
-	right: 0;
+.header{
+	height: 90px;
+	background-color: red;
 }
-.burukoa{
-	height: 80px;
-	width: 100%;
-	display: block;
-	background: white;
+.logoDIV{
+		height: 90px;
+		background-color: white;
+		display: block;
+		top:0;
 }
 
-.burukoa img{
+.logoDIV img{
 	display: block;
-	height: 100%;
+	height: 60px;
 	width: auto;
-	margin-left: 20px;
-}
-
-.menu{
-	display: block;
-	width: 100%;
-	height: 50px;
-	background-color: #C3C3C3;
-}
-
-.menu a{
-	display: inline-block;
-	padding: 15px;
-	color: white;
-	text-decoration: none;
-	font-family: inherit;
-}
-
-.menu a:hover {
-	background-color: white;
-	color: black;
-}
-
-.kont{
-	display: block;
-	background-color: black;
-	height: 100%;
-	width: 60%;
-	margin: auto;
-}
-
-.edukiontzia{
-	display: block;
-	background-color:white;
-	height: 100%;
-	width: 80%;
-	margin: auto;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	z-index: 1;
-	overflow: auto;
-}
-.ekitaldiIzenaDIV{
-	display: block;
-	background-color: blue;
-}
-.ekitaldiIzenaDIV p{
-	color: black;
-}
-
-.ekitaldiaDIV{
-	background-color: white;
-	border-bottom:solid 2px;
-	display: block;
-	position:relative;
 	top:0;
-	margin: 0;
-}
-
-.bilatu{
-	display: block;
-	height: 30px;
+	right:0;
+	left:0;
+	bottom:0;
 	margin: auto;
-	margin-top: 145px;
-	position: relative;
-	width: 95%;
-	margin-bottom: 15px;
+	padding: 15px;
 }
 
-.bilatuKutxa{
-	border-radius: 10px;
-	border: 0px;
+.menuDIV{
 	height: 30px;
-	width: 200px;
-	margin-right: 15px;
-	background-color: #ddd;
+	background-color: green;
+	display: block;
+}
+
+ul#menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  text-align: center;
+}
+
+ul#menu li {
+  display: inline-block;
+}
+
+ul#menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  font-family: arial;
+  font-size: 12px;
+  padding: 20px;
+  text-decoration: none;
+}
+
+ul#menu li a:hover {
+  background-color: white;
+  color: black;
 }
 
 .zerrenda{
-	width: 700px;
-	height: 300px;
+	width: 1000px;
+	height: 400px;
 	display: block;
 	margin: auto;
 	top: 0;
 	bottom: 0;
 	right: 0;
 	left: 0;
+	margin-top: 40px;
 }
 
 .taula{
 	overflow: auto;
 	height: 100%;
+	border-radius: 5px;
 }
 
+.fondo{
+ background-color: white;
+ height: 1080px;
+ width: 100%;
+ right: 0;
+ left: 0;
+}
+
+.hasieraBotoiak{
+	border-radius: 10px;
+	border: none;	
+	margin-right: 5px;
+}
+
+.hasieraBotoiak:hover{
+	color: white;
+	background-color: purple;
+}
+
+.iragazketaBotoiak{
+	border: none;	
+	margin-right: 5px;
+	height: 40px;
+	margin-top: 10px;
+}
+
+.iragazketaBotoiak:hover{
+	color: white;
+	background-color: purple;
+}
+
+.iragazketaInput{
+	height: 40px;
+	width: 400px;
+	margin-right: 5px;
+	border: none;
+	background-color: #F5F5F5;
+}
+
+.bilaketa{
+	width: 100%;
+	margin: auto;
+	background-color: purple;
+	margin-top: 15px;
+	height: 60px;
+	display: block;
+}
+
+.bilaketaWrapper{
+	width: 600px;
+	display: block;
+	margin: auto;
+}
+
+.ekitaldiBerria{
+	margin-top: 10px;
+}
+.ekitaldiBerria h2{
+	text-align: center;
+	font-family: arial;
+}
+
+.ekitaldiBerriaWrapper{
+	width: 400px;
+	display: block;
+	margin: auto;
+}
+
+.sortuBotoia{
+	border: none;	
+	margin-right: 5px;
+	height: 40px;
+	width: 400px;
+}
+
+.sortuBotoia:hover{
+	color: white;
+	background-color: purple;
+}
+
+.formu{
+	display: inline-block;
+}

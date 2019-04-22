@@ -52,7 +52,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 			azpiekitaldiak=azpiekitaldiGuztiak;
 		}
 		else{
-			azpiekitaldiGuztiak=zEJB.azpiekitaldiakIragaziDB(iragazitakoa);
+			azpiekitaldiGuztiak=zEJB.azpiekitaldiakIragaziDB(iragazitakoa,ekitaldia);
 			azpiekitaldiak=azpiekitaldiGuztiak;
 		}
 		return(azpiekitaldiak);
@@ -60,7 +60,6 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	
 	public void AzpiekitaldiakLortu(int idEkitaldi) {
 		Ekitaldiak ekitaldiak=zEJB.ekitaldiaLortu(idEkitaldi);
-		System.out.println("nombre: "+ekitaldiak.getEkitaldiIzena());
 		azpiekitaldiGuztiak=zEJB.azpiekitaldiGuztiakLortu(ekitaldiak);
 		render=0;
 		ekitaldia=ekitaldiak;

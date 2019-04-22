@@ -10,22 +10,28 @@
 		<ui:define name="Edukia">
 			<h:form>
 				Izena:
-				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.izena}" disabled="true"/>
+				#{erabilpenaMB.erabiltzaileDatuak.izena}
 				<br/>
 				Abizena:
-				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.abizenak}" value="#{erabiltzaileaMB.abizenak}"/>
+				#{erabilpenaMB.erabiltzaileDatuak.abizenak}
 				<br/>				
 				Pasahitza:
-				<h:inputSecret a:placeholder="*******************" value="#{erabiltzaileaMB.pasahitza}"/>
+				************
+				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder="pasahitza berria" />
+				<h:commandButton action="#{erabilpenaMB.pasahitzaAldatu(erabiltzaileaMB.pasahitza)}" value="Aldatu" />
 				<br/>				
 				Helbidea:
-				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.helbidea}" value="#{erabiltzaileaMB.helbidea}"/>
+				#{erabilpenaMB.erabiltzaileDatuak.helbidea}
+				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder="helbide berria" />
+				<h:commandButton action="#{erabilpenaMB.helbideaAldatu(erabiltzaileaMB.helbidea)}" value="Aldatu" />
 				<br/>				
 				Jaiote data:
-				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.jaioteData}" value="#{erabiltzaileaMB.jaioteData}"/>
+				#{erabilpenaMB.erabiltzaileDatuak.jaioteData}
 				<br/>				
 				Telefono zenbakia:
-				<h:inputText a:placeholder="#{erabilpenaMB.erabiltzaileDatuak.telefonoZenbakia}" value="#{erabiltzaileaMB.telefonoZenbakia}"/>
+				#{erabilpenaMB.erabiltzaileDatuak.telefonoZenbakia}
+				<h:inputText value="#{erabiltzaileaMB.telefonoZenbakia}" a:placeholder="telefono zenbaki berria" />
+				<h:commandButton action="#{erabilpenaMB.zenbakiaAldatu(erabiltzaileaMB.telefonoZenbakia)}" value="Aldatu" />
 			</h:form>
 		</ui:define>
 	</ui:composition>

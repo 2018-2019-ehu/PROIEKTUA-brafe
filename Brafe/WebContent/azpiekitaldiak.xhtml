@@ -8,12 +8,18 @@
 	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
 		<ui:define name="title">Brafe: hasiera</ui:define>
 		<ui:define name="Edukia">
-		<div class="zerrenda">
-			<h:form>
-				<h:inputText a:placeholder="Azpiekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="bilatuKutxa"/>
-				<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}" value="Iragazi" />
-				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Azpiekitaldi berria sortu" />
+		<div class="bilaketa">
+			<div class="bilaketaWrapper">
+			<h:form class="formu">
+				<h:inputText a:placeholder="Azpiekitaldia bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="iragazketaInput"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}" value="Iragazi" class="iragazketaBotoiak" />
 			</h:form>
+			<h:form class="formu">
+				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Azpiekitaldi berria" class="iragazketaBotoiak"/>
+			</h:form>
+			</div>
+		</div>
+		<div class="zerrenda">
 			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
 			<br />
 				Azpiekitaldiaren izena:
