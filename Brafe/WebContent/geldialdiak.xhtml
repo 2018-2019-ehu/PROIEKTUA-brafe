@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="/EDUKIAK/TXANT/txantiloia2.xhtml">
+	<ui:define name="title">Brafe: geldialdiak</ui:define>
+	<ui:define name="Edukia">
+	<div class="bilaketa">
+		<div class="bilaketaWrapper">
+			<h:form class="formu">
+				<h:inputText a:placeholder="Geldialdi bat bilatu" value="#{ekitaldienErabilpenaMB.iragazitakoa}" class="iragazketaInput"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" value="Iragazi" class="iragazketaBotoiak"/>
+			</h:form >
+			<h:form class="formu">
+				<h:commandButton action="#{ekitaldienErabilpenaMB.renderHasieratu()}" value="Geldialdi berria sortu" class="iragazketaBotoiak" />
+			</h:form>
+		</div>
+		</div>
+			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
+				<div class="ekitaldiBerria">
+					<div class="ekitaldiBerriaWrapper">
+						<h2>Geldialdi berri bat sortu ezazu:</h2>
+						Geldialdiaren izena:
+						<br />
+							<h:inputText value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" />
+							<br />
+							<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiBerriaSortu(geldialdiakMB)}" value="Gorde" class="sortuBotoia" />
+					</div>
+				</div>
+			</h:form>
+		<div class="zerrenda">
+			Ekitaldiak > Azpiekitaldiak > Geldialdiak
+			<div class="taula">
+			<h:dataTable var="geldialdia" value="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}">
+				<h:column>
+				<f:facet name="header">ID</f:facet>
+					#{geldialdia.idGeldialdiak}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Ekitaldiaren izena</f:facet>
+					#{geldialdia.geldialdiIzena}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Balorazioa</f:facet>
+					#{geldialdia.batazbestekoBalorazioa}
+				</h:column>
+				<h:column>
+				<h:form>
+					<h:commandButton actionListener="null" action="null" value="Sartu" class="hasieraBotoiak"/>
+					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
+				</h:form>
+				</h:column>
+			</h:dataTable>
+			</div>
+		</div>
+	</ui:define>
+	</ui:composition>
+</html>

@@ -19,14 +19,17 @@
 			</h:form>
 			</div>
 		</div>
-		<div class="zerrenda">
 			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
 			<br />
+			<div class="ekitaldiBerria">
+				<div class="ekitaldiBerriaWrapper">
 				Azpiekitaldiaren izena:
-					<h:inputText value="#{azpiekitaldiakMB.bueltatzekoLekua}" />
-					<br />
-					<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiBerriaSortu(azpiekitaldiakMB)}" value="Gorde" />
+					<h:inputText value="#{azpiekitaldiakMB.bueltatzekoLekua}" class="iragazketaInput"/>
+					<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiBerriaSortu(azpiekitaldiakMB)}" value="Gorde" class="sortuBotoia" />
+				</div>
+			</div>
 			</h:form>
+		<div class="zerrenda">
 			<br/>
 			Ekitaldiak > Azpiekitaldiak
 			<div class="taula">
@@ -36,7 +39,7 @@
 					#{azpiekitaldia.idAzpiekitaldiak}
 				</h:column>
 				<h:column>
-				<f:facet name="header">Ekitaldiaren izena</f:facet>
+				<f:facet name="header">Bueltatzeko lekua</f:facet>
 					#{azpiekitaldia.bueltatzekoLekua}
 				</h:column>
 				<h:column>
@@ -45,7 +48,8 @@
 				</h:column>
 				<h:column>
 				<h:form>
-					<h:commandButton action="null" value="Sartu" />
+					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.GeldialdiakLortu(azpiekitaldia.idAzpiekitaldiak)}" action="geldialdiak.xhtml" value="Sartu" class="hasieraBotoiak"/>
+					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>

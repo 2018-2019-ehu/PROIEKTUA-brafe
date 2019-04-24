@@ -12,7 +12,6 @@ th{
 	color: white;
 	border-bottom: 2px solid #ddd;
 	background-color: black;
-	
 }
 td{
 	padding: 15px;
@@ -23,7 +22,7 @@ td{
 
 
 body{
-	background-image: url("../IRUDIAK/MosaicoBlanco-03.png");
+	background-image: url("../IRUDIAK/MosaicoNegro-03.png");
 	background-size: cover;
 	background-attachment: fixed;
 	width: 100%;
@@ -151,11 +150,9 @@ body{
 /******************************************HASIERAKO ORRIALDEA****************************************************/
 .header{
 	height: 90px;
-	background-color: red;
 }
 .logoDIV{
 		height: 90px;
-		background-color: white;
 		display: block;
 		top:0;
 }
@@ -245,9 +242,8 @@ ul#menu li a:hover {
 
 .iragazketaBotoiak{
 	border: none;	
-	margin-right: 5px;
-	height: 40px;
-	margin-top: 10px;
+	height: 35px;
+	margin: none;
 }
 
 .iragazketaBotoiak:hover{
@@ -256,26 +252,30 @@ ul#menu li a:hover {
 }
 
 .iragazketaInput{
-	height: 40px;
+	height: 33px;
 	width: 400px;
-	margin-right: 5px;
 	border: none;
 	background-color: #F5F5F5;
+	display: block;
+	margin: none;
+	float: left;
 }
 
 .bilaketa{
 	width: 100%;
 	margin: auto;
-	background-color: purple;
+	background-color: #ddd;
 	margin-top: 15px;
-	height: 60px;
+	height: 35px;
 	display: block;
+	border-bottom: 2px solid gray;
 }
 
 .bilaketaWrapper{
 	width: 600px;
 	display: block;
 	margin: auto;
+	height: 35px;
 }
 
 .ekitaldiBerria{
@@ -297,6 +297,7 @@ ul#menu li a:hover {
 	margin-right: 5px;
 	height: 40px;
 	width: 400px;
+	margin-top: 10px;
 }
 
 .sortuBotoia:hover{

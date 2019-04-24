@@ -12,6 +12,7 @@ import javax.inject.Named;
 import bl.ZerbitzuaEJB;
 import dl.Azpiekitaldiak;
 import dl.Ekitaldiak;
+import dl.Geldialdiak;
 
 @Named
 @SessionScoped
@@ -22,6 +23,8 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	private Ekitaldiak ekitaldia=new Ekitaldiak();
 	private List<Ekitaldiak> ekitaldiGuztiak=new ArrayList<Ekitaldiak>();
 	private List<Azpiekitaldiak> azpiekitaldiGuztiak=new ArrayList<Azpiekitaldiak>();
+	private List<Geldialdiak> geldialdiGuztiak=new ArrayList<Geldialdiak>();
+	private Azpiekitaldiak azpiekitaldia= new Azpiekitaldiak();
 	private String iragazitakoa=null;
 	private int render=0;
 	
@@ -58,11 +61,31 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		return(azpiekitaldiak);
 	}
 	
+	public List<Geldialdiak> geldialdiakIragazi(){
+		List<Geldialdiak> geldialdiak;
+		if(iragazitakoa==null) {
+			geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldia);
+			geldialdiak=geldialdiGuztiak;
+		}
+		else{
+			geldialdiGuztiak=zEJB.geldialdiakIragaziDB(iragazitakoa, azpiekitaldia);
+			geldialdiak=geldialdiGuztiak;
+		}
+		return(geldialdiak);
+	}
+	
 	public void AzpiekitaldiakLortu(int idEkitaldi) {
 		Ekitaldiak ekitaldiak=zEJB.ekitaldiaLortu(idEkitaldi);
 		azpiekitaldiGuztiak=zEJB.azpiekitaldiGuztiakLortu(ekitaldiak);
 		render=0;
 		ekitaldia=ekitaldiak;
+	}
+	
+	public void GeldialdiakLortu(int idAzpiekitaldi) {
+		Azpiekitaldiak azpiekitaldiak=zEJB.azpiekitaldiaLortu(idAzpiekitaldi);
+		geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldiak);
+		render=0;
+		azpiekitaldia=azpiekitaldiak;
 	}
 	
 	public Ekitaldiak getEkitaldia() {
@@ -97,6 +120,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		ekitaldia.setPartaideKopurua(2);
 		ekitaldia.setSortzailea(login);
 		zEJB.ekitaldiaSortu(ekitaldia);
+		render=0;
 	}
 	
 	public void azpiekitaldiBerriaSortu(AzpiekitaldiakMB aMB) {
@@ -105,6 +129,17 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		azpiekitaldiak.setAPartaideKopurua(23);
 		azpiekitaldiak.setBueltatzekoLekua(aMB.getBueltatzekoLekua());
 		zEJB.azpiekitaldiaSortu(azpiekitaldiak);
+		render=0;
+	}
+	
+	public void geldialdiBerriaSortu(GeldialdiakMB gMB) {
+		Geldialdiak geldialdiak=new Geldialdiak();
+		geldialdiak.setAzpiekitaldiak(azpiekitaldia);
+		geldialdiak.setGeldialdiIzena(gMB.getGeldialdiIzena());
+		geldialdiak.setBatazbestekoBalorazioa(0);
+		geldialdiak.setIraungiteData(Date.valueOf("2019-04-17"));
+		zEJB.geldialdiaSortu(geldialdiak);
+		render=0;
 	}
 
 	public void ekitaldiaEzabatu(int idEkitaldia) {

@@ -90,12 +90,34 @@ public class ZerbitzuaEJB {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Geldialdiak> geldialdiakIragaziDB(String izena,Azpiekitaldiak azpiekitaldia){
+		List<Geldialdiak> geldialdiak=(List<Geldialdiak>)em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
+		List<Geldialdiak> iragaziak=new ArrayList<Geldialdiak>();
+		
+		for(int i=0;i<geldialdiak.size();i++) {
+			if(geldialdiak.get(i).getGeldialdiIzena().contains(izena)) {
+				iragaziak.add(geldialdiak.get(i));
+			}
+		}
+		return iragaziak;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Azpiekitaldiak> azpiekitaldiGuztiakLortu(Ekitaldiak ekitaldia){
 		return (List<Azpiekitaldiak>)em.createNamedQuery("Azpiekitaldiak.findMenpekoak").setParameter("ekitaldiak", ekitaldia).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Geldialdiak> geldialdiGuztiakLortu(Azpiekitaldiak azpiekitaldia){
+		return (List<Geldialdiak>)em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
+	}
+	
 	public Ekitaldiak ekitaldiaLortu(int idEkitaldia) {
 		return em.find(Ekitaldiak.class, idEkitaldia);
+	}
+	
+	public Azpiekitaldiak azpiekitaldiaLortu(int idAzpiekitaldia) {
+		return em.find(Azpiekitaldiak.class, idAzpiekitaldia);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -109,7 +131,7 @@ public class ZerbitzuaEJB {
 			}
 		}
 		if(egoera==false) {
-			em.persist(ekitaldia);
+			em.merge(ekitaldia);
 		}
 	}
 	
@@ -124,7 +146,22 @@ public class ZerbitzuaEJB {
 			}
 		}
 		if(egoera==false) {
-			em.persist(azpiekitaldia);
+			em.merge(azpiekitaldia);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void geldialdiaSortu(Geldialdiak geldialdia) {
+		List<Geldialdiak> geldialdiGuztiak= em.createNamedQuery("Geldialdiak.findAll").getResultList();
+		boolean egoera=false;
+		
+		for(int i=0;i<geldialdiGuztiak.size();i++) {
+			if(geldialdiGuztiak.get(i).getGeldialdiIzena().equals(geldialdia.getGeldialdiIzena())) {
+				egoera=true;
+			}
+		}
+		if(egoera==false) {
+			em.merge(geldialdia);
 		}
 	}
 	
