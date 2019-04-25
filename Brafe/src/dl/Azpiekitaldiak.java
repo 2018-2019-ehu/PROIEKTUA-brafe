@@ -22,9 +22,9 @@ public class Azpiekitaldiak implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idAzpiekitaldiak;
 
-	private int aPartaideKopurua;
-
 	private String bueltatzekoLekua;
+	
+	private String sortzailea;
 
 	//bi-directional many-to-one association to Ekitaldiak
 	@ManyToOne
@@ -46,20 +46,21 @@ public class Azpiekitaldiak implements Serializable {
 		this.idAzpiekitaldiak = idAzpiekitaldiak;
 	}
 
-	public int getAPartaideKopurua() {
-		return this.aPartaideKopurua;
-	}
-
-	public void setAPartaideKopurua(int aPartaideKopurua) {
-		this.aPartaideKopurua = aPartaideKopurua;
-	}
-
 	public String getBueltatzekoLekua() {
 		return this.bueltatzekoLekua;
 	}
 
 	public void setBueltatzekoLekua(String bueltatzekoLekua) {
 		this.bueltatzekoLekua = bueltatzekoLekua;
+	}
+	
+
+	public String getSortzailea() {
+		return sortzailea;
+	}
+
+	public void setSortzailea(String sortzailea) {
+		this.sortzailea = sortzailea;
 	}
 
 	public Ekitaldiak getEkitaldiak() {
@@ -77,6 +78,7 @@ public class Azpiekitaldiak implements Serializable {
 	public void setGeldialdiaks(List<Geldialdiak> geldialdiaks) {
 		this.geldialdiaks = geldialdiaks;
 	}
+	
 
 	public Geldialdiak addGeldialdiak(Geldialdiak geldialdiak) {
 		getGeldialdiaks().add(geldialdiak);

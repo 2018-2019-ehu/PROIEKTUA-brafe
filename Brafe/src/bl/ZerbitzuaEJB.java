@@ -55,6 +55,7 @@ public class ZerbitzuaEJB {
 	}
 	
 	public Erabiltzaileak loginDatuakLortu(String izena) {
+		System.out.println(izena);
 		return (Erabiltzaileak)em.createNamedQuery("Erabiltzaileak.findErabiltzailea").setParameter("izena", izena).getSingleResult();
 	}
 	
@@ -112,12 +113,43 @@ public class ZerbitzuaEJB {
 		return (List<Geldialdiak>)em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Baieztatuak> baieztatuakLortuDB(Geldialdiak geldialdia){
+		return (List<Baieztatuak>)em.createNamedQuery("Baieztatuak.findGeldialdi").setParameter("geldialdiak", geldialdia).getResultList();
+	}
 	public Ekitaldiak ekitaldiaLortu(int idEkitaldia) {
 		return em.find(Ekitaldiak.class, idEkitaldia);
 	}
 	
 	public Azpiekitaldiak azpiekitaldiaLortu(int idAzpiekitaldia) {
 		return em.find(Azpiekitaldiak.class, idAzpiekitaldia);
+	}
+	
+	public Geldialdiak geldialdiaLortu(int idGeldialdia) {
+		return em.find(Geldialdiak.class, idGeldialdia);
+	}
+	
+	public void geldialdianSartuDB(Baieztatuak baieztatua, Geldialdiak geldialdia) {
+		Geldialdiak geldialdi=em.find(Geldialdiak.class, geldialdia.getIdGeldialdiak());
+		float batazbestekoa=((geldialdi.getBatazbestekoBalorazioa()*geldialdi.getPartehartzaileak())+baieztatua.getErabiltzaileak().getBalorazioa())/(geldialdi.getPartehartzaileak()+1);
+		geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()+1);
+		geldialdi.setBatazbestekoBalorazioa(batazbestekoa);
+		em.persist(geldialdi);
+		em.merge(baieztatua);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void geldialditikAteraDB(Erabiltzaileak erabiltzailea, int geldialdiaId) {
+		List<Baieztatuak> baieztatuak=new ArrayList<Baieztatuak>();
+		baieztatuak=em.createNamedQuery("Baieztatuak.findMenpekoak").setParameter("erabiltzaileak",erabiltzailea).getResultList();
+		for(int i=0;i<baieztatuak.size();i++) {
+			if(baieztatuak.get(i).getErabiltzaileak().getIzena().equals(erabiltzailea.getIzena()) && baieztatuak.get(i).getGeldialdiak().getIdGeldialdiak()==geldialdiaId) {
+				em.remove(baieztatuak.get(i));
+				Geldialdiak geldialdi=em.find(Geldialdiak.class, geldialdiaId);
+				geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()-1);
+				em.persist(geldialdi);
+			}
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -135,19 +167,8 @@ public class ZerbitzuaEJB {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void azpiekitaldiaSortu(Azpiekitaldiak azpiekitaldia) {
-		List<Azpiekitaldiak> azpiekitaldiGuztiak= em.createNamedQuery("Azpiekitaldiak.findAll").getResultList();
-		boolean egoera=false;
-		
-		for(int i=0;i<azpiekitaldiGuztiak.size();i++) {
-			if(azpiekitaldiGuztiak.get(i).getBueltatzekoLekua().equals(azpiekitaldia.getBueltatzekoLekua())) {
-				egoera=true;
-			}
-		}
-		if(egoera==false) {
-			em.merge(azpiekitaldia);
-		}
+		em.merge(azpiekitaldia);
 	}
 	
 	@SuppressWarnings("unchecked")

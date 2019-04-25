@@ -18,13 +18,19 @@ import java.util.List;
 public class Geldialdiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGeldialdiak;
 
 	private float batazbestekoBalorazioa;
 
+	private String ordua;
+	
+	private String geralekua;
+	
 	private String geldialdiIzena;
+	
+	private int partehartzaileak;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="IraungiteData")
@@ -72,6 +78,30 @@ public class Geldialdiak implements Serializable {
 
 	public void setIraungiteData(Date iraungiteData) {
 		this.iraungiteData = iraungiteData;
+	}
+
+	public String getOrdua() {
+		return ordua;
+	}
+
+	public void setOrdua(String ordua) {
+		this.ordua = ordua;
+	}
+
+	public String getGeralekua() {
+		return geralekua;
+	}
+
+	public void setGeralekua(String geralekua) {
+		this.geralekua = geralekua;
+	}
+
+	public int getPartehartzaileak() {
+		return partehartzaileak;
+	}
+
+	public void setPartehartzaileak(int partehartzaileak) {
+		this.partehartzaileak = partehartzaileak;
 	}
 
 	public List<Baieztatuak> getBaieztatuaks() {

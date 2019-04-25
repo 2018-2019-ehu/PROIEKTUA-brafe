@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
+		<ui:define name="title">Brafe: Ekitaldiak</ui:define>
+		<ui:define name="Edukia">
+
+		<div class="zerrenda">
+		<h:form>
+			<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialdianSartu()}" value="Taldean sartu" class="baieztatuakBotoiak"/>
+			<h:commandButton render="#{ekitaldienErabilpenaMB.render==1}" action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="baieztatuakBotoiak" />
+		</h:form>
+			Ekitaldiak > Azpiekitaldiak > Geldialdiak > Partaideak
+			<div class="taula">
+			<h:dataTable var="baieztatuak" value="#{ekitaldienErabilpenaMB.baieztatuakLortu()}">
+				<h:column>
+				<f:facet name="header">ID</f:facet>
+					 #{baieztatuak.erabiltzaileak.idErabiltzailea}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Erabiltzailea</f:facet>
+					#{baieztatuak.erabiltzaileak.izena}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Balorazioa</f:facet>
+					#{baieztatuak.erabiltzaileak.balorazioa}
+				</h:column>
+			</h:dataTable>
+			<br />
+			<h:form>
+				<h:commandButton action="geldialdiak.xhtml" value="Bueltatu" />
+			</h:form>
+			</div>
+		</div>
+		</ui:define>
+	</ui:composition>
+</html>

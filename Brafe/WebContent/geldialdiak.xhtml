@@ -25,9 +25,14 @@
 						<h2>Geldialdi berri bat sortu ezazu:</h2>
 						Geldialdiaren izena:
 						<br />
-							<h:inputText value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" />
-							<br />
-							<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiBerriaSortu(geldialdiakMB)}" value="Gorde" class="sortuBotoia" />
+						<h:inputText value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" />
+						Geralekua:
+						<br />
+						<h:inputText value="#{geldialdiakMB.geralekua}" class="iragazketaInput" />
+						Ordua:
+						<br />
+						<h:inputText value="#{geldialdiakMB.ordua}" class="iragazketaInput" />
+						<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiBerriaSortu(geldialdiakMB)}" value="Gorde" class="sortuBotoia" />
 					</div>
 				</div>
 			</h:form>
@@ -48,12 +53,28 @@
 					#{geldialdia.batazbestekoBalorazioa}
 				</h:column>
 				<h:column>
+				<f:facet name="header">Ordua</f:facet>
+					#{geldialdia.ordua}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Geralekua</f:facet>
+					#{geldialdia.geralekua}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Partehartzaile kopurua</f:facet>
+					#{geldialdia.partehartzaileak}
+				</h:column>
+				<h:column>
 				<h:form>
-					<h:commandButton actionListener="null" action="null" value="Sartu" class="hasieraBotoiak"/>
+					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.PartaideakLortu(geldialdia.idGeldialdiak)}" action="baieztatuak.xhtml" value="Sartu" class="hasieraBotoiak"/>
 					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
+			<br />
+			<h:form>
+				<h:commandButton action="azpiekitaldiak.xhtml" value="Bueltatu" />
+			</h:form>
 			</div>
 		</div>
 	</ui:define>

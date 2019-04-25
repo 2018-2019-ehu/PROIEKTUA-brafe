@@ -32,6 +32,8 @@ public class Ekitaldiak implements Serializable {
 	private int partaideKopurua;
 
 	private String sortzailea;
+	
+	private Date amaieraData;
 
 	//bi-directional many-to-one association to Azpiekitaldiak
 	@OneToMany(mappedBy="ekitaldiak")
@@ -62,6 +64,14 @@ public class Ekitaldiak implements Serializable {
 
 	public void setEkitaldiIzena(String ekitaldiIzena) {
 		this.ekitaldiIzena = ekitaldiIzena;
+	}
+	
+	public Date getAmaieraData() {
+		return amaieraData;
+	}
+
+	public void setAmaieraData(Date amaieraData) {
+		this.amaieraData = amaieraData;
 	}
 
 	public String getEkitaldiZonaldea() {

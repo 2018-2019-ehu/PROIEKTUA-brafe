@@ -15,8 +15,8 @@ public class AzpiekitaldiakMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int idAzpiekitaldiak;
-
-	private int aPartaideKopurua;
+	
+	private String sortzailea;
 
 	private String bueltatzekoLekua;
 
@@ -33,20 +33,20 @@ public class AzpiekitaldiakMB implements Serializable {
 		this.idAzpiekitaldiak = idAzpiekitaldiak;
 	}
 
-	public int getaPartaideKopurua() {
-		return aPartaideKopurua;
-	}
-
-	public void setaPartaideKopurua(int aPartaideKopurua) {
-		this.aPartaideKopurua = aPartaideKopurua;
-	}
-
 	public String getBueltatzekoLekua() {
 		return bueltatzekoLekua;
 	}
 
 	public void setBueltatzekoLekua(String bueltatzekoLekua) {
 		this.bueltatzekoLekua = bueltatzekoLekua;
+	}
+
+	public String getSortzailea() {
+		return sortzailea;
+	}
+
+	public void setSortzailea(String sortzailea) {
+		this.sortzailea = sortzailea;
 	}
 
 }

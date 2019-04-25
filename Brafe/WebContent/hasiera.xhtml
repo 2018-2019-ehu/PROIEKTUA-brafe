@@ -32,7 +32,7 @@
 							<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput"/>
 							<br />
 							<br />
-							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB,erabiltzaileaMB.izena)}" value="Gorde" class="sortuBotoia" />
+							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB)}" value="Gorde" class="sortuBotoia" />
 					</div>
 				</div>
 			</h:form>
@@ -51,6 +51,10 @@
 				<h:column>
 				<f:facet name="header">Sortzailea</f:facet>
 					#{ekitaldia.sortzailea}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Amaiera data</f:facet>
+					#{ekitaldia.amaieraData}
 				</h:column>
 				<h:column>
 				<h:form>

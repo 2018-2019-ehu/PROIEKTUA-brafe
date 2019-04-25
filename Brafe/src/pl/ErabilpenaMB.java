@@ -20,7 +20,6 @@ public class ErabilpenaMB implements Serializable {
 	@EJB
 	private ZerbitzuaEJB zEJB;
 	//private int kodea=0;
-	private float balorazioa=0.0f;
 	private Erabiltzaileak erabiltzaileDatuak=new Erabiltzaileak();
 	private int kodea;
 	
@@ -33,7 +32,7 @@ public class ErabilpenaMB implements Serializable {
 		erabiltzaile.setIdErabiltzailea(0);
 		erabiltzaile.setHelbidea(eMB.getHelbidea());
 		erabiltzaile.setTelefonoZenbakia(eMB.getTelefonoZenbakia());
-		erabiltzaile.setBalorazioa(balorazioa);
+		erabiltzaile.setBalorazioa(3.5f);
 		erabiltzaile.setJaioteData(eMB.getJaioteData());
 		erabiltzaile.setPasahitza(eMB.getPasahitza());
 

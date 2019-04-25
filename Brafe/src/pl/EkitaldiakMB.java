@@ -19,6 +19,8 @@ public class EkitaldiakMB implements Serializable{
 	private int partaideKopurua;
 	private String sortzailea;
 	private String iragazitakoa;
+	private Date amaieraData;
+	
 	public EkitaldiakMB() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -66,5 +68,12 @@ public class EkitaldiakMB implements Serializable{
 	public void setIragazitakoa(String iragazitakoa) {
 		this.iragazitakoa = iragazitakoa;
 	}
-	
+
+	public Date getAmaieraData() {
+		return amaieraData;
+	}
+
+	public void setAmaieraData(Date amaieraData) {
+		this.amaieraData = amaieraData;
+	}
 }
