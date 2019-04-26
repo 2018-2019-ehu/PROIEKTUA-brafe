@@ -36,7 +36,7 @@ public class Erabiltzaileak implements Serializable {
 
 	private String pasahitza;
 
-	private int telefonoZenbakia;
+	private String telefonoZenbakia;
 
 
 	public Erabiltzaileak() {
@@ -98,13 +98,11 @@ public class Erabiltzaileak implements Serializable {
 		this.pasahitza = pasahitza;
 	}
 
-	public int getTelefonoZenbakia() {
-		return this.telefonoZenbakia;
+	public String getTelefonoZenbakia() {
+		return telefonoZenbakia;
 	}
 
-	public void setTelefonoZenbakia(int telefonoZenbakia) {
+	public void setTelefonoZenbakia(String telefonoZenbakia) {
 		this.telefonoZenbakia = telefonoZenbakia;
 	}
-
-
 }

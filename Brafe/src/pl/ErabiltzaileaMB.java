@@ -24,7 +24,7 @@ public class ErabiltzaileaMB implements Serializable {
 	private String izena;
 	private Date jaioteData;
 	private String pasahitza;
-	private int telefonoZenbakia;
+	private String telefonoZenbakia;
 	public ErabiltzaileaMB() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -71,10 +71,11 @@ public class ErabiltzaileaMB implements Serializable {
 	public void setPasahitza(String pasahitza) {
 		this.pasahitza = pasahitza;
 	}
-	public int getTelefonoZenbakia() {
+
+	public String getTelefonoZenbakia() {
 		return telefonoZenbakia;
 	}
-	public void setTelefonoZenbakia(int telefonoZenbakia) {
+	public void setTelefonoZenbakia(String telefonoZenbakia) {
 		this.telefonoZenbakia = telefonoZenbakia;
 	}
 	public static long getSerialversionuid() {

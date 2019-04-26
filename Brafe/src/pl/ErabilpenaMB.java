@@ -24,8 +24,10 @@ public class ErabilpenaMB implements Serializable {
 	private int kodea;
 	
 	
-	public void erregistratu(ErabiltzaileaMB eMB) {
+	public String erregistratu(ErabiltzaileaMB eMB) {
 		
+		String orria=null;
+		int kode;
 		Erabiltzaileak erabiltzaile=new Erabiltzaileak();
 		erabiltzaile.setIzena(eMB.getIzena());
 		erabiltzaile.setAbizenak(eMB.getAbizenak());
@@ -36,7 +38,12 @@ public class ErabilpenaMB implements Serializable {
 		erabiltzaile.setJaioteData(eMB.getJaioteData());
 		erabiltzaile.setPasahitza(eMB.getPasahitza());
 
-		zEJB.erabiltzaileaErregistratuDB(erabiltzaile);
+		kode=zEJB.erabiltzaileaErregistratuDB(erabiltzaile);
+		
+		if(kode==0) {
+			orria="ondoErregistroa.xhtml";
+		}
+		return orria;
 	}
 	
 	public String logeatu(ErabiltzaileaMB eMB) {
@@ -46,7 +53,6 @@ public class ErabilpenaMB implements Serializable {
 		if(kodea==3) {
 			erabiltzaileDatuak=zEJB.loginDatuakLortu(eMB.getIzena());
 			orria="hasiera.xhtml";
-			System.out.println(erabiltzaileDatuak.getAbizenak());
 		}
 		return orria;
 	}
@@ -62,7 +68,7 @@ public class ErabilpenaMB implements Serializable {
 		erabiltzaileDatuak=zEJB.loginDatuakLortu(erabiltzaileDatuak.getIzena());
 	}
 	
-	public void zenbakiaAldatu(int zenbakia) {
+	public void zenbakiaAldatu(String zenbakia) {
 		zEJB.zenbakiaAldatuDB(zenbakia, erabiltzaileDatuak.getIdErabiltzailea());
 		erabiltzaileDatuak=zEJB.loginDatuakLortu(erabiltzaileDatuak.getIzena());
 	}

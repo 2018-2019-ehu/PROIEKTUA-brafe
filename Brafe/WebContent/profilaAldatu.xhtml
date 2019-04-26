@@ -8,31 +8,42 @@
 	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
 		<ui:define name="title">Brafe: profila</ui:define>
 		<ui:define name="Edukia">
+		<div class="profila">
+		<div class="profilaDatuak">
 			<h:form>
-				Izena:
+				<h2>Zure profila</h2>
+
+				<b>Izena:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.izena}
 				<br/>
-				Abizena:
+				<br/>			
+				<b>Abizena:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.abizenak}
-				<br/>				
-				Pasahitza:
+				<br/>	
+				<br/>			
+				<b>Pasahitza:</b>
 				************
-				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder="pasahitza berria" />
-				<h:commandButton action="#{erabilpenaMB.pasahitzaAldatu(erabiltzaileaMB.pasahitza)}" value="Aldatu" />
-				<br/>				
-				Helbidea:
+				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder="pasahitza berria" class="profilaInput" />
+				<h:commandButton action="#{erabilpenaMB.pasahitzaAldatu(erabiltzaileaMB.pasahitza)}" value="Aldatu" class="hasieraBotoiak" />
+				<br/>	
+				<br/>			
+				<b>Helbidea:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.helbidea}
-				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder="helbide berria" />
-				<h:commandButton action="#{erabilpenaMB.helbideaAldatu(erabiltzaileaMB.helbidea)}" value="Aldatu" />
-				<br/>				
-				Jaiote data:
+				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder="helbide berria" class="profilaInput" />
+				<h:commandButton action="#{erabilpenaMB.helbideaAldatu(erabiltzaileaMB.helbidea)}" value="Aldatu" class="hasieraBotoiak"/>
+				<br/>	
+				<br/>			
+				<b>Jaiote data:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.jaioteData}
+				<br/>
 				<br/>				
-				Telefono zenbakia:
+				<b>Telefono zenbakia:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.telefonoZenbakia}
-				<h:inputText value="#{erabiltzaileaMB.telefonoZenbakia}" a:placeholder="telefono zenbaki berria" />
-				<h:commandButton action="#{erabilpenaMB.zenbakiaAldatu(erabiltzaileaMB.telefonoZenbakia)}" value="Aldatu" />
+				<h:inputText value="#{erabiltzaileaMB.telefonoZenbakia}" a:placeholder="telefono zenbaki berria" class="profilaInput"/>
+				<h:commandButton action="#{erabilpenaMB.zenbakiaAldatu(erabiltzaileaMB.telefonoZenbakia)}" value="Aldatu" class="hasieraBotoiak"/>
 			</h:form>
+		</div>
+		</div>
 		</ui:define>
 	</ui:composition>
 </html>

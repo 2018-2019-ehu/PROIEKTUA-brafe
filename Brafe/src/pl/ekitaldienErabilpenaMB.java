@@ -47,6 +47,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		autentikatutakoa=login;
 		erabiltzailea=zEJB.loginDatuakLortu(login);
 	}
+	
 	public List<Ekitaldiak> ekitaldiakIragazi(){
 		List<Ekitaldiak> ekitaldiak;
 		if(iragazitakoa==null) {

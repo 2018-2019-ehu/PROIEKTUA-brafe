@@ -20,9 +20,24 @@ public class ZerbitzuaEJB {
 	@PersistenceContext
 	private EntityManager em;
 
-
-	public void erabiltzaileaErregistratuDB(Erabiltzaileak erab) {
-		em.merge(erab);
+	@SuppressWarnings("unchecked")
+	public int erabiltzaileaErregistratuDB(Erabiltzaileak erab){
+		List<Erabiltzaileak> erabiltzaileak=em.createNamedQuery("Erabiltzaileak.findAll").getResultList();
+		boolean egoera=false;
+		int kodea=0;
+		
+		for(int i=0;i<erabiltzaileak.size();i++) {
+			
+			if(erabiltzaileak.get(i).getIzena().equals(erab.getIzena())) {
+				egoera=true;
+				kodea=1;
+			}
+		}
+		if(egoera==false) {
+			em.merge(erab);
+		}
+		
+		return kodea;
 	}
 	
 	public int erabiltzaileaLogeatu(String izena,String pasahitza) {
@@ -129,13 +144,23 @@ public class ZerbitzuaEJB {
 		return em.find(Geldialdiak.class, idGeldialdia);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void geldialdianSartuDB(Baieztatuak baieztatua, Geldialdiak geldialdia) {
 		Geldialdiak geldialdi=em.find(Geldialdiak.class, geldialdia.getIdGeldialdiak());
-		float batazbestekoa=((geldialdi.getBatazbestekoBalorazioa()*geldialdi.getPartehartzaileak())+baieztatua.getErabiltzaileak().getBalorazioa())/(geldialdi.getPartehartzaileak()+1);
-		geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()+1);
-		geldialdi.setBatazbestekoBalorazioa(batazbestekoa);
-		em.persist(geldialdi);
-		em.merge(baieztatua);
+		boolean egoera=false;
+		List<Baieztatuak> baieztatuak=(List<Baieztatuak>)em.createNamedQuery("Baieztatuak.findGeldialdi").setParameter("geldialdiak", geldialdia).getResultList();
+		for(int i=0;i<baieztatuak.size();i++) {
+			if(baieztatuak.get(i).getErabiltzaileak().getIzena().equals(baieztatua.getErabiltzaileak().getIzena())){
+				egoera=true;
+			}
+		}
+		if(egoera==false) {
+			float batazbestekoa=((geldialdi.getBatazbestekoBalorazioa()*geldialdi.getPartehartzaileak())+baieztatua.getErabiltzaileak().getBalorazioa())/(geldialdi.getPartehartzaileak()+1);
+			geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()+1);
+			geldialdi.setBatazbestekoBalorazioa(batazbestekoa);
+			em.persist(geldialdi);
+			em.merge(baieztatua);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -144,10 +169,19 @@ public class ZerbitzuaEJB {
 		baieztatuak=em.createNamedQuery("Baieztatuak.findMenpekoak").setParameter("erabiltzaileak",erabiltzailea).getResultList();
 		for(int i=0;i<baieztatuak.size();i++) {
 			if(baieztatuak.get(i).getErabiltzaileak().getIzena().equals(erabiltzailea.getIzena()) && baieztatuak.get(i).getGeldialdiak().getIdGeldialdiak()==geldialdiaId) {
-				em.remove(baieztatuak.get(i));
-				Geldialdiak geldialdi=em.find(Geldialdiak.class, geldialdiaId);
+				Geldialdiak geldialdi=(Geldialdiak)em.find(Geldialdiak.class, geldialdiaId);
+				float batazbestekoa;
+				if((geldialdi.getPartehartzaileak()-1)==0) {
+					batazbestekoa=0;
+				}
+				else {
+					batazbestekoa=((geldialdi.getBatazbestekoBalorazioa()*geldialdi.getPartehartzaileak())-baieztatuak.get(i).getErabiltzaileak().getBalorazioa())/(geldialdi.getPartehartzaileak()-1);
+				}
+				System.out.println(batazbestekoa);
 				geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()-1);
+				geldialdi.setBatazbestekoBalorazioa(batazbestekoa);
 				em.persist(geldialdi);
+				em.remove(baieztatuak.get(i));
 			}
 		}
 	}
@@ -203,7 +237,7 @@ public class ZerbitzuaEJB {
 		erab.setHelbidea(helbidea);
 		em.persist(erab);
 	}
-	public void zenbakiaAldatuDB(int zenbakia, int erabiltzaileID) {
+	public void zenbakiaAldatuDB(String zenbakia, int erabiltzaileID) {
 		Erabiltzaileak erab=em.find(Erabiltzaileak.class, erabiltzaileID);
 		erab.setTelefonoZenbakia(zenbakia);
 		em.persist(erab);

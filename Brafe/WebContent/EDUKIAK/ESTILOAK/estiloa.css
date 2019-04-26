@@ -154,6 +154,7 @@ body{
 .logoDIV{
 		height: 90px;
 		display: block;
+		background-color: white;
 		top:0;
 }
 
@@ -222,11 +223,13 @@ ul#menu li a:hover {
 }
 
 .fondo{
- background-color: white;
- height: 1080px;
- width: 100%;
- right: 0;
- left: 0;
+ 	height: 1080px;
+	background-image: url("../IRUDIAK/best-friends-blond-hair-bonding-1574650.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+ 	width: 100%;
+ 	right: 0;
+ 	left: 0;
 }
 
 .hasieraBotoiak{
@@ -307,4 +310,38 @@ ul#menu li a:hover {
 
 .formu{
 	display: inline-block;
+}
+
+.profila{
+	background-color: white;
+	height: 300px; 
+	width: 40%;
+	position: absolute;
+	top:0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+	margin-top: 200px;
+	font-family: sans-serif;
+	border-radius: 5px;
+}
+
+.profilaDatuak{
+	display: block;
+	width: 95%;
+	top:0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+}
+.profilaDatuak h2{
+	text-align: center;
+}
+
+.profilaInput{
+	border: none;
+	border-radius: 10px;
+	background-color: #696969;
 }
