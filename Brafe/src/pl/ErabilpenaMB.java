@@ -16,10 +16,8 @@ import dl.Erabiltzaileak;
 public class ErabilpenaMB implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	//Erabiltzaileak erabiltzaile= new Erabiltzaileak();
 	@EJB
 	private ZerbitzuaEJB zEJB;
-	//private int kodea=0;
 	private Erabiltzaileak erabiltzaileDatuak=new Erabiltzaileak();
 	private int kodea;
 	
@@ -27,7 +25,6 @@ public class ErabilpenaMB implements Serializable {
 	public String erregistratu(ErabiltzaileaMB eMB) {
 		
 		String orria=null;
-		int kode;
 		Erabiltzaileak erabiltzaile=new Erabiltzaileak();
 		erabiltzaile.setIzena(eMB.getIzena());
 		erabiltzaile.setAbizenak(eMB.getAbizenak());
@@ -37,11 +34,15 @@ public class ErabilpenaMB implements Serializable {
 		erabiltzaile.setBalorazioa(3.5f);
 		erabiltzaile.setJaioteData(eMB.getJaioteData());
 		erabiltzaile.setPasahitza(eMB.getPasahitza());
-
-		kode=zEJB.erabiltzaileaErregistratuDB(erabiltzaile);
 		
-		if(kode==0) {
-			orria="ondoErregistroa.xhtml";
+		if(atributuakKonprobatu(erabiltzaile)) {
+			kodea=2;
+		}
+		else {
+			kodea=zEJB.erabiltzaileaErregistratuDB(erabiltzaile);
+			if(kodea==0) {
+				orria="ondoErregistroa.xhtml";
+			}
 		}
 		return orria;
 	}
@@ -92,4 +93,16 @@ public class ErabilpenaMB implements Serializable {
 		this.kodea = kodea;
 	}
 	
+	public boolean atributuakKonprobatu(Erabiltzaileak erabiltzailea) {
+		boolean egoera=false;
+		
+		if(erabiltzailea.getIzena().equals(""))egoera=true; 
+		if(erabiltzailea.getAbizenak().equals("")) egoera=true;
+		if(erabiltzailea.getHelbidea().equals("")) egoera=true;
+		if(erabiltzailea.getJaioteData()==null) egoera=true;
+		if(erabiltzailea.getPasahitza().equals("")) egoera=true;
+		if(erabiltzailea.getTelefonoZenbakia().equals("")) egoera=true;
+		System.out.println(erabiltzailea.getJaioteData());
+		return egoera;
+	}
 }

@@ -27,13 +27,13 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	private List<Ekitaldiak> ekitaldiGuztiak=new ArrayList<Ekitaldiak>();
 	private List<Azpiekitaldiak> azpiekitaldiGuztiak=new ArrayList<Azpiekitaldiak>();
 	private List<Geldialdiak> geldialdiGuztiak=new ArrayList<Geldialdiak>();
-	private List<Baieztatuak> baieztatuak=new ArrayList<Baieztatuak>();
 	private Azpiekitaldiak azpiekitaldia= new Azpiekitaldiak();
 	private Geldialdiak geldialdia=new Geldialdiak();
 	private String iragazitakoa=null;
 	private int render=0;
 	private String autentikatutakoa;
 	private Erabiltzaileak erabiltzailea=new Erabiltzaileak();
+	private int kodea=0;
 
 	
 	@EJB
@@ -44,8 +44,8 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	}
 	
 	public void loginIzenaLortu(String login) {
-		autentikatutakoa=login;
-		erabiltzailea=zEJB.loginDatuakLortu(login);
+			autentikatutakoa=login;
+			erabiltzailea=zEJB.loginDatuakLortu(login);
 	}
 	
 	public List<Ekitaldiak> ekitaldiakIragazi(){
@@ -189,12 +189,13 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		geldialdiak.setGeralekua(gMB.getGeralekua());
 		geldialdiak.setOrdua(gMB.getOrdua());
 		geldialdiak.setPartehartzaileak(0);
+		geldialdiak.setSortzailea(autentikatutakoa);
 		zEJB.geldialdiaSortu(geldialdiak);
 		render=0;
 	}
 
 	public void ekitaldiaEzabatu(int idEkitaldia) {
-		zEJB.ekitaldiaEzabatuDB(idEkitaldia);
+		kodea=zEJB.ekitaldiaEzabatuDB(idEkitaldia);
 	}
 	public int getRender() {
 		return render;
@@ -220,4 +221,13 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void setAutentikatutakoa(String autentikatutakoa) {
 		this.autentikatutakoa = autentikatutakoa;
 	}
+
+	public int getKodea() {
+		return kodea;
+	}
+
+	public void setKodea(int kodea) {
+		this.kodea = kodea;
+	}
+	
 }

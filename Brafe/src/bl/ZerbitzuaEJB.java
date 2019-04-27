@@ -19,7 +19,7 @@ public class ZerbitzuaEJB {
 
 	@PersistenceContext
 	private EntityManager em;
-
+	
 	@SuppressWarnings("unchecked")
 	public int erabiltzaileaErregistratuDB(Erabiltzaileak erab){
 		List<Erabiltzaileak> erabiltzaileak=em.createNamedQuery("Erabiltzaileak.findAll").getResultList();
@@ -41,7 +41,7 @@ public class ZerbitzuaEJB {
 	}
 	
 	public int erabiltzaileaLogeatu(String izena,String pasahitza) {
-		int kasua=0;
+		int kasua=3;
 		boolean bilaketa=false;
 		Erabiltzaileak erabiltzailea= new Erabiltzaileak();
 		
@@ -50,28 +50,28 @@ public class ZerbitzuaEJB {
 		}catch(javax.persistence.NoResultException exception) {
 			bilaketa=true;
 		}
+		
 		if(bilaketa==true) {
-			if(pasahitza!=null) {
-				kasua=4;
-			}
-			else {
-				kasua=1;	
-			}
+			kasua=1;
 		}
 		else {
 			if(!erabiltzailea.getPasahitza().equals(pasahitza)) {
 				kasua=2;
 			}
-			else {
-				kasua=3;
-			}
 		}
+		System.out.println(kasua);
 		return kasua;
 	}
 	
 	public Erabiltzaileak loginDatuakLortu(String izena) {
-		System.out.println(izena);
-		return (Erabiltzaileak)em.createNamedQuery("Erabiltzaileak.findErabiltzailea").setParameter("izena", izena).getSingleResult();
+		Erabiltzaileak erab=new Erabiltzaileak();
+		try {
+			erab=(Erabiltzaileak)em.createNamedQuery("Erabiltzaileak.findErabiltzailea").setParameter("izena", izena).getSingleResult();
+		}
+		catch(javax.persistence.NoResultException exception){
+
+		}
+		return erab;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -220,11 +220,19 @@ public class ZerbitzuaEJB {
 		}
 	}
 	
-	public void ekitaldiaEzabatuDB(int idEkitaldia) {
+	public int ekitaldiaEzabatuDB(int idEkitaldia) {
+		int kodea=0;
 		Ekitaldiak ekitaldia=em.find(Ekitaldiak.class, idEkitaldia);
 		if(ekitaldia!=null) {
-			em.remove(ekitaldia);
+			List<Azpiekitaldiak> azpiekitaldiak=ekitaldia.getAzpiekitaldiaks();
+			if(azpiekitaldiak.isEmpty()) {
+				em.remove(ekitaldia);		
+			}
+			else {
+				kodea=1;
+			}
 		}
+		return kodea;
 	}
 	
 	public void pasahitzaAldatuDB(String pasahitza, int erabiltzaileID) {

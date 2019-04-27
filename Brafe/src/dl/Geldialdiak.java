@@ -31,6 +31,8 @@ public class Geldialdiak implements Serializable {
 	private String geldialdiIzena;
 	
 	private int partehartzaileak;
+	
+	private String sortzailea;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="IraungiteData")
@@ -134,4 +136,11 @@ public class Geldialdiak implements Serializable {
 		this.azpiekitaldiak = azpiekitaldiak;
 	}
 
+	public String getSortzailea() {
+		return sortzailea;
+	}
+
+	public void setSortzailea(String sortzailea) {
+		this.sortzailea = sortzailea;
+	}
 }

@@ -17,29 +17,18 @@
 				</div>
 				<h:form>
 					<div>
-					<h:panelGroup rendered="#{erabilpenaMB.kodea==4}">
-						<div class="oharrak2">
-							<p>*Ezin zara logeatu: kontuz erabiltzaile edo pasahitzarekin*</p>
-						</div>
-					</h:panelGroup>
-					<div>
-						<h:inputText a:placeholder="Izena" id="izena" value="#{erabiltzaileaMB.izena}" required="true" requiredMessage="Ez duzu izenik sartu" class="inputKutxak"/>
-					</div>
-					<h:panelGroup rendered="#{erabilpenaMB.kodea==1}">
-						<div class="oharrak">
-							<p>*Erabiltzailea ez da existitzen</p>
-						</div>
-					</h:panelGroup>
-					</div>
-					<div>
 						<div>
-							<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" required="true" class="inputKutxak" requiredMessage="Mesedez sartu pasahitz bat"/>
+							<h:inputText a:placeholder="Izena" id="izena" value="#{erabiltzaileaMB.izena}" class="inputKutxak"/>
 						</div>
-						<h:panelGroup rendered="#{erabilpenaMB.kodea==2}">
-							<div class="oharrak">
-								<p>*Pasahitza txarto sartu da</p>
-							</div>
-					</h:panelGroup>
+						<div>
+							<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" class="inputKutxak"/>
+						</div>
+						<div class="oharrak">
+							<p><h:outputText value="*Erabiltzailea ez da existitzen" rendered="#{erabilpenaMB.kodea==1}"/></p>
+						</div>
+						<div class="oharrak">
+							<p><h:outputText value="*Pasahitza ez da egokia" rendered="#{erabilpenaMB.kodea==2}"/></p>
+						</div>
 					</div>
 					<div>
 						<h:commandButton value="SARTU" class="botoiak" action="#{erabilpenaMB.logeatu(erabiltzaileaMB)}" actionListener="#{ekitaldienErabilpenaMB.loginIzenaLortu(erabiltzaileaMB.izena)}"/>
@@ -48,7 +37,7 @@
 						<p>Dagoeneko ez zara erregistratu?<a href="erregistroa.xhtml"> <h:outputText value="Erregistratu zaitez" action="#{erabilpenaMB.kodeaGarbitu()}"/></a></p>
 					</div>
 				</h:form>
-			</div>
+				</div>
 		</ui:define>
 	</ui:composition>
 </html>

@@ -65,6 +65,10 @@
 					#{geldialdia.partehartzaileak}
 				</h:column>
 				<h:column>
+				<f:facet name="header">Sortzailea</f:facet>
+					#{geldialdia.sortzailea}
+				</h:column>
+				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.PartaideakLortu(geldialdia.idGeldialdiak)}" action="baieztatuak.xhtml" value="Sartu" class="hasieraBotoiak"/>
 					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
