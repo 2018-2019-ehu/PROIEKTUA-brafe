@@ -285,4 +285,35 @@ public class ZerbitzuaEJB {
 		Erabiltzaileak erabiltzailea=(Erabiltzaileak) em.createNamedQuery("Erabiltzaileak.findErabiltzailea").setParameter("izena", izena).getSingleResult();
 		return(erabiltzailea);
 	}
+	
+	public void erabiltzaileaBaloratu(Erabiltzaileak erabiltzailea, int idProfila, float balorazioa) {
+		int kopurua=0;
+		float BBbalorazioa=0.0f;
+		Baloratuak baloratuak=new Baloratuak();
+		Erabiltzaileak profila=em.find(Erabiltzaileak.class, idProfila);
+		
+		kopurua=((Long) em.createNamedQuery("Baloratuak.kopuruaZenbatu").setParameter("baloratua", idProfila).getSingleResult()).intValue();
+		System.out.println("kopurua hau da: "+kopurua);
+		System.out.println("Profilaren id-a: "+idProfila);
+		BBbalorazioa=((profila.getBalorazioa()*(kopurua+1))+balorazioa)/(kopurua+2);
+		profila.setBalorazioa(BBbalorazioa);
+		baloratuak.setErabiltzaileak(erabiltzailea);
+		baloratuak.setBaloratua(idProfila);
+		em.persist(profila);
+		em.merge(baloratuak);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public int balorazioKodeaLortuDB(Erabiltzaileak erabiltzailea,int idProfila) {
+		int kodea=0;
+		List<Baloratuak> zerrenda=(List<Baloratuak>) em.createNamedQuery("Baloratuak.findMenpekoak").setParameter("erabiltzaileak", erabiltzailea).getResultList();
+		if(zerrenda.isEmpty()==false) {
+			for(int i=0;i<zerrenda.size();i++) {
+				if(zerrenda.get(i).getBaloratua()==idProfila) {
+					kodea=1;
+				}
+			}
+		}
+		return kodea;
+	}
 }

@@ -9,7 +9,12 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Baloratuak.findAll", query="SELECT b FROM Baloratuak b")
+@NamedQueries({
+	@NamedQuery(name="Baloratuak.findAll", query="SELECT b FROM Baloratuak b"),
+	@NamedQuery(name="Baloratuak.findMenpekoak", query="SELECT b FROM Baloratuak b WHERE b.erabiltzaileak = :erabiltzaileak"),
+	@NamedQuery(name="Baloratuak.kopuruaZenbatu", query="SELECT Count(b) FROM Baloratuak b WHERE b.baloratua = :baloratua")
+})
+
 public class Baloratuak implements Serializable {
 	private static final long serialVersionUID = 1L;
 

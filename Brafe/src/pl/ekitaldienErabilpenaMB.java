@@ -250,5 +250,21 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	
 	public void profilaIkusi(String izena) {
 		profila=zEJB.profilaLortuDB(izena);
+		kodea=zEJB.balorazioKodeaLortuDB(erabiltzailea,profila.getIdErabiltzailea());
 	}
+	
+	public void balorazioaAldatu(float balorazioa) {
+		zEJB.erabiltzaileaBaloratu(erabiltzailea, profila.getIdErabiltzailea(), balorazioa);
+		profilaIkusi(profila.getIzena());
+	}
+
+	public Erabiltzaileak getErabiltzailea() {
+		return erabiltzailea;
+	}
+
+	public void setErabiltzailea(Erabiltzaileak erabiltzailea) {
+		this.erabiltzailea = erabiltzailea;
+	}
+	
+	
 }

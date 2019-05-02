@@ -26,8 +26,14 @@
 				Balorazioa: #{ekitaldienErabilpenaMB.profila.balorazioa}
 				</div>	
 				</div>	
-				<div>
-					<h:commandButton action="null" value="Baloratu" class="botoiak" />
+				<div class="profIkusi">
+				<h:form rendered="#{ekitaldienErabilpenaMB.kodea==0}">
+					<h:inputText var="balorazioa" value="balorazioa" class="botoiak" />
+					<h:commandButton action="#{ekitaldienErabilpenaMB.balorazioaAldatu(balorazioa)}" value="Baloratu" class="botoiak" />
+				</h:form>
+				<h:form rendered="#{ekitaldienErabilpenaMB.kodea==1}">
+					<h:outputText value="Erabiltzailea baloratu duzu dagoeneko"/>
+				</h:form>
 				</div>		
 			</div>
 		</ui:define>
