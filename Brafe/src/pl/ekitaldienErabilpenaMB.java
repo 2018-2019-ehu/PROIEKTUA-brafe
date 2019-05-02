@@ -36,6 +36,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	private String autentikatutakoa;
 	private Erabiltzaileak erabiltzailea=new Erabiltzaileak();
 	private int kodea=0;
+	private Erabiltzaileak profila=new Erabiltzaileak();
 
 	
 	@EJB
@@ -237,5 +238,9 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		c.setTime(data);
 		c.add(Calendar.DATE, kop);
 		return c.getTime();
+	}
+	
+	public void profilaIkusi(String izena) {
+		//profila=zEJB.profilaLortu(izena);
 	}
 }

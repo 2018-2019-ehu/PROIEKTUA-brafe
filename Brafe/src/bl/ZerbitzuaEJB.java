@@ -280,4 +280,8 @@ public class ZerbitzuaEJB {
 		erab.setTelefonoZenbakia(zenbakia);
 		em.persist(erab);
 	}
+	
+	public Erabiltzaileak profilaLortuDB(String izena) {
+		
+	}
 }
