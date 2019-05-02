@@ -14,6 +14,24 @@
 			}
 		}
 	</script>
+	<script>
+	function getPosition()
+	{
+		var posizioa;
+		if(navigator.geolocation) {
+			posizioa=navigator.geolocation.getCurrentPosition;	 
+		}
+		return(posizioa);
+	}
+
+	function successPosition(position)
+	{
+		var latitude=position.coords.latitude;
+		var longitude=position.coords.longitude;
+
+		document.getElementById("result").innerHTML = "Latitudea: "+latitude+"<br />Longitude: " +longitude
+	}
+	</script>
 </head> 
 <body>
 	<div class="fondo">
@@ -25,7 +43,7 @@
 				<ul id="menu">
  					 <li><a href="../../Brafe/hasiera.xhtml">Ekitaldiak</a></li>
   					 <li><a href="">Brafe mapa</a></li>
- 					 <li><a href="">Alarma</a></li>
+ 					 <li><a href="../../Brafe/alarma.xhtml">Alarma</a></li>
 					 <li><a href="../../Brafe/profilaAldatu.xhtml">Profila</a></li>
 					 <li><a href="../Brafe/Login.xhtml">Log-out</a></li>
 				</ul>

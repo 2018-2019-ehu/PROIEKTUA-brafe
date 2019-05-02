@@ -3,13 +3,14 @@ package pl;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 
 
 @Named
-@SessionScoped
+@RequestScoped
 public class GeldialdiakMB implements Serializable{
 
 	/**

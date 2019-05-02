@@ -59,7 +59,7 @@
 				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldia.idEkitaldiak)}" action="azpiekitaldiak.xhtml" value="Sartu" class="hasieraBotoiak"/>
-					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
+					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
@@ -67,6 +67,7 @@
 		</div>
 		<h:outputScript rendered="#{ekitaldienErabilpenaMB.kodea==1}">
 			mezuaBistaratu();
+			#{ekitaldienErabilpenaMB.Clean()}
 		</h:outputScript>
 		</ui:define>
 	</ui:composition>

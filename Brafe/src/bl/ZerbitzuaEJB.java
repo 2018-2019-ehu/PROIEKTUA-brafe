@@ -235,6 +235,36 @@ public class ZerbitzuaEJB {
 		return kodea;
 	}
 	
+	public int azpiekitaldiaEzabatuDB(int idAzpiekitaldia) {
+		int kodea=0;
+		Azpiekitaldiak azpiekitaldia=em.find(Azpiekitaldiak.class, idAzpiekitaldia);
+		if(azpiekitaldia!=null) {
+			List<Geldialdiak> geldialdiak=azpiekitaldia.getGeldialdiaks();
+			if(geldialdiak.isEmpty()) {
+				em.remove(azpiekitaldia);		
+			}
+			else {
+				kodea=1;
+			}
+		}
+		return kodea;
+	}
+	
+	public int geldialdiaEzabatuDB(int idGeldialdia) {
+		int kodea=0;
+		Geldialdiak geldialdia=em.find(Geldialdiak.class, idGeldialdia);
+		if(geldialdia!=null) {
+			List<Baieztatuak> baieztatuak=geldialdia.getBaieztatuaks();
+			if(baieztatuak.isEmpty()) {
+				em.remove(geldialdia);		
+			}
+			else {
+				kodea=1;
+			}
+		}
+		return kodea;
+	}
+	
 	public void pasahitzaAldatuDB(String pasahitza, int erabiltzaileID) {
 		Erabiltzaileak erab=em.find(Erabiltzaileak.class, erabiltzaileID);
 		erab.setPasahitza(pasahitza);

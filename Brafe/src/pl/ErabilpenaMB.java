@@ -27,7 +27,6 @@ public class ErabilpenaMB implements Serializable {
 		String orria=null;
 		Erabiltzaileak erabiltzaile=new Erabiltzaileak();
 		erabiltzaile.setIzena(eMB.getIzena());
-		erabiltzaile.setAbizenak(eMB.getAbizenak());
 		erabiltzaile.setIdErabiltzailea(0);
 		erabiltzaile.setHelbidea(eMB.getHelbidea());
 		erabiltzaile.setTelefonoZenbakia(eMB.getTelefonoZenbakia());
@@ -97,7 +96,6 @@ public class ErabilpenaMB implements Serializable {
 		boolean egoera=false;
 		
 		if(erabiltzailea.getIzena().equals(""))egoera=true; 
-		if(erabiltzailea.getAbizenak().equals("")) egoera=true;
 		if(erabiltzailea.getHelbidea().equals("")) egoera=true;
 		if(erabiltzailea.getJaioteData()==null) egoera=true;
 		if(erabiltzailea.getPasahitza().equals("")) egoera=true;

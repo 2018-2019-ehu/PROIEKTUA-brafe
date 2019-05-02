@@ -3,9 +3,10 @@ package pl;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
 //import javax.enterprise.context.RequestScoped;
 //import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 //import javax.enterprise.context.ApplicationScoped;
 //import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -13,13 +14,12 @@ import javax.inject.Named;
 //import javax.persistence.TemporalType;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class ErabiltzaileaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private int idErabiltzailea;
-	private String abizenak;
 	private float balorazioa;
 	private String helbidea;
 	private String izena;
@@ -35,12 +35,6 @@ public class ErabiltzaileaMB implements Serializable {
 	}
 	public void setIdErabiltzailea(int idErabiltzailea) {
 		this.idErabiltzailea = idErabiltzailea;
-	}
-	public String getAbizenak() {
-		return abizenak;
-	}
-	public void setAbizenak(String abizenak) {
-		this.abizenak = abizenak;
 	}
 	public float getBalorazioa() {
 		return balorazioa;

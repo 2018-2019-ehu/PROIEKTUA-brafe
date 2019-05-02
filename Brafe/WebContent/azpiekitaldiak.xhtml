@@ -49,16 +49,20 @@
 				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.GeldialdiakLortu(azpiekitaldia.idAzpiekitaldiak)}" action="geldialdiak.xhtml" value="Sartu" class="hasieraBotoiak"/>
-					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(erabiltzaileaMB.izena)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
+					<h:commandButton rendered="#{azpiekitaldia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.azpiekitaldiaEzabatu(azpiekitaldia.idAzpiekitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton action="hasiera.xhtml" value="Bueltatu" />
+				<h:commandButton action="hasiera.xhtml" value="Bueltatu" class="hasieraBotoiak" />
 			</h:form>
 			</div>
 		</div>
+		<h:outputScript rendered="#{ekitaldienErabilpenaMB.kodea==1}">
+			mezuaBistaratu();
+			#{ekitaldienErabilpenaMB.Clean()}
+		</h:outputScript>
 		</ui:define>
 	</ui:composition>
 </html>

@@ -23,8 +23,6 @@ public class Erabiltzaileak implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idErabiltzailea;
 
-	private String abizenak;
-
 	private float balorazioa;
 
 	private String helbidea;
@@ -48,14 +46,6 @@ public class Erabiltzaileak implements Serializable {
 
 	public void setIdErabiltzailea(int idErabiltzailea) {
 		this.idErabiltzailea = idErabiltzailea;
-	}
-
-	public String getAbizenak() {
-		return this.abizenak;
-	}
-
-	public void setAbizenak(String abizenak) {
-		this.abizenak = abizenak;
 	}
 
 	public float getBalorazioa() {

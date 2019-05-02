@@ -1,5 +1,6 @@
 package pl;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import bl.ZerbitzuaEJB;
@@ -149,11 +151,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void ekitaldiBerriaSortu(EkitaldiakMB eMB) {
 		Ekitaldiak ekitaldia= new Ekitaldiak();
 		Date data=new Date();
-		Date amaiera=new Date();
-		Calendar c= Calendar.getInstance();
-		c.setTime(data);
-		c.add(Calendar.DATE, 7);
-		amaiera=c.getTime();
+		Date amaiera=amaieraDataLortu(7);
 		ekitaldia.setEkitaldiData(data);
 		ekitaldia.setEkitaldiIzena(eMB.getEkitaldiIzena());
 		ekitaldia.setEkitaldiZonaldea(eMB.getEkitaldiZonaldea());
@@ -175,13 +173,9 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	}
 	
 	public void geldialdiBerriaSortu(GeldialdiakMB gMB) {
-		Date data=new Date();
-		Date amaiera=new Date();
-		Calendar c= Calendar.getInstance();
-		c.setTime(data);
-		c.add(Calendar.DATE, 1);
-		amaiera=c.getTime();
+		Date amaiera=amaieraDataLortu(1);
 		Geldialdiak geldialdiak=new Geldialdiak();
+		
 		geldialdiak.setAzpiekitaldiak(azpiekitaldia);
 		geldialdiak.setGeldialdiIzena(gMB.getGeldialdiIzena());
 		geldialdiak.setBatazbestekoBalorazioa(0);
@@ -197,6 +191,12 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void ekitaldiaEzabatu(int idEkitaldia) {
 		kodea=zEJB.ekitaldiaEzabatuDB(idEkitaldia);
 	}
+	public void azpiekitaldiaEzabatu(int idAzpiekitaldia) {
+		kodea=zEJB.azpiekitaldiaEzabatuDB(idAzpiekitaldia);
+	}
+	public void geldialdiaEzabatu(int idGeldialdia) {
+		kodea=zEJB.geldialdiaEzabatuDB(idGeldialdia);
+	}
 	public int getRender() {
 		return render;
 	}
@@ -211,6 +211,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	
 	public void Clean() {
 		render=0;
+		kodea=0;
 		iragazitakoa=null;
 	}
 
@@ -230,4 +231,11 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		this.kodea = kodea;
 	}
 	
+	public Date amaieraDataLortu(int kop) {
+		Date data=new Date();
+		Calendar c= Calendar.getInstance();
+		c.setTime(data);
+		c.add(Calendar.DATE, kop);
+		return c.getTime();
+	}
 }

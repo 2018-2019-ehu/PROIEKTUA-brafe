@@ -10,10 +10,6 @@
 		<ui:define name="Edukia">
 
 		<div class="zerrenda">
-		<h:form>
-			<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialdianSartu()}" value="Taldean sartu" class="baieztatuakBotoiak"/>
-			<h:commandButton render="#{ekitaldienErabilpenaMB.render==1}" action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="baieztatuakBotoiak" />
-		</h:form>
 			Ekitaldiak > Azpiekitaldiak > Geldialdiak > Partaideak
 			<div class="taula">
 			<h:dataTable var="baieztatuak" value="#{ekitaldienErabilpenaMB.baieztatuakLortu()}">
@@ -29,10 +25,17 @@
 				<f:facet name="header">Balorazioa</f:facet>
 					#{baieztatuak.erabiltzaileak.balorazioa}
 				</h:column>
+				<h:column>
+					<h:commandButton action="null" value="Profila ikusi" render="#{ekitaldienErabilpenaMB.autentikatutakoa.equals(baieztatuak.erabiltzaileak.izena)==false}" />
+					#{baieztatuak.erabiltzaileak.izena}
+					#{ekitaldienErabilpenaMB.autentikatutakoa}
+				</h:column>
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton action="geldialdiak.xhtml" value="Bueltatu" />
+				<h:commandButton action="geldialdiak.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialdianSartu()}" value="Taldean sartu" class="hasieraBotoiak"/>
+				<h:commandButton render="#{ekitaldienErabilpenaMB.render==1}" action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="hasieraBotoiak" />
 			</h:form>
 			</div>
 		</div>
