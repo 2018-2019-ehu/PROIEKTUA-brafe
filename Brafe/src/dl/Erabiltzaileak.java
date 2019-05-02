@@ -3,7 +3,7 @@ package dl;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-//import java.util.List;
+import java.util.List;
 
 
 /**
@@ -15,7 +15,6 @@ import java.util.Date;
 	@NamedQuery(name="Erabiltzaileak.findAll", query="SELECT e FROM Erabiltzaileak e"),
 	@NamedQuery(name="Erabiltzaileak.findErabiltzailea", query="SELECT e FROM Erabiltzaileak e WHERE e.izena = :izena")
 })
-
 public class Erabiltzaileak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +35,13 @@ public class Erabiltzaileak implements Serializable {
 
 	private String telefonoZenbakia;
 
+	//bi-directional many-to-one association to Baieztatuak
+	@OneToMany(mappedBy="erabiltzaileak")
+	private List<Baieztatuak> baieztatuaks;
+
+	//bi-directional many-to-one association to Baloratuak
+	@OneToMany(mappedBy="erabiltzaileak")
+	private List<Baloratuak> baloratuaks;
 
 	public Erabiltzaileak() {
 	}
@@ -89,10 +95,55 @@ public class Erabiltzaileak implements Serializable {
 	}
 
 	public String getTelefonoZenbakia() {
-		return telefonoZenbakia;
+		return this.telefonoZenbakia;
 	}
 
 	public void setTelefonoZenbakia(String telefonoZenbakia) {
 		this.telefonoZenbakia = telefonoZenbakia;
 	}
+
+	public List<Baieztatuak> getBaieztatuaks() {
+		return this.baieztatuaks;
+	}
+
+	public void setBaieztatuaks(List<Baieztatuak> baieztatuaks) {
+		this.baieztatuaks = baieztatuaks;
+	}
+
+	public Baieztatuak addBaieztatuak(Baieztatuak baieztatuak) {
+		getBaieztatuaks().add(baieztatuak);
+		baieztatuak.setErabiltzaileak(this);
+
+		return baieztatuak;
+	}
+
+	public Baieztatuak removeBaieztatuak(Baieztatuak baieztatuak) {
+		getBaieztatuaks().remove(baieztatuak);
+		baieztatuak.setErabiltzaileak(null);
+
+		return baieztatuak;
+	}
+
+	public List<Baloratuak> getBaloratuaks() {
+		return this.baloratuaks;
+	}
+
+	public void setBaloratuaks(List<Baloratuak> baloratuaks) {
+		this.baloratuaks = baloratuaks;
+	}
+
+	public Baloratuak addBaloratuak(Baloratuak baloratuak) {
+		getBaloratuaks().add(baloratuak);
+		baloratuak.setErabiltzaileak(this);
+
+		return baloratuak;
+	}
+
+	public Baloratuak removeBaloratuak(Baloratuak baloratuak) {
+		getBaloratuaks().remove(baloratuak);
+		baloratuak.setErabiltzaileak(null);
+
+		return baloratuak;
+	}
+
 }

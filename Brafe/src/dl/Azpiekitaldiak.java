@@ -14,7 +14,6 @@ import java.util.List;
 	@NamedQuery(name="Azpiekitaldiak.findAll", query="SELECT a FROM Azpiekitaldiak a"),
 	@NamedQuery(name="Azpiekitaldiak.findMenpekoak", query="SELECT a FROM Azpiekitaldiak a WHERE a.ekitaldiak = :ekitaldiak")
 })
-
 public class Azpiekitaldiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +22,7 @@ public class Azpiekitaldiak implements Serializable {
 	private int idAzpiekitaldiak;
 
 	private String bueltatzekoLekua;
-	
+
 	private String sortzailea;
 
 	//bi-directional many-to-one association to Ekitaldiak
@@ -53,10 +52,9 @@ public class Azpiekitaldiak implements Serializable {
 	public void setBueltatzekoLekua(String bueltatzekoLekua) {
 		this.bueltatzekoLekua = bueltatzekoLekua;
 	}
-	
 
 	public String getSortzailea() {
-		return sortzailea;
+		return this.sortzailea;
 	}
 
 	public void setSortzailea(String sortzailea) {
@@ -78,7 +76,6 @@ public class Azpiekitaldiak implements Serializable {
 	public void setGeldialdiaks(List<Geldialdiak> geldialdiaks) {
 		this.geldialdiaks = geldialdiaks;
 	}
-	
 
 	public Geldialdiak addGeldialdiak(Geldialdiak geldialdiak) {
 		getGeldialdiaks().add(geldialdiak);

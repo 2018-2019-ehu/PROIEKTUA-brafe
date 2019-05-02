@@ -18,25 +18,25 @@ import java.util.List;
 public class Geldialdiak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGeldialdiak;
 
 	private float batazbestekoBalorazioa;
 
-	private String ordua;
-	
-	private String geralekua;
-	
 	private String geldialdiIzena;
-	
-	private int partehartzaileak;
-	
-	private String sortzailea;
+
+	private String geralekua;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="IraungiteData")
 	private Date iraungiteData;
+
+	private String ordua;
+
+	private int partehartzaileak;
+
+	private String sortzailea;
 
 	//bi-directional many-to-one association to Baieztatuak
 	@OneToMany(mappedBy="geldialdiak")
@@ -74,6 +74,14 @@ public class Geldialdiak implements Serializable {
 		this.geldialdiIzena = geldialdiIzena;
 	}
 
+	public String getGeralekua() {
+		return this.geralekua;
+	}
+
+	public void setGeralekua(String geralekua) {
+		this.geralekua = geralekua;
+	}
+
 	public Date getIraungiteData() {
 		return this.iraungiteData;
 	}
@@ -83,27 +91,27 @@ public class Geldialdiak implements Serializable {
 	}
 
 	public String getOrdua() {
-		return ordua;
+		return this.ordua;
 	}
 
 	public void setOrdua(String ordua) {
 		this.ordua = ordua;
 	}
 
-	public String getGeralekua() {
-		return geralekua;
-	}
-
-	public void setGeralekua(String geralekua) {
-		this.geralekua = geralekua;
-	}
-
 	public int getPartehartzaileak() {
-		return partehartzaileak;
+		return this.partehartzaileak;
 	}
 
 	public void setPartehartzaileak(int partehartzaileak) {
 		this.partehartzaileak = partehartzaileak;
+	}
+
+	public String getSortzailea() {
+		return this.sortzailea;
+	}
+
+	public void setSortzailea(String sortzailea) {
+		this.sortzailea = sortzailea;
 	}
 
 	public List<Baieztatuak> getBaieztatuaks() {
@@ -136,11 +144,4 @@ public class Geldialdiak implements Serializable {
 		this.azpiekitaldiak = azpiekitaldiak;
 	}
 
-	public String getSortzailea() {
-		return sortzailea;
-	}
-
-	public void setSortzailea(String sortzailea) {
-		this.sortzailea = sortzailea;
-	}
 }

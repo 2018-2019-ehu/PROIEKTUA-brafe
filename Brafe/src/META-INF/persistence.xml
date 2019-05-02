@@ -4,6 +4,7 @@
 		<jta-data-source>java:jboss/datasources/BrafeDatuBasea</jta-data-source>
 		<class>dl.Azpiekitaldiak</class>
 		<class>dl.Baieztatuak</class>
+		<class>dl.Baloratuak</class>
 		<class>dl.Ekitaldiak</class>
 		<class>dl.Erabiltzaileak</class>
 		<class>dl.Geldialdiak</class>
