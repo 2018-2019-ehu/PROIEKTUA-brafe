@@ -282,6 +282,7 @@ public class ZerbitzuaEJB {
 	}
 	
 	public Erabiltzaileak profilaLortuDB(String izena) {
-		
+		Erabiltzaileak erabiltzailea=(Erabiltzaileak) em.createNamedQuery("Erabiltzaileak.findErabiltzailea").setParameter("izena", izena).getSingleResult();
+		return(erabiltzailea);
 	}
 }

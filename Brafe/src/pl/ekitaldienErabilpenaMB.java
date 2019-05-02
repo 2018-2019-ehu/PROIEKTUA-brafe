@@ -1,6 +1,6 @@
 package pl;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
+//import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import bl.ZerbitzuaEJB;
@@ -232,6 +232,14 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		this.kodea = kodea;
 	}
 	
+	public Erabiltzaileak getProfila() {
+		return profila;
+	}
+
+	public void setProfila(Erabiltzaileak profila) {
+		this.profila = profila;
+	}
+
 	public Date amaieraDataLortu(int kop) {
 		Date data=new Date();
 		Calendar c= Calendar.getInstance();
@@ -241,6 +249,6 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	}
 	
 	public void profilaIkusi(String izena) {
-		//profila=zEJB.profilaLortu(izena);
+		profila=zEJB.profilaLortuDB(izena);
 	}
 }

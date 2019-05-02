@@ -26,9 +26,9 @@
 					#{baieztatuak.erabiltzaileak.balorazioa}
 				</h:column>
 				<h:column>
-					<h:commandButton action="null" value="Profila ikusi" render="" />
-					#{baieztatuak.erabiltzaileak.izena}
-					#{ekitaldienErabilpenaMB.autentikatutakoa}
+				<h:form>
+					<h:commandButton action="erabiltzaileProfila.xhtml" actionListener="#{ekitaldienErabilpenaMB.profilaIkusi(baieztatuak.erabiltzaileak.izena)}" value="Profila ikusi" render="" />
+				</h:form>
 				</h:column>
 			</h:dataTable>
 			<br />

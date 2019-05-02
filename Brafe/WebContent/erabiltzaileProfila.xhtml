@@ -12,37 +12,23 @@
 				<div class="logo">
 					<img src="./EDUKIAK/IRUDIAK/Female-Avatar-4.svg" alt="BrafeLogo"/>
 				</div>
-				<h:form>
+				<div class="profilDatuak">
+				<div class="profIkusi">
+				Erabiltzaile ID-a: #{ekitaldienErabilpenaMB.profila.idErabiltzailea}
+				</div>
+				<div class="profIkusi">
+				Izena: #{ekitaldienErabilpenaMB.profila.izena}
+				</div>
+				<div class="profIkusi">
+				Bizilekua: #{ekitaldienErabilpenaMB.profila.helbidea}
+				</div>
+				<div class="profIkusi">
+				Balorazioa: #{ekitaldienErabilpenaMB.profila.balorazioa}
+				</div>	
+				</div>	
 				<div>
-				Izena: 
-				</div>
-				<div>
-					<h:inputSecret a:placeholder="Pasahitza" id="pasahitza" value="#{erabiltzaileaMB.pasahitza}" class="inputKutxak"/>
-				</div>
-				<div>
-					<h:inputText a:placeholder="Jaiotze data" id="jaioteData" value="#{erabiltzaileaMB.jaioteData}" class="inputKutxak">
-						<f:convertDateTime pattern="yyyy/MM/dd" timeZone="CET"/>
-					</h:inputText>
-				</div>
-				<div>
-					<h:inputText a:placeholder="Telefono zenbakia" id="zenbakia" value="#{erabiltzaileaMB.telefonoZenbakia}" class="inputKutxak"/>				
-				</div>
-				<div>
-					<h:inputText a:placeholder="Bizilekua" id="zonaldea" value="#{erabiltzaileaMB.helbidea}" class="inputKutxak"/>
-				</div>
-				<div class="oharrak">
-					<p><h:outputText value="*Erabiltzailea dagoeneko existitzen da" rendered="#{erabilpenaMB.kodea==1}" /></p>
-				</div>
-				<div class="oharrak">
-					<p><h:outputText value="*Mesedez parametro guztiak bete itzazu" rendered="#{erabilpenaMB.kodea==2}" /></p>
-				</div>
-				<div>
-					<h:commandButton action="#{erabilpenaMB.erregistratu(erabiltzaileaMB)}" actionListener="#{erabilpenaMB.kodeaGarbitu()}" value="JARRAITU" class="botoiak"/>
-				</div>
-				</h:form>
-				<div class="linkLoginDiv">
-					<p>Dagoeneko kontu bat daukazu?<a href="Login.xhtml"> Logeatu zaitez</a></p>
-				</div>
+					<h:commandButton action="null" value="Baloratu" class="botoiak" />
+				</div>		
 			</div>
 		</ui:define>
 	</ui:composition>
