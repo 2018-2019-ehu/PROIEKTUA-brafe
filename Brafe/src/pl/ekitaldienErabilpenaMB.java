@@ -18,6 +18,7 @@ import dl.Baieztatuak;
 import dl.Ekitaldiak;
 import dl.Erabiltzaileak;
 import dl.Geldialdiak;
+import dl.Mapa;
 
 @Named
 @SessionScoped
@@ -29,6 +30,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	private List<Ekitaldiak> ekitaldiGuztiak=new ArrayList<Ekitaldiak>();
 	private List<Azpiekitaldiak> azpiekitaldiGuztiak=new ArrayList<Azpiekitaldiak>();
 	private List<Geldialdiak> geldialdiGuztiak=new ArrayList<Geldialdiak>();
+	private List<Baieztatuak> baieztatuGuztiak=new ArrayList<Baieztatuak>();
 	private Azpiekitaldiak azpiekitaldia= new Azpiekitaldiak();
 	private Geldialdiak geldialdia=new Geldialdiak();
 	private String iragazitakoa=null;
@@ -47,48 +49,52 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		super();
 	}
 	
-	public void loginIzenaLortu(String login) {
+	public void hasieraPrestatu(String login) {
 			autentikatutakoa=login;
 			erabiltzailea=zEJB.loginDatuakLortu(login);
-	}
-	
-	public List<Ekitaldiak> ekitaldiakIragazi(){
-		List<Ekitaldiak> ekitaldiak;
-		if(iragazitakoa==null) {
 			ekitaldiGuztiak=zEJB.ekitaldiGuztiakLortu();
-			ekitaldiak=ekitaldiGuztiak;
-		}
-		else{
-			ekitaldiGuztiak=zEJB.ekitaldiakIragaziDB(iragazitakoa);
-			ekitaldiak=ekitaldiGuztiak;
-		}
-		return(ekitaldiak);
 	}
 	
-	public List<Azpiekitaldiak> azpiekitaldiakIragazi(){
-		List<Azpiekitaldiak> azpiekitaldiak;
-		if(iragazitakoa==null) {
-			azpiekitaldiGuztiak=zEJB.azpiekitaldiGuztiakLortu(ekitaldia);
-			azpiekitaldiak=azpiekitaldiGuztiak;
+	public void ekitaldiakIragazi(){
+		List<Ekitaldiak> ekitaldiak=new ArrayList<Ekitaldiak>();
+		ekitaldiGuztiak=zEJB.ekitaldiGuztiakLortu();
+		if(iragazitakoa!=null && !iragazitakoa.equals("")){
+			for(int i=0;i<ekitaldiGuztiak.size();i++) {
+				if(ekitaldiGuztiak.get(i).getEkitaldiIzena().contains(iragazitakoa)) {
+					ekitaldiak.add(ekitaldiGuztiak.get(i));
+				}
+			}
+			ekitaldiGuztiak.clear();
+			ekitaldiGuztiak.addAll(ekitaldiak);
 		}
-		else{
-			azpiekitaldiGuztiak=zEJB.azpiekitaldiakIragaziDB(iragazitakoa,ekitaldia);
-			azpiekitaldiak=azpiekitaldiGuztiak;
-		}
-		return(azpiekitaldiak);
 	}
 	
-	public List<Geldialdiak> geldialdiakIragazi(){
-		List<Geldialdiak> geldialdiak;
-		if(iragazitakoa==null) {
-			geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldia);
-			geldialdiak=geldialdiGuztiak;
+	public void azpiekitaldiakIragazi(){
+		List<Azpiekitaldiak> azpiekitaldiak=new ArrayList<Azpiekitaldiak>();
+		azpiekitaldiGuztiak=zEJB.azpiekitaldiGuztiakLortu(ekitaldia);
+		if(iragazitakoa!=null && !iragazitakoa.equals("")){
+			for(int i=0;i<azpiekitaldiGuztiak.size();i++) {
+				if(azpiekitaldiGuztiak.get(i).getBueltatzekoLekua().contains(iragazitakoa)) {
+					azpiekitaldiak.add(azpiekitaldiGuztiak.get(i));
+				}
+			}
+			azpiekitaldiGuztiak.clear();
+			azpiekitaldiGuztiak.addAll(azpiekitaldiak);
 		}
-		else{
-			geldialdiGuztiak=zEJB.geldialdiakIragaziDB(iragazitakoa, azpiekitaldia);
-			geldialdiak=geldialdiGuztiak;
+	}
+	
+	public void geldialdiakIragazi(){
+		geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldia);
+		List<Geldialdiak> geldialdiak=new ArrayList<Geldialdiak>();
+		if(iragazitakoa!=null && !iragazitakoa.equals("")){
+			for(int i=0;i<geldialdiGuztiak.size();i++) {
+				if(geldialdiGuztiak.get(i).getGeldialdiIzena().contains(iragazitakoa)) {
+					geldialdiak.add(geldialdiGuztiak.get(i));
+				}
+			}
+			geldialdiGuztiak.clear();
+			geldialdiGuztiak.addAll(geldialdiak);
 		}
-		return(geldialdiak);
 	}
 	
 	public void AzpiekitaldiakLortu(int idEkitaldi) {
@@ -101,7 +107,6 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void GeldialdiakLortu(int idAzpiekitaldi) {
 		Azpiekitaldiak azpiekitaldiak=zEJB.azpiekitaldiaLortu(idAzpiekitaldi);
 		geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldiak);
-		render=0;
 		azpiekitaldia=azpiekitaldiak;
 		Clean();
 	}
@@ -109,6 +114,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void PartaideakLortu(int idGeldialdi) {
 		Geldialdiak geldialdi=zEJB.geldialdiaLortu(idGeldialdi);
 		geldialdia=geldialdi;
+		baieztatuGuztiak=zEJB.baieztatuakLortuDB(geldialdia);
 		Clean();
 	}
 	
@@ -118,14 +124,16 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		baieztatua.setErabiltzaileak(erabiltzailea);
 		baieztatua.setGeldialdiak(geldialdia);
 		zEJB.geldialdianSartuDB(baieztatua, geldialdia);
+		baieztatuakLortu();
 	}
 	
-	public List<Baieztatuak> baieztatuakLortu() {
-		return zEJB.baieztatuakLortuDB(geldialdia);
+	public void baieztatuakLortu() {
+		baieztatuGuztiak=zEJB.baieztatuakLortuDB(geldialdia);
 	}
 	
 	public void GeldialditikAtera() {
 		zEJB.geldialditikAteraDB(erabiltzailea, geldialdia.getIdGeldialdiak());
+		baieztatuakLortu();
 	}
 	
 	public Ekitaldiak getEkitaldia() {
@@ -163,16 +171,14 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		ekitaldia.setSortzailea(autentikatutakoa);
 		ekitaldia.setAmaieraData(amaiera);
 		zEJB.ekitaldiaSortu(ekitaldia);
-		render=0;
 	}
 	
 	public void azpiekitaldiBerriaSortu(AzpiekitaldiakMB aMB) {
 		Azpiekitaldiak azpiekitaldiak=new Azpiekitaldiak();
 		azpiekitaldiak.setEkitaldiak(ekitaldia);
 		azpiekitaldiak.setSortzailea(autentikatutakoa);
-		System.out.println(autentikatutakoa);
 		azpiekitaldiak.setBueltatzekoLekua(aMB.getBueltatzekoLekua());
-		zEJB.azpiekitaldiaSortu(azpiekitaldiak);
+		zEJB.azpiekitaldiaSortu(azpiekitaldiak,ekitaldia);
 		render=0;
 	}
 	
@@ -188,7 +194,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		geldialdiak.setOrdua(gMB.getOrdua());
 		geldialdiak.setPartehartzaileak(0);
 		geldialdiak.setSortzailea(autentikatutakoa);
-		zEJB.geldialdiaSortu(geldialdiak);
+		zEJB.geldialdiaSortu(geldialdiak,azpiekitaldia);
 		render=0;
 	}
 
@@ -211,9 +217,11 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	
 	public void renderHasieratu() {
 		render=1;
+		System.out.println("Render hasieratu: "+render);
 	}
 	
 	public void Clean() {
+		System.out.println("No debo entrar aqui");
 		render=0;
 		kodea=0;
 		iragazitakoa=null;
@@ -251,14 +259,26 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		return c.getTime();
 	}
 	
-	public void profilaIkusi(String izena) {
-		profila=zEJB.profilaLortuDB(izena);
-		kodea=zEJB.balorazioKodeaLortuDB(erabiltzailea,profila.getIdErabiltzailea());
+	public String profilaIkusi(String izena) {
+		String orria="erabiltzaileProfila.xhtml";
+		if(izena.equals(autentikatutakoa)) {
+			orria="profilaAldatu.xhtml";
+		}
+		else {
+			profila=zEJB.profilaLortuDB(izena);
+			kodea=zEJB.balorazioKodeaLortuDB(erabiltzailea,profila.getIdErabiltzailea());
+		}
+		return orria;
 	}
 	
 	public void balorazioaAldatu() {
 		zEJB.erabiltzaileaBaloratu(erabiltzailea, profila.getIdErabiltzailea(), balorazioa);
 		profilaIkusi(profila.getIzena());
+	}
+	
+	public void ekitaldiakErrefreskatu() {
+		ekitaldiGuztiak=zEJB.ekitaldiGuztiakLortu();
+		Clean();
 	}
 
 	public Erabiltzaileak getErabiltzailea() {
@@ -292,6 +312,33 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void setGeldialdia(Geldialdiak geldialdia) {
 		this.geldialdia = geldialdia;
 	}
-	
 
+	public List<Baieztatuak> getBaieztatuGuztiak() {
+		return baieztatuGuztiak;
+	}
+
+	public void setBaieztatuGuztiak(List<Baieztatuak> baieztatuGuztiak) {
+		this.baieztatuGuztiak = baieztatuGuztiak;
+	}
+	public List<Mapa> puntuakLortu(){
+		return zEJB.puntuakLortuDB();
+	}
+
+	public List<Azpiekitaldiak> getAzpiekitaldiGuztiak() {
+		return azpiekitaldiGuztiak;
+	}
+
+	public void setAzpiekitaldiGuztiak(List<Azpiekitaldiak> azpiekitaldiGuztiak) {
+		this.azpiekitaldiGuztiak = azpiekitaldiGuztiak;
+	}
+
+	public List<Geldialdiak> getGeldialdiGuztiak() {
+		return geldialdiGuztiak;
+	}
+
+	public void setGeldialdiGuztiak(List<Geldialdiak> geldialdiGuztiak) {
+		this.geldialdiGuztiak = geldialdiGuztiak;
+	}
+	
+	
 }

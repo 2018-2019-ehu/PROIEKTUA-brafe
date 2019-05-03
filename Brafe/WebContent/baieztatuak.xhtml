@@ -12,7 +12,7 @@
 		<div class="zerrenda">
 			Ekitaldiak > Azpiekitaldiak > Geldialdiak > Partaideak
 			<div class="taula">
-			<h:dataTable var="baieztatuak" value="#{ekitaldienErabilpenaMB.baieztatuakLortu()}">
+			<h:dataTable var="baieztatuak" value="#{ekitaldienErabilpenaMB.baieztatuGuztiak}">
 				<h:column>
 				<f:facet name="header">ID</f:facet>
 					 #{baieztatuak.erabiltzaileak.idErabiltzailea}
@@ -27,16 +27,16 @@
 				</h:column>
 				<h:column>
 				<h:form>
-					<h:commandButton action="erabiltzaileProfila.xhtml" actionListener="#{ekitaldienErabilpenaMB.profilaIkusi(baieztatuak.erabiltzaileak.izena)}" value="Profila ikusi" render="" />
+					<h:commandButton action="#{ekitaldienErabilpenaMB.profilaIkusi(baieztatuak.erabiltzaileak.izena)}" value="Profila ikusi" render="" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.GeldialdiakLortu(ekitaldienErabilpenaMB.azpiekitaldia.idAzpiekitaldiak)}" action="geldialdiak.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" action="geldialdiak.xhtml" value="Bueltatu" class="hasieraBotoiak" />
 				<h:commandButton action="#{ekitaldienErabilpenaMB.baieztatuakLortu()}" value="Errefreskatu" class="hasieraBotoiak"/>				
 				<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialdianSartu()}" value="Taldean sartu" class="hasieraBotoiak"/>
-				<h:commandButton render="#{ekitaldienErabilpenaMB.render==1}" action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="hasieraBotoiak" />
 			</h:form>
 			</div>
 		</div>

@@ -3,28 +3,43 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia3.xhtml">		
 		<ui:define name="title">Brafe: hasiera</ui:define>
 		<ui:define name="Edukia">
 	    <div id="map"></div>
-  		<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdk6QDjHoZFFCx0_V4Bey5_vBQtgobozQ&amp;callback=initMap"></script>
-  		<script>
+  		<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADCLxfiS7X-JiStgKJEyHiNfIj-v4ko4Y
+&amp;callback=initMap"></script>
+  		<script type="text/javascript" language="javascript">
   	    function initMap(){
   	      // Maparen aukerak
-  	      navigator.geolocation.getCurrentPosition
-  	      var options = {
-  	        zoom:13,
-  	        center:{lat:position.coords.latitude,lng:position.coords.longitude}
-  	      }
-  	      var map = new google.maps.Map(document.getElementById('map'), options);
-  	 	  var marker = new google.maps.Marker({
-            position: {lat:43.257,lng:-2.92344},
-            map: map,
-            title: 'Hello World!'
-          });
+  	      navigator.geolocation.getCurrentPosition(posizioaLortu);
   	    }
+
+  	    function posizioaLortu(posizioa){
+  	  	    var latitudea=posizioa.coords.latitude;
+  	  	    var longitudea=posizioa.coords.longitude;
+
+    	    var options = {
+    	    	zoom:13,
+    	    	center:{lat:latitudea,lng:longitudea}
+    	   	}
+   	     	var map = new google.maps.Map(document.getElementById('map'), options);
+    	   	//Brafe puntuak
+
+    	 	 var marker = new google.maps.Marker({
+             	 position: {lat:43.257,lng:-2.92344},
+             	 map: map,
+           	  	 title: 'Hello World!'
+            });
+    	 	 var marker = new google.maps.Marker({
+             	 position: {lat:43.275660,lng:-2.971480},
+             	 map: map,
+           	  	 title: 'Proba!'
+            });
+  	  	    }
   		</script>
 		</ui:define>
 	</ui:composition>

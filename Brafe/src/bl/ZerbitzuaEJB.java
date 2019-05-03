@@ -1,6 +1,7 @@
 package bl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //import java.util.List;
@@ -10,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.sun.glass.ui.Size;
+//import com.sun.glass.ui.Size;
 
 import dl.*;
 
@@ -79,46 +80,16 @@ public class ZerbitzuaEJB {
 	
 	@SuppressWarnings("unchecked")
 	public List<Ekitaldiak> ekitaldiGuztiakLortu(){
-		return em.createNamedQuery("Ekitaldiak.findAll").getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Ekitaldiak> ekitaldiakIragaziDB(String izena){
 		List<Ekitaldiak> ekitaldiak=em.createNamedQuery("Ekitaldiak.findAll").getResultList();
-		List<Ekitaldiak> iragaziak=new ArrayList<Ekitaldiak>();
-		
+		Date data=new Date();
 		for(int i=0;i<ekitaldiak.size();i++) {
-			if(ekitaldiak.get(i).getEkitaldiIzena().contains(izena)) {
-				iragaziak.add(ekitaldiak.get(i));
+			if(ekitaldiak.get(i).getAmaieraData().before(data)) {
+				em.remove(ekitaldiak.get(i));
+				ekitaldiak.remove(i);
 			}
 		}
-		return iragaziak;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Azpiekitaldiak> azpiekitaldiakIragaziDB(String izena,Ekitaldiak ekitaldia){
-		List<Azpiekitaldiak> azpiekitaldiak=(List<Azpiekitaldiak>)em.createNamedQuery("Azpiekitaldiak.findMenpekoak").setParameter("ekitaldiak", ekitaldia).getResultList();
-		List<Azpiekitaldiak> iragaziak=new ArrayList<Azpiekitaldiak>();
-		
-		for(int i=0;i<azpiekitaldiak.size();i++) {
-			if(azpiekitaldiak.get(i).getBueltatzekoLekua().contains(izena)) {
-				iragaziak.add(azpiekitaldiak.get(i));
-			}
-		}
-		return iragaziak;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Geldialdiak> geldialdiakIragaziDB(String izena,Azpiekitaldiak azpiekitaldia){
-		List<Geldialdiak> geldialdiak=(List<Geldialdiak>)em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
-		List<Geldialdiak> iragaziak=new ArrayList<Geldialdiak>();
-		
-		for(int i=0;i<geldialdiak.size();i++) {
-			if(geldialdiak.get(i).getGeldialdiIzena().contains(izena)) {
-				iragaziak.add(geldialdiak.get(i));
-			}
-		}
-		return iragaziak;
+		System.out.println("EkitaldiakLortu");
+		return ekitaldiak;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -204,13 +175,24 @@ public class ZerbitzuaEJB {
 		}
 	}
 	
-	public void azpiekitaldiaSortu(Azpiekitaldiak azpiekitaldia) {
-		em.merge(azpiekitaldia);
+	@SuppressWarnings("unchecked")
+	public void azpiekitaldiaSortu(Azpiekitaldiak azpiekitaldia,Ekitaldiak ekitaldia) {
+		List<Azpiekitaldiak> azpiekitaldiGuztiak= em.createNamedQuery("Azpiekitaldiak.findMenpekoak").setParameter("ekitaldiak", ekitaldia).getResultList();
+		boolean egoera=false;
+		
+		for(int i=0;i<azpiekitaldiGuztiak.size();i++) {
+			if(azpiekitaldiGuztiak.get(i).getBueltatzekoLekua().equals(azpiekitaldia.getBueltatzekoLekua())) {
+				egoera=true;
+			}
+		}
+		if(egoera==false) {
+			em.merge(azpiekitaldia);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void geldialdiaSortu(Geldialdiak geldialdia) {
-		List<Geldialdiak> geldialdiGuztiak= em.createNamedQuery("Geldialdiak.findAll").getResultList();
+	public void geldialdiaSortu(Geldialdiak geldialdia,Azpiekitaldiak azpiekitaldia) {
+		List<Geldialdiak> geldialdiGuztiak= em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
 		boolean egoera=false;
 		
 		for(int i=0;i<geldialdiGuztiak.size();i++) {
@@ -333,5 +315,10 @@ public class ZerbitzuaEJB {
 			baieztatuak.get(i).getGeldialdiak().setBatazbestekoBalorazioa(balorazioa);
 			em.persist(baieztatuak.get(i));
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Mapa> puntuakLortuDB(){
+		return em.createNamedQuery("Mapa.findAll").getResultList();
 	}
 }

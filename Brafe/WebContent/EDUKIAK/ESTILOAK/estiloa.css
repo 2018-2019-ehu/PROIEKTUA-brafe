@@ -20,7 +20,6 @@ td{
 	font-size: 15px;
 }
 
-
 body{
 	background-image: url("../IRUDIAK/MosaicoNegro-03.png");
 	background-size: cover;
@@ -373,4 +372,6 @@ ul#menu li a:hover {
 	width: 200px;
 	margin-top: 20px;
 }
-	
+.mapaDIV{
+	margin-top: 17px;
+}

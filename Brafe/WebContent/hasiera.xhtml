@@ -19,6 +19,7 @@
 			</h:form>
 		</div>
 		</div>
+			<h:outputText value="#{ekitaldienErabilpenaMB.render}" />
 			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
 				<div class="ekitaldiBerria">
 					<div class="ekitaldiBerriaWrapper">
@@ -32,14 +33,14 @@
 							<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput"/>
 							<br />
 							<br />
-							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB)}" value="Gorde" class="sortuBotoia" />
+							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" actionListener="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB)}" value="Gorde" class="sortuBotoia" />
 					</div>
 				</div>
 			</h:form>
 		<div class="zerrenda">
 			Ekitaldiak
 			<div class="taula">
-			<h:dataTable var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}">
+			<h:dataTable var="ekitaldia" value="#{ekitaldienErabilpenaMB.ekitaldiGuztiak}">
 				<h:column>
 				<f:facet name="header">ID</f:facet>
 					#{ekitaldia.idEkitaldiak}
@@ -59,13 +60,13 @@
 				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldia.idEkitaldiak)}" action="azpiekitaldiak.xhtml" value="Sartu" class="hasieraBotoiak"/>
-					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.Clean()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
+					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" value="Errefreskatu" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" value="Errefreskatu" class="hasieraBotoiak" />
 			</h:form>
 			</div>
 		</div>
