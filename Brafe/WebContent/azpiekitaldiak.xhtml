@@ -55,7 +55,8 @@
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton action="hasiera.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" action="hasiera.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldienErabilpenaMB.ekitaldia.idEkitaldiak)}" value="Errefreskatu" class="hasieraBotoiak" />
 			</h:form>
 			</div>
 		</div>

@@ -37,6 +37,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	private Erabiltzaileak erabiltzailea=new Erabiltzaileak();
 	private int kodea=0;
 	private Erabiltzaileak profila=new Erabiltzaileak();
+	private float balorazioa;
 
 	
 	@EJB
@@ -93,8 +94,8 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void AzpiekitaldiakLortu(int idEkitaldi) {
 		Ekitaldiak ekitaldiak=zEJB.ekitaldiaLortu(idEkitaldi);
 		azpiekitaldiGuztiak=zEJB.azpiekitaldiGuztiakLortu(ekitaldiak);
-		render=0;
 		ekitaldia=ekitaldiak;
+		Clean();
 	}
 	
 	public void GeldialdiakLortu(int idAzpiekitaldi) {
@@ -102,11 +103,13 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldiak);
 		render=0;
 		azpiekitaldia=azpiekitaldiak;
+		Clean();
 	}
 	
 	public void PartaideakLortu(int idGeldialdi) {
 		Geldialdiak geldialdi=zEJB.geldialdiaLortu(idGeldialdi);
 		geldialdia=geldialdi;
+		Clean();
 	}
 	
 	public void GeldialdianSartu() {
@@ -253,7 +256,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		kodea=zEJB.balorazioKodeaLortuDB(erabiltzailea,profila.getIdErabiltzailea());
 	}
 	
-	public void balorazioaAldatu(float balorazioa) {
+	public void balorazioaAldatu() {
 		zEJB.erabiltzaileaBaloratu(erabiltzailea, profila.getIdErabiltzailea(), balorazioa);
 		profilaIkusi(profila.getIzena());
 	}
@@ -265,6 +268,30 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void setErabiltzailea(Erabiltzaileak erabiltzailea) {
 		this.erabiltzailea = erabiltzailea;
 	}
+
+	public float getBalorazioa() {
+		return balorazioa;
+	}
+
+	public void setBalorazioa(float balorazioa) {
+		this.balorazioa = balorazioa;
+	}
+
+	public Azpiekitaldiak getAzpiekitaldia() {
+		return azpiekitaldia;
+	}
+
+	public void setAzpiekitaldia(Azpiekitaldiak azpiekitaldia) {
+		this.azpiekitaldia = azpiekitaldia;
+	}
+
+	public Geldialdiak getGeldialdia() {
+		return geldialdia;
+	}
+
+	public void setGeldialdia(Geldialdiak geldialdia) {
+		this.geldialdia = geldialdia;
+	}
 	
-	
+
 }

@@ -9,6 +9,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.sun.glass.ui.Size;
+
 import dl.*;
 
 //import dl.ErabiltzaileakEskaini;
@@ -291,14 +294,15 @@ public class ZerbitzuaEJB {
 		float BBbalorazioa=0.0f;
 		Baloratuak baloratuak=new Baloratuak();
 		Erabiltzaileak profila=em.find(Erabiltzaileak.class, idProfila);
+		float zaharra=0.0f;
 		
+		zaharra=profila.getBalorazioa();
 		kopurua=((Long) em.createNamedQuery("Baloratuak.kopuruaZenbatu").setParameter("baloratua", idProfila).getSingleResult()).intValue();
-		System.out.println("kopurua hau da: "+kopurua);
-		System.out.println("Profilaren id-a: "+idProfila);
 		BBbalorazioa=((profila.getBalorazioa()*(kopurua+1))+balorazioa)/(kopurua+2);
 		profila.setBalorazioa(BBbalorazioa);
 		baloratuak.setErabiltzaileak(erabiltzailea);
 		baloratuak.setBaloratua(idProfila);
+		balorazioaBerrituGeldialdiak(profila, zaharra);
 		em.persist(profila);
 		em.merge(baloratuak);
 	}
@@ -315,5 +319,19 @@ public class ZerbitzuaEJB {
 			}
 		}
 		return kodea;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void balorazioaBerrituGeldialdiak(Erabiltzaileak erabiltzailea,float balorazioZaharra) {
+		float balorazioa;
+		int kopurua;
+		List<Baieztatuak> baieztatuak=em.createNamedQuery("Baieztatuak.findMenpekoak").setParameter("erabiltzaileak", erabiltzailea).getResultList();
+		for(int i=0;i<baieztatuak.size();i++) {
+			balorazioa=baieztatuak.get(i).getGeldialdiak().getBatazbestekoBalorazioa();
+			kopurua=baieztatuak.get(i).getGeldialdiak().getPartehartzaileak();
+			balorazioa=((balorazioa*kopurua)-balorazioZaharra+erabiltzailea.getBalorazioa())/kopurua;
+			baieztatuak.get(i).getGeldialdiak().setBatazbestekoBalorazioa(balorazioa);
+			em.persist(baieztatuak.get(i));
+		}
 	}
 }

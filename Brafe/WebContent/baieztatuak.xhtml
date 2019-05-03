@@ -33,7 +33,8 @@
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton action="geldialdiak.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.GeldialdiakLortu(ekitaldienErabilpenaMB.azpiekitaldia.idAzpiekitaldiak)}" action="geldialdiak.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.baieztatuakLortu()}" value="Errefreskatu" class="hasieraBotoiak"/>				
 				<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialdianSartu()}" value="Taldean sartu" class="hasieraBotoiak"/>
 				<h:commandButton render="#{ekitaldienErabilpenaMB.render==1}" action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="hasieraBotoiak" />
 			</h:form>

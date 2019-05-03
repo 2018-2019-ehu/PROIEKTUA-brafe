@@ -28,8 +28,8 @@
 				</div>	
 				<div class="profIkusi">
 				<h:form rendered="#{ekitaldienErabilpenaMB.kodea==0}">
-					<h:inputText var="balorazioa" value="balorazioa" class="botoiak" />
-					<h:commandButton action="#{ekitaldienErabilpenaMB.balorazioaAldatu(balorazioa)}" value="Baloratu" class="botoiak" />
+					<h:inputText value="#{ekitaldienErabilpenaMB.balorazioa}" class="inputKutxak" />
+					<h:commandButton action="#{ekitaldienErabilpenaMB.balorazioaAldatu()}" value="Baloratu" class="botoiak" />
 				</h:form>
 				<h:form rendered="#{ekitaldienErabilpenaMB.kodea==1}">
 					<h:outputText value="Erabiltzailea baloratu duzu dagoeneko"/>
