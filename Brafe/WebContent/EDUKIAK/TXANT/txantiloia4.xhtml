@@ -28,6 +28,7 @@
 	</script>
 </head> 
 <body>
+<div class="fondo">
 		<div class="header">
 			<div class="logoDIV">
 				<img src="./EDUKIAK/IRUDIAK/Logo2.png" alt="BrafeLogo"/>
@@ -42,9 +43,14 @@
   					 <li><a href="../../Brafe/mapa.xhtml">Brafe mapa</a></li>
  					 <li><a href="../../Brafe/alarma.xhtml">Alarma</a></li>
 					 <li><a href="../../Brafe/profilaAldatu.xhtml">Profila</a></li>
-					 <li><a href="../Brafe/Login.xhtml">Log-out</a></li>
+					 <li>
+ 					 <h:form>
+					 	<h:commandButton action="#{ekitaldienErabilpenaMB.saioaAmaitu()}" value="Log-out" class="menuButton" />
+					 </h:form>
+					</li>
 				</ul>
 			</div>
+		</div>
  		<ui:insert name="Edukia"/>
  	</div>
 </body>

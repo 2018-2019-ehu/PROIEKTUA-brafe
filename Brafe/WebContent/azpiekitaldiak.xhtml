@@ -31,7 +31,7 @@
 			</h:form>
 		<div class="zerrenda">
 			<br/>
-			Ekitaldiak > Azpiekitaldiak
+			#{ekitaldienErabilpenaMB.ekitaldia.ekitaldiIzena} > Azpiekitaldiak
 			<div class="taula">
 			<h:dataTable var="azpiekitaldia" value="#{ekitaldienErabilpenaMB.azpiekitaldiGuztiak}">
 				<h:column>
@@ -55,7 +55,7 @@
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" action="hasiera.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldietaraBueltatu()}" value="Bueltatu" class="hasieraBotoiak" />
 				<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}" value="Errefreskatu" class="hasieraBotoiak" />
 			</h:form>
 			</div>

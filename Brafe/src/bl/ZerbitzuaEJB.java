@@ -119,22 +119,21 @@ public class ZerbitzuaEJB {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void geldialdianSartuDB(Baieztatuak baieztatua, Geldialdiak geldialdia) {
+	public int geldialdianSartuDB(Erabiltzaileak erabiltzailea,Baieztatuak baieztatua, Geldialdiak geldialdia) {
 		Geldialdiak geldialdi=em.find(Geldialdiak.class, geldialdia.getIdGeldialdiak());
-		boolean egoera=false;
-		List<Baieztatuak> baieztatuak=(List<Baieztatuak>)em.createNamedQuery("Baieztatuak.findGeldialdi").setParameter("geldialdiak", geldialdia).getResultList();
-		for(int i=0;i<baieztatuak.size();i++) {
-			if(baieztatuak.get(i).getErabiltzaileak().getIzena().equals(baieztatua.getErabiltzaileak().getIzena())){
-				egoera=true;
-			}
-		}
-		if(egoera==false) {
+		List<Baieztatuak> baieztatuak=(List<Baieztatuak>)em.createNamedQuery("Baieztatuak.findMenpekoak").setParameter("erabiltzaileak", erabiltzailea).getResultList();
+		int kodea=0;
+		if(baieztatuak.isEmpty()) {
 			float batazbestekoa=((geldialdi.getBatazbestekoBalorazioa()*geldialdi.getPartehartzaileak())+baieztatua.getErabiltzaileak().getBalorazioa())/(geldialdi.getPartehartzaileak()+1);
 			geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()+1);
 			geldialdi.setBatazbestekoBalorazioa(batazbestekoa);
 			em.persist(geldialdi);
 			em.merge(baieztatua);
 		}
+		else{
+			kodea=2;
+		}
+		return kodea;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -320,5 +319,10 @@ public class ZerbitzuaEJB {
 	@SuppressWarnings("unchecked")
 	public List<Mapa> puntuakLortuDB(){
 		return em.createNamedQuery("Mapa.findAll").getResultList();
+	}
+	
+	public void kontuaEzabatuDB(Erabiltzaileak erabiltzailea) {
+		Erabiltzaileak erab=em.find(Erabiltzaileak.class, erabiltzailea.getIdErabiltzailea());
+		em.remove(erab);
 	}
 }

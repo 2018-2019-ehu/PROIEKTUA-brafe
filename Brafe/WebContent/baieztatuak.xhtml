@@ -8,9 +8,8 @@
 	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
 		<ui:define name="title">Brafe: Ekitaldiak</ui:define>
 		<ui:define name="Edukia">
-
 		<div class="zerrenda">
-			Ekitaldiak > Azpiekitaldiak > Geldialdiak > Partaideak
+			#{ekitaldienErabilpenaMB.ekitaldia.ekitaldiIzena} > #{ekitaldienErabilpenaMB.azpiekitaldia.bueltatzekoLekua} > #{ekitaldienErabilpenaMB.geldialdia.geldialdiIzena} > Partaideak
 			<div class="taula">
 			<h:dataTable var="baieztatuak" value="#{ekitaldienErabilpenaMB.baieztatuGuztiak}">
 				<h:column>
@@ -27,13 +26,13 @@
 				</h:column>
 				<h:column>
 				<h:form>
-					<h:commandButton action="#{ekitaldienErabilpenaMB.profilaIkusi(baieztatuak.erabiltzaileak.izena)}" value="Profila ikusi" render="" />
+					<h:commandButton action="#{ekitaldienErabilpenaMB.profilaIkusi(baieztatuak.erabiltzaileak.izena)}" value="Profila ikusi" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" action="geldialdiak.xhtml" value="Bueltatu" class="hasieraBotoiak" />
+				<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdietaraBueltatu()}" value="Bueltatu" class="hasieraBotoiak" />
 				<h:commandButton action="#{ekitaldienErabilpenaMB.baieztatuakLortu()}" value="Errefreskatu" class="hasieraBotoiak"/>				
 				<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialdianSartu()}" value="Taldean sartu" class="hasieraBotoiak"/>
 				<h:commandButton action="#{ekitaldienErabilpenaMB.GeldialditikAtera()}" value="Taldetik atera" class="hasieraBotoiak" />

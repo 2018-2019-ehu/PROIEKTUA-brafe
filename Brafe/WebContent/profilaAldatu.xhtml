@@ -19,14 +19,14 @@
 				<br/>			
 				<b>Pasahitza:</b>
 				************
-				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder="pasahitza berria" class="profilaInput" />
 				<h:commandButton action="#{erabilpenaMB.pasahitzaAldatu(erabiltzaileaMB.pasahitza)}" value="Aldatu" class="hasieraBotoiak" />
+				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder=" Pasahitza berria" class="profilaInput" />
 				<br/>	
 				<br/>			
 				<b>Helbidea:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.helbidea}
-				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder="helbide berria" class="profilaInput" />
 				<h:commandButton action="#{erabilpenaMB.helbideaAldatu(erabiltzaileaMB.helbidea)}" value="Aldatu" class="hasieraBotoiak"/>
+				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder=" Helbide berria" class="profilaInput" />
 				<br/>	
 				<br/>			
 				<b>Jaiote data:</b>
@@ -35,8 +35,12 @@
 				<br/>				
 				<b>Telefono zenbakia:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.telefonoZenbakia}
-				<h:inputText value="#{erabiltzaileaMB.telefonoZenbakia}" a:placeholder="telefono zenbaki berria" class="profilaInput"/>
 				<h:commandButton action="#{erabilpenaMB.zenbakiaAldatu(erabiltzaileaMB.telefonoZenbakia)}" value="Aldatu" class="hasieraBotoiak"/>
+				<h:inputText value="#{erabiltzaileaMB.telefonoZenbakia}" a:placeholder=" Telefono zenbaki berria" class="profilaInput"/>
+			</h:form>
+			<h:form>
+			<br/>
+				<h:commandButton action="#{erabilpenaMB.kontuaEzabatu()}" value="Kontua ezabatu" class="popButton" />
 			</h:form>
 		</div>
 		</div>

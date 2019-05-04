@@ -37,7 +37,7 @@
 				</div>
 			</h:form>
 		<div class="zerrenda">
-			Ekitaldiak > Azpiekitaldiak > Geldialdiak
+			#{ekitaldienErabilpenaMB.ekitaldia.ekitaldiIzena} > #{ekitaldienErabilpenaMB.azpiekitaldia.bueltatzekoLekua} > Geldialdiak
 			<div class="taula">
 			<h:dataTable var="geldialdia" value="#{ekitaldienErabilpenaMB.geldialdiGuztiak}">
 				<h:column>
@@ -71,13 +71,13 @@
 				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.PartaideakLortu(geldialdia.idGeldialdiak)}" action="baieztatuak.xhtml" value="Sartu" class="hasieraBotoiak"/>
-					<h:commandButton rendered="#{geldialdia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" action="#{ekitaldienErabilpenaMB.GeldialdiakLortu(ekitaldienErabilpenaMB.azpiekitaldia.idAzpiekitaldiak)}" actionListener="#{ekitaldienErabilpenaMB.geldialdiaEzabatu(geldialdia.idGeldialdiak)}" value="Ezabatu" class="hasieraBotoiak" />
+					<h:commandButton rendered="#{geldialdia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.GeldialdiakLortu(ekitaldienErabilpenaMB.azpiekitaldia.idAzpiekitaldiak)}" action="#{ekitaldienErabilpenaMB.geldialdiaEzabatu(geldialdia.idGeldialdiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}" action="azpiekitaldiak.xhtml" value="Bueltatu" class="hasieraBotoiak"/>
+				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.azpiekitaldietaraBueltatu()}" value="Bueltatu" class="hasieraBotoiak"/>
 				<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" value="Errefreskatu" class="hasieraBotoiak" />
 			</h:form>
 			</div>

@@ -43,9 +43,11 @@
 					<h:commandButton action="#{erabilpenaMB.erregistratu(erabiltzaileaMB)}" actionListener="#{erabilpenaMB.kodeaGarbitu()}" value="JARRAITU" class="botoiak"/>
 				</div>
 				</h:form>
+				<h:form>
 				<div class="linkLoginDiv">
-					<p>Dagoeneko kontu bat daukazu?<a href="Login.xhtml"> Logeatu zaitez</a></p>
-				</div>
+					<p>Dagoeneko kontu bat daukazu?<h:commandLink action="#{erabilpenaMB.logeatuOrria()}" value="Logeatu zaitez" /></p>
+			</div>
+			</h:form>
 			</div>
 		</ui:define>
 	</ui:composition>

@@ -1,11 +1,13 @@
 package pl;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
 //import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import bl.ZerbitzuaEJB;
@@ -102,5 +104,21 @@ public class ErabilpenaMB implements Serializable {
 		if(erabiltzailea.getTelefonoZenbakia().equals("")) egoera=true;
 		System.out.println(erabiltzailea.getJaioteData());
 		return egoera;
+	}
+	
+	public void kontuaEzabatu() throws IOException {
+		zEJB.kontuaEzabatuDB(erabiltzaileDatuak);
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
+	}
+	
+	public String logeatuOrria() {
+		kodeaGarbitu();
+		return "Login.xhtml";
+	}
+	
+	public String erregistratu() {
+		kodeaGarbitu();
+		return "erregistroa.xhtml";
 	}
 }

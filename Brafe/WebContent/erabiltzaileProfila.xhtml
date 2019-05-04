@@ -5,36 +5,37 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:composition template="./EDUKIAK/TXANT/txantiloia.xhtml">
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia4.xhtml">
 		<ui:define name="title">Brafe: erregistroa</ui:define>
 		<ui:define name="Edukia">
-			<div class="erregistroDIV">
+			<div class="alarmaWrapper">
+			<div class="alarm">
 				<div class="logo">
 					<img src="./EDUKIAK/IRUDIAK/Female-Avatar-4.svg" alt="BrafeLogo"/>
 				</div>
 				<div class="profilDatuak">
 				<div class="profIkusi">
-				Erabiltzaile ID-a: #{ekitaldienErabilpenaMB.profila.idErabiltzailea}
+				<b>Erabiltzaile ID-a:</b> #{ekitaldienErabilpenaMB.profila.idErabiltzailea}
 				</div>
 				<div class="profIkusi">
-				Izena: #{ekitaldienErabilpenaMB.profila.izena}
+				<b>Izena:</b> #{ekitaldienErabilpenaMB.profila.izena}
 				</div>
 				<div class="profIkusi">
-				Bizilekua: #{ekitaldienErabilpenaMB.profila.helbidea}
+				<b>Bizilekua:</b> #{ekitaldienErabilpenaMB.profila.helbidea}
 				</div>
 				<div class="profIkusi">
-				Balorazioa: #{ekitaldienErabilpenaMB.profila.balorazioa}
+				<b>Balorazioa:</b> #{ekitaldienErabilpenaMB.profila.balorazioa}
 				</div>	
+				<br/>
+				<h:outputText value="*Erabiltzailea baloratu duzu dagoeneko" class="baloratutaDag" rendered="#{ekitaldienErabilpenaMB.kodea==1}"/>
 				</div>	
 				<div class="profIkusi">
 				<h:form rendered="#{ekitaldienErabilpenaMB.kodea==0}">
 					<h:inputText value="#{ekitaldienErabilpenaMB.balorazioa}" class="inputKutxak" />
 					<h:commandButton action="#{ekitaldienErabilpenaMB.balorazioaAldatu()}" value="Baloratu" class="botoiak" />
 				</h:form>
-				<h:form rendered="#{ekitaldienErabilpenaMB.kodea==1}">
-					<h:outputText value="Erabiltzailea baloratu duzu dagoeneko"/>
-				</h:form>
 				</div>		
+			</div>
 			</div>
 		</ui:define>
 	</ui:composition>

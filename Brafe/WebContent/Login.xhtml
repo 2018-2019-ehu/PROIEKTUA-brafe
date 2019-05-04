@@ -33,8 +33,10 @@
 					<div>
 						<h:commandButton value="SARTU" class="botoiak" action="#{erabilpenaMB.logeatu(erabiltzaileaMB)}" actionListener="#{ekitaldienErabilpenaMB.hasieraPrestatu(erabiltzaileaMB.izena)}"/>
 					</div>
+				</h:form>
+				<h:form>
 					<div class="linkLoginDiv">
-						<p>Dagoeneko ez zara erregistratu?<a href="erregistroa.xhtml"> <h:outputText value="Erregistratu zaitez" action="#{erabilpenaMB.kodeaGarbitu()}"/></a></p>
+						<p>Dagoeneko ez zara erregistratu?<h:commandLink action="#{erabilpenaMB.erregistratu()}" value="Erregistratu" /></p>
 					</div>
 				</h:form>
 				</div>

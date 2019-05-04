@@ -1,5 +1,6 @@
 package pl;
 
+import java.io.IOException;
 //import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 //import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -124,7 +126,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		Baieztatuak baieztatua=new Baieztatuak();
 		baieztatua.setErabiltzaileak(erabiltzailea);
 		baieztatua.setGeldialdiak(geldialdia);
-		zEJB.geldialdianSartuDB(baieztatua, geldialdia);
+		popup=zEJB.geldialdianSartuDB(erabiltzailea,baieztatua, geldialdia);
 		baieztatuakLortu();
 	}
 	
@@ -361,4 +363,28 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void popupItxi() {
 		popup=0;
 	}
+	
+	public void saioaAmaitu() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		FacesContext.getCurrentInstance().getExternalContext().redirect("Login.xhtml");
+	}
+	public String ekitaldietaraBueltatu() {
+		ekitaldiGuztiak=zEJB.ekitaldiGuztiakLortu();
+		Clean();
+		return "hasiera.xhtml";
+	}
+	
+	public String azpiekitaldietaraBueltatu() {
+		azpiekitaldiGuztiak=zEJB.azpiekitaldiGuztiakLortu(ekitaldia);
+		Clean();
+		return "azpiekitaldiak.xhtml";
+	}
+	
+	public String geldialdietaraBueltatu() {
+		geldialdiGuztiak=zEJB.geldialdiGuztiakLortu(azpiekitaldia);
+		Clean();
+		return "geldialdiak.xhtml";
+	}
+	
+	
 }
