@@ -24,13 +24,25 @@
 			</div>
 			<div class="menuDIV">
 				<ul id="menu">
- 					 <li><a href="../../Brafe/hasiera.xhtml">Ekitaldiak</a></li>
+ 					 <li>					 
+ 					 <h:form>
+					 	<h:commandButton action="hasiera.xhtml" actionListener="#{ekitaldienErabilpenaMB.ekitaldiakIragazi()}" value="Ekitaldiak" class="menuButton" />
+					 </h:form>
+					 </li>
   					 <li><a href="../../Brafe/mapa.xhtml">Brafe mapa</a></li>
  					 <li><a href="../../Brafe/alarma.xhtml">Alarma</a></li>
 					 <li><a href="../../Brafe/profilaAldatu.xhtml">Profila</a></li>
 					 <li><a href="../Brafe/Login.xhtml">Log-out</a></li>
 				</ul>
 			</div>
+
+		<h:form rendered="#{ekitaldienErabilpenaMB.popup==1}">
+		<div class="popup">
+			<h2>Kontuz!</h2>
+			<p>Ekitaldi bat ezabatzeko, hutsik egon behar da</p>
+			<h:commandButton action="#{ekitaldienErabilpenaMB.popupItxi()}" value="Ados" class="popButton" />
+		</div>
+		</h:form>
 		</div>
 		<br />
 		<br />

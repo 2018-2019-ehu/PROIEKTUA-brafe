@@ -206,7 +206,7 @@ ul#menu li a:hover {
 }
 
 .zerrenda{
-	width: 1000px;
+	width: 70%;
 	height: 400px;
 	display: block;
 	margin: auto;
@@ -221,6 +221,8 @@ ul#menu li a:hover {
 	overflow: auto;
 	height: 100%;
 	border-radius: 5px;
+	width: 100%;
+	margin: auto;
 }
 
 .fondo{
@@ -374,4 +376,98 @@ ul#menu li a:hover {
 }
 .mapaDIV{
 	margin-top: 17px;
+}
+
+.menuButton{
+  display: block;
+  color: white;
+  text-align: center;
+  font-family: arial;
+  font-size: 12px;
+  padding: 20px;
+  text-decoration: none;
+  background-color: black;
+  border: none;
+}
+
+.menuButton:hover{
+	background-color: white;
+  	color: black;
+}
+
+.popup{
+	background-color: white;
+	width:300px;
+	height: 200px;
+	position: fixed;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+	display: block;
+	margin: auto;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	border-radius: 5px;
+}
+
+.popup h2{
+	text-align: center;
+	font-family: monospace;
+}
+
+.popup p{
+	text-align: center;
+	font-family: monospace;
+}
+
+.popButton{
+	display:block;
+	margin:auto;
+	border:none;
+	border-radius: 10px;
+}
+
+.popButton:hover{
+	background-color: purple;
+	color: white;
+}
+.alarm{
+	background-color: white;
+	height: 500px;
+	position: fixed;
+	width: 350px;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+	margin: auto;
+	display: block;
+	margin-top:200px;
+	border-radius: 5px;
+}
+
+.alarm p{
+	text-align: center;
+	font-family: monospace;
+	font-size: 12px;
+}
+
+.whatsapp{
+	display: block;
+	margin: auto;
+	margin-top:40px;
+	height: 150px;
+	width: auto;
+}
+
+.whatsappKutxa{
+	background-color: #D3D3D3;
+	border: 1px;
+	height: 37.5px;
+	border-radius: 3px;
+	border-color: white;
+	width: 250px;
+	display: block;
+	margin: auto;
+	margin-top: 12.5px;
 }

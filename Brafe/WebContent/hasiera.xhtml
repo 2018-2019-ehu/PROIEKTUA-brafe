@@ -19,7 +19,6 @@
 			</h:form>
 		</div>
 		</div>
-			<h:outputText value="#{ekitaldienErabilpenaMB.render}" />
 			<h:form rendered="#{ekitaldienErabilpenaMB.render==1}">
 				<div class="ekitaldiBerria">
 					<div class="ekitaldiBerriaWrapper">
@@ -60,7 +59,7 @@
 				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.AzpiekitaldiakLortu(ekitaldia.idEkitaldiak)}" action="azpiekitaldiak.xhtml" value="Sartu" class="hasieraBotoiak"/>
-					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" action="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
+					<h:commandButton rendered="#{ekitaldia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" action="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" actionListener="#{ekitaldienErabilpenaMB.ekitaldiaEzabatu(ekitaldia.idEkitaldiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>
@@ -70,10 +69,6 @@
 			</h:form>
 			</div>
 		</div>
-		<h:outputScript rendered="#{ekitaldienErabilpenaMB.kodea==1}">
-			mezuaBistaratu();
-			#{ekitaldienErabilpenaMB.Clean()}
-		</h:outputScript>
 		</ui:define>
 	</ui:composition>
 </html>

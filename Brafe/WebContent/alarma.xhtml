@@ -5,13 +5,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:composition template="./EDUKIAK/TXANT/txantiloia2.xhtml">		
+	<ui:composition template="./EDUKIAK/TXANT/txantiloia4.xhtml">		
 		<ui:define name="title">Brafe: hasiera</ui:define>
 		<ui:define name="Edukia">
-		<div class="alarmaDiv">
-		<h:form>
-			<h:commandButton action="#{mezuaBidaliMB.mezuaSortuEtaBidali()}" value="Bidaia hasi" />
-		</h:form>
+		<div class="alarmaWrapper">
+		<div class="alarm">
+			<img src="EDUKIAK/IRUDIAK/whatsapp.png" alt="Whatsapp logo" class="whatsapp"/>
+			<br/>
+			<p>Arriskuan zaude? Bidali mezu bat:</p>
+			<input type="text" id="tel" name="telefonoa" placeholder="Telefono zenbakia" class="whatsappKutxa" />
+			<input type="submit" onclick="mezuaBidali()" value="Mezua bidali" class="botoiak"/>
+		</div>
 		</div>
 		</ui:define>
 	</ui:composition>

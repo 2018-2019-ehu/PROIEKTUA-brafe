@@ -40,6 +40,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	private int kodea=0;
 	private Erabiltzaileak profila=new Erabiltzaileak();
 	private float balorazioa;
+	private int popup;
 
 	
 	@EJB
@@ -200,12 +201,21 @@ public class ekitaldienErabilpenaMB implements Serializable {
 
 	public void ekitaldiaEzabatu(int idEkitaldia) {
 		kodea=zEJB.ekitaldiaEzabatuDB(idEkitaldia);
+		if(kodea==1) {
+			popup=1;
+		}
 	}
 	public void azpiekitaldiaEzabatu(int idAzpiekitaldia) {
 		kodea=zEJB.azpiekitaldiaEzabatuDB(idAzpiekitaldia);
+		if(kodea==1) {
+			popup=1;
+		}
 	}
 	public void geldialdiaEzabatu(int idGeldialdia) {
 		kodea=zEJB.geldialdiaEzabatuDB(idGeldialdia);
+		if(kodea==1) {
+			popup=1;
+		}
 	}
 	public int getRender() {
 		return render;
@@ -339,6 +349,16 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void setGeldialdiGuztiak(List<Geldialdiak> geldialdiGuztiak) {
 		this.geldialdiGuztiak = geldialdiGuztiak;
 	}
+
+	public int getPopup() {
+		return popup;
+	}
+
+	public void setPopup(int popup) {
+		this.popup = popup;
+	}
 	
-	
+	public void popupItxi() {
+		popup=0;
+	}
 }

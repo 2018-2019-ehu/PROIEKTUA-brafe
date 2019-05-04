@@ -8,11 +8,22 @@
 	<meta http-equiv="Content-Type" content="text/html;  charset=UTF-8 "/>
 	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/EDUKIAK/ESTILOAK/estiloa.css"/>
 	<title><ui:insert name="title">Brafe</ui:insert></title>
-	<script>
-	function mezuaBistaratu(){
-		if(#{ekitaldienErabilpenaMB.kodea==1}){
-				alert("Ekitaldia hutsik egon behar da ezabatu ahal izateko");
-			}
+	 <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADCLxfiS7X-JiStgKJEyHiNfIj-v4ko4Y
+&amp;callback=initMap"></script>
+	<script type="text/javascript" src="gmaps.js"></script>
+	<script type="text/javascript">
+		function mezuaBidali(){
+			navigator.geolocation.getCurrentPosition(whatsappIreki);
+		}
+		function whatsappIreki(position){
+			var queryString="?q="+position.coords.latitude+","+position.coords.longitude;
+			var query=encodeURIComponent(queryString);
+			var telef=document.getElementById("tel").value;
+			var aurrizkia="34";
+			var telefonoa=aurrizkia+telef;
+			var mapa="https://maps.google.com/"+query;
+		
+			location.href="https://web.whatsapp.com/send?phone="+telefonoa+"&amp;text=Laguntza%20behar%20dut%20"+mapa;
 		}
 	</script>
 </head> 
