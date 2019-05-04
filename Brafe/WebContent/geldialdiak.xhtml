@@ -29,9 +29,14 @@
 						Geralekua:
 						<br />
 						<h:inputText value="#{geldialdiakMB.geralekua}" class="iragazketaInput" />
+						Data:
+						<br />
+						<h:inputText value="#{geldialdiakMB.hasieraData}" class="iragazketaInput" >
+							<f:convertDateTime pattern="yyyy/MM/dd" timeZone="CET"/>
+						</h:inputText>
 						Ordua:
 						<br />
-						<h:inputText value="#{geldialdiakMB.ordua}" class="iragazketaInput" />
+						<h:inputText value="#{geldialdiakMB.ordua}" class="iragazketaInput" a:placeholder="hh:mm"/>
 						<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" actionListener="#{ekitaldienErabilpenaMB.geldialdiBerriaSortu(geldialdiakMB)}" value="Gorde" class="sortuBotoia" />
 					</div>
 				</div>
@@ -51,6 +56,14 @@
 				<h:column>
 				<f:facet name="header">Balorazioa</f:facet>
 					#{geldialdia.batazbestekoBalorazioa}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Hasiera data</f:facet>
+					#{geldialdia.hasieraData}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Iraungite data</f:facet>
+					#{geldialdia.iraungiteData}
 				</h:column>
 				<h:column>
 				<f:facet name="header">Ordua</f:facet>
@@ -77,7 +90,7 @@
 			</h:dataTable>
 			<br />
 			<h:form>
-				<h:commandButton actionListener="#{ekitaldienErabilpenaMB.azpiekitaldietaraBueltatu()}" value="Bueltatu" class="hasieraBotoiak"/>
+				<h:commandButton action="#{ekitaldienErabilpenaMB.azpiekitaldietaraBueltatu()}" value="Bueltatu" class="hasieraBotoiak" />
 				<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" value="Errefreskatu" class="hasieraBotoiak" />
 			</h:form>
 			</div>

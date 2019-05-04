@@ -88,7 +88,6 @@ public class ZerbitzuaEJB {
 				ekitaldiak.remove(i);
 			}
 		}
-		System.out.println("EkitaldiakLortu");
 		return ekitaldiak;
 	}
 	
@@ -99,7 +98,15 @@ public class ZerbitzuaEJB {
 	
 	@SuppressWarnings("unchecked")
 	public List<Geldialdiak> geldialdiGuztiakLortu(Azpiekitaldiak azpiekitaldia){
-		return (List<Geldialdiak>)em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
+		List<Geldialdiak> geldialdiak=(List<Geldialdiak>)em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
+		Date data=new Date();
+		for(int i=0;i<geldialdiak.size();i++) {
+			if(geldialdiak.get(i).getIraungiteData().before(data)) {
+				em.remove(geldialdiak.get(i));
+				geldialdiak.remove(i);
+			}
+		}
+		return geldialdiak;
 	}
 	
 	@SuppressWarnings("unchecked")

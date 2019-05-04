@@ -166,7 +166,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void ekitaldiBerriaSortu(EkitaldiakMB eMB) {
 		Ekitaldiak ekitaldia= new Ekitaldiak();
 		Date data=new Date();
-		Date amaiera=amaieraDataLortu(7);
+		Date amaiera=dataKalkulatu(7, data);
 		ekitaldia.setEkitaldiData(data);
 		ekitaldia.setEkitaldiIzena(eMB.getEkitaldiIzena());
 		ekitaldia.setEkitaldiZonaldea(eMB.getEkitaldiZonaldea());
@@ -186,9 +186,10 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	}
 	
 	public void geldialdiBerriaSortu(GeldialdiakMB gMB) {
-		Date amaiera=amaieraDataLortu(1);
+		Date amaiera=dataKalkulatu(2, gMB.getHasieraData());
 		Geldialdiak geldialdiak=new Geldialdiak();
 		
+		geldialdiak.setHasieraData(gMB.getHasieraData());
 		geldialdiak.setAzpiekitaldiak(azpiekitaldia);
 		geldialdiak.setGeldialdiIzena(gMB.getGeldialdiIzena());
 		geldialdiak.setBatazbestekoBalorazioa(0);
@@ -263,8 +264,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		this.profila = profila;
 	}
 
-	public Date amaieraDataLortu(int kop) {
-		Date data=new Date();
+	public Date dataKalkulatu(int kop,Date data){
 		Calendar c= Calendar.getInstance();
 		c.setTime(data);
 		c.add(Calendar.DATE, kop);

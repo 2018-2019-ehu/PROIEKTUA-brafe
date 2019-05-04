@@ -31,6 +31,10 @@ public class Geldialdiak implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="IraungiteData")
 	private Date iraungiteData;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="HasieraData")
+	private Date hasieraData;
 
 	private String ordua;
 
@@ -142,6 +146,14 @@ public class Geldialdiak implements Serializable {
 
 	public void setAzpiekitaldiak(Azpiekitaldiak azpiekitaldiak) {
 		this.azpiekitaldiak = azpiekitaldiak;
+	}
+
+	public Date getHasieraData() {
+		return hasieraData;
+	}
+
+	public void setHasieraData(Date hasieraData) {
+		this.hasieraData = hasieraData;
 	}
 
 }

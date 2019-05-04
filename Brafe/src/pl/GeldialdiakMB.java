@@ -26,6 +26,8 @@ public class GeldialdiakMB implements Serializable{
 
 	private Date iraungiteData;
 	
+	private Date hasieraData;
+	
 	private int partehartzaileak;
 	
 	private String ordua;
@@ -91,5 +93,13 @@ public class GeldialdiakMB implements Serializable{
 
 	public void setGeralekua(String geralekua) {
 		this.geralekua = geralekua;
+	}
+
+	public Date getHasieraData() {
+		return hasieraData;
+	}
+
+	public void setHasieraData(Date hasieraData) {
+		this.hasieraData = hasieraData;
 	}
 }
