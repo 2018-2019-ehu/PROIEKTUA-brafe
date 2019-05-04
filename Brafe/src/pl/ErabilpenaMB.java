@@ -62,7 +62,7 @@ public class ErabilpenaMB implements Serializable {
 	public void pasahitzaAldatu(String pasahitza) {
 		zEJB.pasahitzaAldatuDB(pasahitza, erabiltzaileDatuak.getIdErabiltzailea());
 		erabiltzaileDatuak=zEJB.loginDatuakLortu(erabiltzaileDatuak.getIzena());
-		System.out.println(erabiltzaileDatuak.getPasahitza());
+		kodea=5;
 	}
 	
 	public void helbideaAldatu(String helbidea) {

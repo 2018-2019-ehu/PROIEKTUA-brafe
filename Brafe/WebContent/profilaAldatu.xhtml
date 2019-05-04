@@ -10,9 +10,8 @@
 		<ui:define name="Edukia">
 		<div class="profila">
 		<div class="profilaDatuak">
-			<h:form>
 				<h2>Zure profila</h2>
-
+				<h:form>
 				<b>Izena:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.izena}
 				<br/>	
@@ -20,24 +19,28 @@
 				<b>Pasahitza:</b>
 				************
 				<h:commandButton action="#{erabilpenaMB.pasahitzaAldatu(erabiltzaileaMB.pasahitza)}" value="Aldatu" class="hasieraBotoiak" />
-				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder=" Pasahitza berria" class="profilaInput" />
-				<br/>	
-				<br/>			
+				<h:inputSecret value="#{erabiltzaileaMB.pasahitza}" a:placeholder=" Pasahitza berria" class="profilaInput" required="true" />
+				<br />
+				<br/>
+				</h:form>
+				<h:form>			
 				<b>Helbidea:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.helbidea}
 				<h:commandButton action="#{erabilpenaMB.helbideaAldatu(erabiltzaileaMB.helbidea)}" value="Aldatu" class="hasieraBotoiak"/>
-				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder=" Helbide berria" class="profilaInput" />
-				<br/>	
-				<br/>			
+				<h:inputText value="#{erabiltzaileaMB.helbidea}" a:placeholder=" Helbide berria" class="profilaInput" required="true" />
+				<br />
+				<br/>
+				</h:form>			
 				<b>Jaiote data:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.jaioteData}
 				<br/>
-				<br/>				
+				<br/>		
+				<h:form>		
 				<b>Telefono zenbakia:</b>
 				#{erabilpenaMB.erabiltzaileDatuak.telefonoZenbakia}
 				<h:commandButton action="#{erabilpenaMB.zenbakiaAldatu(erabiltzaileaMB.telefonoZenbakia)}" value="Aldatu" class="hasieraBotoiak"/>
 				<h:inputText value="#{erabiltzaileaMB.telefonoZenbakia}" a:placeholder=" Telefono zenbaki berria" class="profilaInput"/>
-			</h:form>
+				</h:form>
 			<h:form>
 			<br/>
 				<h:commandButton action="#{erabilpenaMB.kontuaEzabatu()}" value="Kontua ezabatu" class="popButton" />

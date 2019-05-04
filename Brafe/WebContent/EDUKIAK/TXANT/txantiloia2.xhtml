@@ -53,6 +53,14 @@
 			<h:commandButton action="#{ekitaldienErabilpenaMB.popupItxi()}" value="Ados" class="popButton" />
 		</div>
 		</h:form>
+		<h:form rendered="#{erabilpenaMB.kodea==5}">
+		<div class="popup">
+			<h2>Ados!</h2>
+			<img src="EDUKIAK/IRUDIAK/tik.png" class="tik"/>
+			<p>Pasahitza ondo aldatu da</p>
+			<h:commandButton action="#{erabilpenaMB.kodeaGarbitu()}" value="Ados" class="popButton" />
+		</div>
+		</h:form>
 		</div>
 		<br />
 		<br />

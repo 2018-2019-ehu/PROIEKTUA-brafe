@@ -328,6 +328,7 @@ ul#menu li a:hover {
 	margin-top: 200px;
 	font-family: sans-serif;
 	border-radius: 5px;
+	z-index: 0;
 }
 
 .profilaDatuak{
@@ -409,6 +410,7 @@ ul#menu li a:hover {
 	margin: auto;
 	box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 	border-radius: 5px;
+	z-index: 3;
 }
 
 .popup h2{
@@ -481,4 +483,11 @@ ul#menu li a:hover {
 .baloratutaDag{
 	text-align: center;
 	font-size: 12px;
+}
+
+.tik{
+	height: 60px;
+	width: auto;
+	display: block;
+	margin: auto;
 }
