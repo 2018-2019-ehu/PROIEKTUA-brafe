@@ -436,7 +436,7 @@ ul#menu li a:hover {
 }
 .alarm{
 	background-color: white;
-	height: 500px;
+	height: 550px;
 	position: absolute;
 	width: 350px;
 	top:0;
@@ -490,4 +490,11 @@ ul#menu li a:hover {
 	width: auto;
 	display: block;
 	margin: auto;
+}
+
+.ekitaldiOharrak{
+	text-align: left;
+	color:red;
+	display: block;
+	
 }

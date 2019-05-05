@@ -173,7 +173,10 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		ekitaldia.setPartaideKopurua(2);
 		ekitaldia.setSortzailea(autentikatutakoa);
 		ekitaldia.setAmaieraData(amaiera);
-		zEJB.ekitaldiaSortu(ekitaldia);
+		kodea=zEJB.ekitaldiaSortu(ekitaldia);
+		if(kodea==0) {
+			render=0;
+		}
 	}
 	
 	public void azpiekitaldiBerriaSortu(AzpiekitaldiakMB aMB) {
@@ -181,25 +184,37 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		azpiekitaldiak.setEkitaldiak(ekitaldia);
 		azpiekitaldiak.setSortzailea(autentikatutakoa);
 		azpiekitaldiak.setBueltatzekoLekua(aMB.getBueltatzekoLekua());
-		zEJB.azpiekitaldiaSortu(azpiekitaldiak,ekitaldia);
-		render=0;
+		kodea=zEJB.azpiekitaldiaSortu(azpiekitaldiak,ekitaldia);
+		if(kodea==0) {
+			render=0;			
+		}
 	}
 	
 	public void geldialdiBerriaSortu(GeldialdiakMB gMB) {
-		Date amaiera=dataKalkulatu(2, gMB.getHasieraData());
-		Geldialdiak geldialdiak=new Geldialdiak();
 		
-		geldialdiak.setHasieraData(gMB.getHasieraData());
-		geldialdiak.setAzpiekitaldiak(azpiekitaldia);
-		geldialdiak.setGeldialdiIzena(gMB.getGeldialdiIzena());
-		geldialdiak.setBatazbestekoBalorazioa(0);
-		geldialdiak.setIraungiteData(amaiera);
-		geldialdiak.setGeralekua(gMB.getGeralekua());
-		geldialdiak.setOrdua(gMB.getOrdua());
-		geldialdiak.setPartehartzaileak(0);
-		geldialdiak.setSortzailea(autentikatutakoa);
-		zEJB.geldialdiaSortu(geldialdiak,azpiekitaldia);
-		render=0;
+		Date data=new Date();
+		if(gMB.getHasieraData().equals(data) || gMB.getHasieraData().after(data)) {
+			Date amaiera=dataKalkulatu(2, gMB.getHasieraData());
+			Geldialdiak geldialdiak=new Geldialdiak();
+			
+			geldialdiak.setHasieraData(gMB.getHasieraData());
+			geldialdiak.setAzpiekitaldiak(azpiekitaldia);
+			geldialdiak.setGeldialdiIzena(gMB.getGeldialdiIzena());
+			geldialdiak.setBatazbestekoBalorazioa(0);
+			geldialdiak.setIraungiteData(amaiera);
+			geldialdiak.setGeralekua(gMB.getGeralekua());
+			geldialdiak.setOrdua(gMB.getOrdua());
+			geldialdiak.setPartehartzaileak(0);
+			geldialdiak.setSortzailea(autentikatutakoa);
+			
+			kodea=zEJB.geldialdiaSortu(geldialdiak,azpiekitaldia);
+			if(kodea==0) {
+				render=0;
+			}
+		}
+		else {
+			kodea=5;	
+		}
 	}
 
 	public void ekitaldiaEzabatu(int idEkitaldia) {
@@ -290,7 +305,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	
 	public void ekitaldiakErrefreskatu() {
 		ekitaldiGuztiak=zEJB.ekitaldiGuztiakLortu();
-		Clean();
+		//Clean();
 	}
 
 	public Erabiltzaileak getErabiltzailea() {

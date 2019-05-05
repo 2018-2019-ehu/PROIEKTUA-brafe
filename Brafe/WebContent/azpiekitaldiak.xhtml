@@ -24,7 +24,8 @@
 			<div class="ekitaldiBerria">
 				<div class="ekitaldiBerriaWrapper">
 				Azpiekitaldiaren izena:
-					<h:inputText value="#{azpiekitaldiakMB.bueltatzekoLekua}" class="iragazketaInput"/>
+					<h:inputText value="#{azpiekitaldiakMB.bueltatzekoLekua}" class="iragazketaInput" required="true"/>
+					<h:outputText value="*Dagoeneko izen berdina daukan azpiekitaldi bat existitzen da" rendered="#{ekitaldienErabilpenaMB.kodea==6}" class="ekitaldiOharrak" />
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.azpiekitaldiBerriaSortu(azpiekitaldiakMB)}" action="#{ekitaldienErabilpenaMB.azpiekitaldiakIragazi()}" value="Gorde" class="sortuBotoia" />
 				</div>
 			</div>

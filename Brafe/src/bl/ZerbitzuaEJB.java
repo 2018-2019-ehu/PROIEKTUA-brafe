@@ -167,48 +167,59 @@ public class ZerbitzuaEJB {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void ekitaldiaSortu(Ekitaldiak ekitaldia) {
+	public int ekitaldiaSortu(Ekitaldiak ekitaldia) {
+		int kodea=0;
 		List<Ekitaldiak> ekitaldiGuztiak= em.createNamedQuery("Ekitaldiak.findAll").getResultList();
 		boolean egoera=false;
 		
 		for(int i=0;i<ekitaldiGuztiak.size();i++) {
 			if(ekitaldiGuztiak.get(i).getEkitaldiIzena().equals(ekitaldia.getEkitaldiIzena())) {
 				egoera=true;
+				kodea=6;
 			}
 		}
 		if(egoera==false) {
 			em.merge(ekitaldia);
 		}
+		
+		return kodea;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void azpiekitaldiaSortu(Azpiekitaldiak azpiekitaldia,Ekitaldiak ekitaldia) {
+	public int azpiekitaldiaSortu(Azpiekitaldiak azpiekitaldia,Ekitaldiak ekitaldia) {
+		int kodea=0;
 		List<Azpiekitaldiak> azpiekitaldiGuztiak= em.createNamedQuery("Azpiekitaldiak.findMenpekoak").setParameter("ekitaldiak", ekitaldia).getResultList();
 		boolean egoera=false;
 		
 		for(int i=0;i<azpiekitaldiGuztiak.size();i++) {
 			if(azpiekitaldiGuztiak.get(i).getBueltatzekoLekua().equals(azpiekitaldia.getBueltatzekoLekua())) {
 				egoera=true;
+				kodea=6;
 			}
 		}
 		if(egoera==false) {
 			em.merge(azpiekitaldia);
 		}
+		return kodea;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void geldialdiaSortu(Geldialdiak geldialdia,Azpiekitaldiak azpiekitaldia) {
+	public int geldialdiaSortu(Geldialdiak geldialdia,Azpiekitaldiak azpiekitaldia) {
 		List<Geldialdiak> geldialdiGuztiak= em.createNamedQuery("Geldialdiak.findMenpekoak").setParameter("azpiekitaldiak", azpiekitaldia).getResultList();
 		boolean egoera=false;
+		int kodea=0;
 		
 		for(int i=0;i<geldialdiGuztiak.size();i++) {
 			if(geldialdiGuztiak.get(i).getGeldialdiIzena().equals(geldialdia.getGeldialdiIzena())) {
 				egoera=true;
+				kodea=6;
 			}
 		}
 		if(egoera==false) {
 			em.merge(geldialdia);
 		}
+		
+		return kodea;
 	}
 	
 	public int ekitaldiaEzabatuDB(int idEkitaldia) {

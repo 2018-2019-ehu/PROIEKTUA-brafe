@@ -25,18 +25,20 @@
 						<h2>Geldialdi berri bat sortu ezazu:</h2>
 						Geldialdiaren izena:
 						<br />
-						<h:inputText value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" />
+						<h:inputText value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" required="true" />
+						<h:outputText value="*Dagoeneko izen berdina daukan geldialdi bat existitzen da" rendered="#{ekitaldienErabilpenaMB.kodea==6}" class="ekitaldiOharrak" />
 						Geralekua:
 						<br />
-						<h:inputText value="#{geldialdiakMB.geralekua}" class="iragazketaInput" />
+						<h:inputText value="#{geldialdiakMB.geralekua}" class="iragazketaInput" required="true"/>
 						Data:
 						<br />
-						<h:inputText value="#{geldialdiakMB.hasieraData}" class="iragazketaInput" >
+						<h:inputText value="#{geldialdiakMB.hasieraData}" class="iragazketaInput" required="true" >
 							<f:convertDateTime pattern="yyyy/MM/dd" timeZone="CET"/>
 						</h:inputText>
+						<h:outputText value="*Sartutako data ez du balio: gaurkoa baino txikiagoa da" rendered="#{ekitaldienErabilpenaMB.kodea==5}" class="ekitaldiOharrak" />
 						Ordua:
 						<br />
-						<h:inputText value="#{geldialdiakMB.ordua}" class="iragazketaInput" a:placeholder="hh:mm"/>
+						<h:inputText value="#{geldialdiakMB.ordua}" class="iragazketaInput" a:placeholder="hh:mm" required="true"/>
 						<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" actionListener="#{ekitaldienErabilpenaMB.geldialdiBerriaSortu(geldialdiakMB)}" value="Gorde" class="sortuBotoia" />
 					</div>
 				</div>

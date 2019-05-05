@@ -25,11 +25,12 @@
 						<h2>Ekitaldi berri bat sortu ezazu:</h2>
 						Ekitaldiaren izena:
 						<br />
-							<h:inputText value="#{ekitaldiakMB.ekitaldiIzena}" class="iragazketaInput" />
+							<h:inputText value="#{ekitaldiakMB.ekitaldiIzena}" class="iragazketaInput" required="true"/>
+							<h:outputText value="*Dagoeneko izen berdina daukan ekitaldi bat existitzen da" rendered="#{ekitaldienErabilpenaMB.kodea==6}" class="ekitaldiOharrak" />
 							<br />
 						Ekitaldiaren zonaldea:
 						<br />
-							<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput"/>
+							<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput" required="true"/>
 							<br />
 							<br />
 							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" actionListener="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB)}" value="Gorde" class="sortuBotoia" />
@@ -47,6 +48,10 @@
 				<h:column>
 				<f:facet name="header">Ekitaldiaren izena</f:facet>
 					#{ekitaldia.ekitaldiIzena}
+				</h:column>
+				<h:column>
+				<f:facet name="header">Zonaldea</f:facet>
+					#{ekitaldia.ekitaldiZonaldea}
 				</h:column>
 				<h:column>
 				<f:facet name="header">Sortzailea</f:facet>
