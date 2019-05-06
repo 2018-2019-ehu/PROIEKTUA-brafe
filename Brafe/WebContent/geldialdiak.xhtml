@@ -86,7 +86,7 @@
 				<h:column>
 				<h:form>
 					<h:commandButton actionListener="#{ekitaldienErabilpenaMB.PartaideakLortu(geldialdia.idGeldialdiak)}" action="baieztatuak.xhtml" value="Sartu" class="hasieraBotoiak"/>
-					<h:commandButton rendered="#{geldialdia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" actionListener="#{ekitaldienErabilpenaMB.GeldialdiakLortu(ekitaldienErabilpenaMB.azpiekitaldia.idAzpiekitaldiak)}" action="#{ekitaldienErabilpenaMB.geldialdiaEzabatu(geldialdia.idGeldialdiak)}" value="Ezabatu" class="hasieraBotoiak" />
+					<h:commandButton rendered="#{geldialdia.sortzailea.equals(ekitaldienErabilpenaMB.autentikatutakoa)}" action="#{ekitaldienErabilpenaMB.GeldialdiakLortu(ekitaldienErabilpenaMB.azpiekitaldia.idAzpiekitaldiak)}" actionListener="#{ekitaldienErabilpenaMB.geldialdiaEzabatu(geldialdia.idGeldialdiak)}" value="Ezabatu" class="hasieraBotoiak" />
 				</h:form>
 				</h:column>
 			</h:dataTable>

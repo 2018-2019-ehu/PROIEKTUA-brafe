@@ -31,16 +31,15 @@ public class ZerbitzuaEJB {
 		int kodea=0;
 		
 		for(int i=0;i<erabiltzaileak.size();i++) {
-			
 			if(erabiltzaileak.get(i).getIzena().equals(erab.getIzena())) {
 				egoera=true;
 				kodea=1;
 			}
 		}
 		if(egoera==false) {
-			em.merge(erab);
+			em.persist(erab);
+			kodea=0;
 		}
-		
 		return kodea;
 	}
 	
@@ -157,7 +156,6 @@ public class ZerbitzuaEJB {
 				else {
 					batazbestekoa=((geldialdi.getBatazbestekoBalorazioa()*geldialdi.getPartehartzaileak())-baieztatuak.get(i).getErabiltzaileak().getBalorazioa())/(geldialdi.getPartehartzaileak()-1);
 				}
-				System.out.println(batazbestekoa);
 				geldialdi.setPartehartzaileak(geldialdi.getPartehartzaileak()-1);
 				geldialdi.setBatazbestekoBalorazioa(batazbestekoa);
 				em.persist(geldialdi);
@@ -179,7 +177,7 @@ public class ZerbitzuaEJB {
 			}
 		}
 		if(egoera==false) {
-			em.merge(ekitaldia);
+			em.persist(ekitaldia);
 		}
 		
 		return kodea;
@@ -198,7 +196,7 @@ public class ZerbitzuaEJB {
 			}
 		}
 		if(egoera==false) {
-			em.merge(azpiekitaldia);
+			em.persist(azpiekitaldia);
 		}
 		return kodea;
 	}
@@ -216,7 +214,7 @@ public class ZerbitzuaEJB {
 			}
 		}
 		if(egoera==false) {
-			em.merge(geldialdia);
+			em.persist(geldialdia);
 		}
 		
 		return kodea;

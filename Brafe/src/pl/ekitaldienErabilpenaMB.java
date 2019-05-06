@@ -122,7 +122,7 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	}
 	
 	public void GeldialdianSartu() {
-		Erabiltzaileak erabiltzailea=zEJB.loginDatuakLortu(autentikatutakoa);
+		//Erabiltzaileak erabiltzailea=zEJB.loginDatuakLortu(autentikatutakoa);
 		Baieztatuak baieztatua=new Baieztatuak();
 		baieztatua.setErabiltzaileak(erabiltzailea);
 		baieztatua.setGeldialdiak(geldialdia);
@@ -193,7 +193,9 @@ public class ekitaldienErabilpenaMB implements Serializable {
 	public void geldialdiBerriaSortu(GeldialdiakMB gMB) {
 		
 		Date data=new Date();
-		if(gMB.getHasieraData().equals(data) || gMB.getHasieraData().after(data)) {
+		
+		boolean egoera=datakKonparatu(gMB.getHasieraData(),data);
+		if(egoera==true || gMB.getHasieraData().after(data)) {
 			Date amaiera=dataKalkulatu(2, gMB.getHasieraData());
 			Geldialdiak geldialdiak=new Geldialdiak();
 			
@@ -215,6 +217,20 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		else {
 			kodea=5;	
 		}
+	}
+	
+	public boolean datakKonparatu(Date data1, Date data2) {
+		boolean egoera=true;
+		Calendar cal1=Calendar.getInstance();
+		Calendar cal2=Calendar.getInstance();
+		
+		cal1.setTime(data1);
+		cal2.setTime(data2);
+		
+		if(cal1.get(Calendar.YEAR)!=cal2.get(Calendar.YEAR) || cal1.get(Calendar.MONTH)!=cal2.get(Calendar.MONTH) || cal1.get(Calendar.DAY_OF_MONTH)!=cal2.get(Calendar.DAY_OF_MONTH)) {
+			egoera=false;
+		}
+		return egoera;
 	}
 
 	public void ekitaldiaEzabatu(int idEkitaldia) {
