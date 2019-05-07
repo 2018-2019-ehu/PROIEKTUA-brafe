@@ -25,20 +25,24 @@
 						<h2>Geldialdi berri bat sortu ezazu:</h2>
 						Geldialdiaren izena:
 						<br />
-						<h:inputText value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" required="true" />
+						<h:inputText id="inputak1" value="#{geldialdiakMB.geldialdiIzena}" class="iragazketaInput" required="true" requiredMessage="Mesedez zerbait sartu" />
 						<h:outputText value="*Dagoeneko izen berdina daukan geldialdi bat existitzen da" rendered="#{ekitaldienErabilpenaMB.kodea==6}" class="ekitaldiOharrak" />
+						<h:message for="inputak1" style="color:red" class="ekitaldiOharrak"/>						
 						Geralekua:
 						<br />
-						<h:inputText value="#{geldialdiakMB.geralekua}" class="iragazketaInput" required="true"/>
+						<h:inputText id="inputak" value="#{geldialdiakMB.geralekua}" class="iragazketaInput" required="true" requiredMessage="Mesedez zerbait sartu"/>
+						<h:message for="inputak" style="color:red" class="ekitaldiOharrak"/>
 						Data:
 						<br />
-						<h:inputText value="#{geldialdiakMB.hasieraData}" class="iragazketaInput" required="true" >
+						<h:inputText id="jaioteData" value="#{geldialdiakMB.hasieraData}" class="iragazketaInput" required="true" requiredMessage="Mesedez jarraitu dataren formatua">
 							<f:convertDateTime pattern="yyyy/MM/dd" timeZone="CET"/>
 						</h:inputText>
+						<h:message for="jaioteData" style="color:red" class="ekitaldiOharrak"/>
 						<h:outputText value="*Sartutako data ez du balio: gaurkoa baino txikiagoa da" rendered="#{ekitaldienErabilpenaMB.kodea==5}" class="ekitaldiOharrak" />
 						Ordua:
 						<br />
-						<h:inputText value="#{geldialdiakMB.ordua}" class="iragazketaInput" a:placeholder="hh:mm" required="true"/>
+						<h:inputText id="ordua" value="#{geldialdiakMB.ordua}" class="iragazketaInput" a:placeholder="hh:mm" required="true" requiredMessage="Mesedez ordua sartu ezazu"/>
+						<h:message for="ordua" style="color:red" class="ekitaldiOharrak"/>						
 						<h:commandButton action="#{ekitaldienErabilpenaMB.geldialdiakIragazi()}" actionListener="#{ekitaldienErabilpenaMB.geldialdiBerriaSortu(geldialdiakMB)}" value="Gorde" class="sortuBotoia" />
 					</div>
 				</div>

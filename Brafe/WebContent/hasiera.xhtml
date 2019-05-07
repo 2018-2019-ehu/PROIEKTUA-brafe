@@ -25,12 +25,14 @@
 						<h2>Ekitaldi berri bat sortu ezazu:</h2>
 						Ekitaldiaren izena:
 						<br />
-							<h:inputText value="#{ekitaldiakMB.ekitaldiIzena}" class="iragazketaInput" required="true"/>
+							<h:inputText id="ekitaldiizena" value="#{ekitaldiakMB.ekitaldiIzena}" class="iragazketaInput" required="true" requiredMessage="Mesedez sartu ekitaldiaren izena"/>
 							<h:outputText value="*Dagoeneko izen berdina daukan ekitaldi bat existitzen da" rendered="#{ekitaldienErabilpenaMB.kodea==6}" class="ekitaldiOharrak" />
+							<h:message for="ekitaldiizena" style="color:red" class="ekitaldiOharrak"/>
 							<br />
 						Ekitaldiaren zonaldea:
 						<br />
-							<h:inputText value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput" required="true"/>
+							<h:inputText id="ekitaldizonaldea" value="#{ekitaldiakMB.ekitaldiZonaldea}" class="iragazketaInput" required="true" requiredMessage="Mesedez sartu ekitaldearen zonaldea"/>
+							<h:message for="ekitaldizonaldea" style="color:red" class="ekitaldiOharrak"/>
 							<br />
 							<br />
 							<h:commandButton action="#{ekitaldienErabilpenaMB.ekitaldiakErrefreskatu()}" actionListener="#{ekitaldienErabilpenaMB.ekitaldiBerriaSortu(ekitaldiakMB)}" value="Gorde" class="sortuBotoia" />

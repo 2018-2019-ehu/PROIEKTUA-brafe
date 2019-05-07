@@ -170,7 +170,6 @@ public class ekitaldienErabilpenaMB implements Serializable {
 		ekitaldia.setEkitaldiData(data);
 		ekitaldia.setEkitaldiIzena(eMB.getEkitaldiIzena());
 		ekitaldia.setEkitaldiZonaldea(eMB.getEkitaldiZonaldea());
-		ekitaldia.setPartaideKopurua(2);
 		ekitaldia.setSortzailea(autentikatutakoa);
 		ekitaldia.setAmaieraData(amaiera);
 		kodea=zEJB.ekitaldiaSortu(ekitaldia);

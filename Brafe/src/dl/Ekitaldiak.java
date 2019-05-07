@@ -32,8 +32,6 @@ public class Ekitaldiak implements Serializable {
 
 	private String ekitaldiZonaldea;
 
-	private int partaideKopurua;
-
 	private String sortzailea;
 
 	//bi-directional many-to-one association to Azpiekitaldiak
@@ -81,14 +79,6 @@ public class Ekitaldiak implements Serializable {
 
 	public void setEkitaldiZonaldea(String ekitaldiZonaldea) {
 		this.ekitaldiZonaldea = ekitaldiZonaldea;
-	}
-
-	public int getPartaideKopurua() {
-		return this.partaideKopurua;
-	}
-
-	public void setPartaideKopurua(int partaideKopurua) {
-		this.partaideKopurua = partaideKopurua;
 	}
 
 	public String getSortzailea() {
